@@ -1,0 +1,26 @@
+.hero-section {
+    margin-top: 230px;
+    padding-bottom: 300px;
+    .container {
+        h1 {
+            font-size: 72px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFADA;
+            text-align: center;
+            font-weight: bolder;
+            margin-bottom: 10px;
+        }
+        h3 {
+            color: #CCB9B1;
+            text-align: center;
+            font-size: 24px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-bottom: 40px;
+        }
+        button {
+            padding-left: 40px;
+            padding-right: 40px;
+            margin: auto;
+        }
+    }
+}

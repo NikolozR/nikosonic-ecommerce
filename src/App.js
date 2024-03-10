@@ -1,10 +1,22 @@
-import './App.css';
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Products from "./components/Products";
+import Footer from "./components/Footer";
+import "./App.css";
+import "./styles/reset.scss";
 
 function App() {
   return (
-    <div className="App">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLcRBkfWLiofWay2cJa31Dg9E8kveSD7dJSxElYmFg-g&s" alt="" />
-    </div>
+    <>
+      <header>
+        <Navbar />
+        <Hero />
+      </header>
+      <main>
+        <Products/>
+      </main>
+      <Footer />
+    </>
   );
 }
 
