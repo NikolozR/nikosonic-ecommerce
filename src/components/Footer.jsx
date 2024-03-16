@@ -6,11 +6,6 @@ function Footer() {
   return (
     <footer>
       <div className="container">
-        <div className="footer-header">
-          <div className="line left-line"></div>
-          <h3>Get in Touch with Us</h3>
-          <div className="line right-line"></div>
-        </div>
         <div className="footer-body">
             <ul className="links" aria-label="Quick Links">
                 <li>Home</li>

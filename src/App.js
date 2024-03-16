@@ -10,7 +10,6 @@ function App() {
     <>
       <header>
         <Navbar />
-        <Hero />
       </header>
       <main>
         <Products/>
