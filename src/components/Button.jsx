@@ -1,10 +1,10 @@
 import React from 'react'
 import "../styles/Button.scss"
 
-function Button({text}) {
+function Button({children}) {
   return (
     <button className='btn'>
-        {text}
+        {children}
     </button>
   )
 }

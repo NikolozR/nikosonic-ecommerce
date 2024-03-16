@@ -1,5 +1,4 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+import Header from "./components/Header";
 import Products from "./components/Products";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -7,16 +6,13 @@ import "./styles/reset.scss";
 
 function App() {
   return (
-    <>
-      <header>
-        <Navbar />
-        <Hero />
-      </header>
+    <div className="html-wrapper">
+      <Header />
       <main>
-        <Products/>
+        <Products />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
