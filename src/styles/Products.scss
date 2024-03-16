@@ -1,5 +1,7 @@
 .product-section {
+    height: 100%;
     .container {
+        height: 100%;
         .products-header {
             display: flex;
             align-items: center;
@@ -19,8 +21,10 @@
         }
         .products-grid {
             display: grid;
+            row-gap: 20px;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             column-gap: 40px;
+            max-height: 100%;
             overflow-y: scroll;
         }
     }

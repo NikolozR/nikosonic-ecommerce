@@ -8,5 +8,6 @@ body, html, #root {
   justify-content: space-between;
 }
 main {
-  flex: 1;
+  flex: 1 1 auto;
+  max-height: 600px;
 }
