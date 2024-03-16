@@ -1,5 +1,5 @@
 import Product from "./Product";
-import Button from "./Button";
+import Search from "./Search";
 import "../styles/Products.scss";
 
 function Products() {
@@ -44,10 +44,7 @@ function Products() {
   return (
     <section className="product-section">
       <div className="container">
-          <form action="#" method="post">
-            <input type="text" placeholder="Search Product" />
-            <Button>Search</Button>
-          </form>
+        <Search />
         {/* <div className="products-header">
           <div className="line left-line"></div>
           <h3>Explore the Coffee World</h3>
