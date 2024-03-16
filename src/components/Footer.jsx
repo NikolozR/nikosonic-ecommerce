@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+// import Button from "./Button";
 import "../styles/Footer.scss";
 
 function Footer() {
@@ -13,7 +13,7 @@ function Footer() {
                 <li>Brands</li>
                 <li>Contanct Us</li>
             </ul>
-            <ul className="legal" aria-label="Legal">
+            {/* <ul className="legal" aria-label="Legal">
                 <li>Terms and Conditions</li>
                 <li>Privacy Policy</li>
             </ul>
@@ -24,7 +24,7 @@ function Footer() {
                     <input type="email" name="email" id="email" placeholder="Enter your email" />
                     <Button text="Subscribe" />
                 </form>
-            </div>
+            </div> */}
         </div>
         <div className="footer-footer">
             

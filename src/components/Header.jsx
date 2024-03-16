@@ -18,8 +18,8 @@ function Header() {
               <li>Contact us</li>
             </ul>
             <div className="nav-btns">
-              <Button text="Sign up/Login" />
-              <Button text="Get the App" />
+              <Button>Sign up/Login</Button>
+              <Button>Get the App</Button>
             </div>
           </div>
         </div>
