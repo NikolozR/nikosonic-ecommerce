@@ -18,7 +18,7 @@ function Product({prodData}) {
                 <p className="price">
                    ${prodData.price}0
                 </p>
-                <Button>Order Now</Button>
+                <Button>Add to cart</Button>
             </div>
         </div>
     </div>

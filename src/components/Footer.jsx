@@ -8,10 +8,10 @@ function Footer() {
       <div className="container">
         <div className="footer-body">
             <ul className="links" aria-label="Quick Links">
-                <li>Home</li>
-                <li>Explore Us</li>
-                <li>Brands</li>
-                <li>Contanct Us</li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Explore Us</a></li>
+                <li><a href="/">Brands</a></li>
+                <li><a href="/">Contact us</a></li>
             </ul>
             {/* <ul className="legal" aria-label="Legal">
                 <li>Terms and Conditions</li>
