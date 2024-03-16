@@ -1,5 +1,4 @@
 .product-section {
-    margin-bottom: 100px;
     .container {
         .products-header {
             display: flex;
@@ -22,6 +21,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             column-gap: 40px;
+            overflow-y: scroll;
         }
     }
 }

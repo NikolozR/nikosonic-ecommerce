@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import '../styles/Products.scss'
 
@@ -28,6 +28,7 @@ function Products() {
             img: `${process.env.PUBLIC_URL}/images/java.png`,
             price: 6.40
         },
+       
     ]
   return (
     <section className="product-section">
