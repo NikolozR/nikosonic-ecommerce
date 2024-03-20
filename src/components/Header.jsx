@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import "../styles/Navbar.scss";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -12,10 +13,18 @@ function Header() {
               <i>Filtro</i>
             </p>
             <ul className="nav-ul">
-              <li>Home</li>
-              <li>Explore us</li>
-              <li>Brands</li>
-              <li>Contact us</li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/explore">Explore us</Link>
+              </li>
+              <li>
+                <Link to="/brands">Brands</Link>
+              </li>
+              <li>
+                <Link to="/contacts">Contact us</Link>
+              </li>
             </ul>
             <div className="nav-btns">
               <Button>Sign up/Login</Button>

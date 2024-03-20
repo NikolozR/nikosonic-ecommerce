@@ -3,15 +3,19 @@ import Products from "./components/Products";
 import Footer from "./components/Footer";
 import "./App.scss";
 import "./styles/reset.scss";
+import { Routes, Route } from "react-router-dom";
+import Contact from "./components/Contact";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <div className="html-wrapper">
-      <Header />
-      <main>
-        <Products />
-      </main>
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Products />} />
+          <Route path="contacts" element={<Contact />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
