@@ -1,6 +1,5 @@
 .product-section {
     .container {
-        height: 100%;
         form {
             display: flex;
             margin: 30px 0;
@@ -12,31 +11,13 @@
                 border-radius: 10px;
                 border: 1px solid gray;
                 font-size: 20px;
-                padding: 12px 20px;
-                
+                padding: 12px 20px;    
             }
             input::placeholder {
                 font-size: 20px;
             }
             input:focus-visible {
                 outline: 0;
-            }
-        }
-        .products-header {
-            display: flex;
-            align-items: center;
-            margin: 40px 0;
-            .line {
-                flex: 1;
-                height: 5px;
-                background-color: #A0583C;
-            }
-            h3 {
-                color: #C08267;
-                font-size: 30px;
-                font-weight: bold;
-                font-family: Arial, Helvetica, sans-serif;
-                padding: 0 10px;
             }
         }
         .products-grid {
@@ -65,6 +46,16 @@
         .container {
             .products-grid {
                 max-height: 450px;
+            }
+        }
+    }
+}
+
+@media screen and (max-height: 690px) {
+    .product-section {
+        .container {
+            .products-grid {
+                max-height: 350px;
             }
         }
     }

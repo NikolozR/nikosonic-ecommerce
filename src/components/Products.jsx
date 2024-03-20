@@ -45,11 +45,6 @@ function Products() {
     <section className="product-section">
       <div className="container">
         <Search />
-        {/* <div className="products-header">
-          <div className="line left-line"></div>
-          <h3>Explore the Coffee World</h3>
-          <div className="line right-line"></div>
-        </div> */}
         <div className="products-grid">
           {productsData.map((el, i) => {
             return <Product key={i} prodData={el} />;
