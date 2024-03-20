@@ -1,7 +1,8 @@
 .product-card {
+    min-width: 300px;
     background-color: #C08267;
     border-radius: 20px;
-    padding: 17px 15px 27px;
+    padding: 17px 15px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +26,7 @@
             color: #FFFADA;
             line-height: 29px;
             letter-spacing: 2%;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
         .price-order {
             display: flex;

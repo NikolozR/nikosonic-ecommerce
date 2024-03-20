@@ -39,6 +39,27 @@ function Products() {
       img: `${process.env.PUBLIC_URL}/images/java.png`,
       price: 6.4,
     },
+    {
+      title: "Cold Java",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto quasi veniam error laborum corrupti reprehenderit dicta aspernatur iste sit expedita.",
+      img: `${process.env.PUBLIC_URL}/images/java.png`,
+      price: 6.4,
+    },
+    {
+      title: "Cold Java",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto quasi veniam error laborum corrupti reprehenderit dicta aspernatur iste sit expedita.",
+      img: `${process.env.PUBLIC_URL}/images/java.png`,
+      price: 6.4,
+    },
+    {
+      title: "Cold Java",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto quasi veniam error laborum corrupti reprehenderit dicta aspernatur iste sit expedita.",
+      img: `${process.env.PUBLIC_URL}/images/java.png`,
+      price: 6.4,
+    },
   ];
 
   return (
