@@ -15,6 +15,10 @@ header {
                     color: white;
                     letter-spacing: 3px;
                     cursor: pointer;
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
                 }
                 .nav-ul {
                     display: flex;

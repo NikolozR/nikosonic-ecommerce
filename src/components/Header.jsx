@@ -10,7 +10,9 @@ function Header() {
         <div className="container">
           <div className="nav-wrapper">
             <p className="logo-name">
-              <i>Filtro</i>
+              <Link to="/">
+                <i>Filtro</i>
+              </Link>
             </p>
             <ul className="nav-ul">
               <li>
