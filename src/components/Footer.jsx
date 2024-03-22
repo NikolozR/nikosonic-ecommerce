@@ -1,6 +1,7 @@
 import React from "react";
 // import Button from "./Button";
 import "../styles/Footer.scss";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -8,10 +9,10 @@ function Footer() {
       <div className="container">
         <div className="footer-body">
             <ul className="links" aria-label="Quick Links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/">Explore Us</a></li>
-                <li><a href="/">Brands</a></li>
-                <li><a href="/">Contact us</a></li>
+                <li><Link to={"/"}>Home</Link></li>
+                <li><Link to={"/explore"}>Explore Us</Link></li>
+                <li><Link to={"/brands"}>Brands</Link></li>
+                <li><Link to={"/contacts"}>Contact us</Link></li>
             </ul>
             {/* <ul className="legal" aria-label="Legal">
                 <li>Terms and Conditions</li>
