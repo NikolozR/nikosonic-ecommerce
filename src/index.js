@@ -4,7 +4,9 @@ import './index.scss';
 import './styles/reset.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// Solution 2 imports, uncomment them if you want to use solution 2
+//  Solution 2 imports for Routing
+//  uncomment them if you want to use solution 2 for Routing
+
 // import Error from './components/Error';
 // import Contact from './components/Contact';
 // import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -37,7 +39,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* Uncomment below code to use solution 2, comment out App component */}
+    {/* Uncomment below code to use solution 2 for Routing, comment out App component */}
     {/* <RouterProvider router={router}></RouterProvider> */}
     <App />
   </React.StrictMode>
