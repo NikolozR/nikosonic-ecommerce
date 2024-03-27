@@ -1,7 +1,6 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import Button from "./Button";
 import "../styles/Navbar.scss";
-import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -19,10 +18,10 @@ function Header() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/explore">Explore us</Link>
+                <Link to="/profile">Profile</Link>
               </li>
               <li>
-                <Link to="/brands">Brands</Link>
+                <Link to="/blogs">Blogs</Link>
               </li>
               <li>
                 <Link to="/contacts">Contact us</Link>
@@ -30,7 +29,6 @@ function Header() {
             </ul>
             <div className="nav-btns">
               <Button>Sign up/Login</Button>
-              <Button>Get the App</Button>
             </div>
           </div>
         </div>

@@ -1,9 +1,4 @@
-import Product from "./Product";
-import Search from "./Search";
-import "../styles/Products.scss";
-
-function Products() {
-  const productsData = [
+export const productsData = [
     {
       title: "Cappucino",
       description:
@@ -61,19 +56,3 @@ function Products() {
       price: 6.4,
     },
   ];
-
-  return (
-    <section className="product-section">
-      <div className="container">
-        <Search />
-        <div className="products-grid">
-          {productsData.map((el, i) => {
-            return <Product key={i} prodData={el} />;
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export default Products;
