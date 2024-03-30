@@ -1,11 +1,11 @@
 import Button from "./Button";
 
-function Search() {
+function Search({ handleSort }) {
   return (
-    <form action="#" method="post">
+    <div className="search-sort">
       <input type="text" placeholder="Search Product" />
-      <Button>Search</Button>
-    </form>
+      <Button onClick={handleSort}>Sort by Price</Button>
+    </div>
   );
 }
 
