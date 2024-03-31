@@ -1,5 +1,6 @@
 .product-card {
     min-width: 300px;
+    max-width: 300px;
     background-color: #C08267;
     border-radius: 20px;
     padding: 17px 15px 10px;
@@ -8,7 +9,8 @@
     align-items: center;
     img {
         border-radius: 10px;
-        width: 100%;
+        width: 270px;
+        max-width: 100%;
     }
     .product-body {
         padding-top: 15px;
