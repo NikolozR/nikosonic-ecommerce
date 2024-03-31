@@ -14,12 +14,12 @@ function Profile() {
 
   return (
     <section className="profile">
-      <div class="container">
+      <div className="container">
         <h1>User Profile</h1>
         <p className="full-name">Full Name: {profileData.fullName}</p>
         <p className="surname">Surname: {profileData.surname}</p>
         <p className="email">Email: {profileData.email}</p>
-        <p class="bio">Bio: {profileData.bio}</p>
+        <p className="bio">Bio: {profileData.bio}</p>
         <form action="" method="post">
           <input
             type="password"
