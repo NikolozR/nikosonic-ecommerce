@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+
+li {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+li a {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-ul li {
+  margin-top: 10px;
+  color: white;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.contact-form input {
+  display: block;
+  border: 0;
+  border-bottom: 2px solid #C08267;
+  font-size: 30px;
+}
+
+.contact-form input::placeholder {
+  font-size: 20px;
+}
+
+.contact-info h2 {
+  font-size: 30px;
+  color: #C08267;
+  margin-bottom: 25px;
+}
+
+.contact-info .info {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.profile p {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+.profile input {
+  width: 300px;
+  border: 0;
+  border-radius: 10px;
+  border: 1px solid gray;
+  font-size: 20px;
+  padding: 12px 20px;
+}
+.profile input::placeholder {
+  font-size: 20px;
+}
+
+.profile button {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  font-size: 20px;
+  width: fit-content;
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
