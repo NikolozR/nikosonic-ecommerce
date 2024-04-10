@@ -14,20 +14,24 @@ function Blogs() {
     fetchData()
   }, [])
 
-  return (
-    <section className="flex-1">
-      <div className="container mx-auto">
-        <div className="w-full grid grid-flow-col gap-[40px] overflow-x-auto">
-          {blogs && blogs?.map((el) => (
-            <Blog
-              key={el.id}
-              blogData={el}
-            />
-          ))}
+  if (blogs) {
+    return (
+      <section className="flex-1">
+        <div className="container mx-auto">
+          <div className="w-full grid grid-flow-col gap-[40px] overflow-x-auto">
+            {blogs && blogs?.map((el) => (
+              <Blog
+                key={el.id}
+                blogData={el}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  } else return <div className="mx-auto mt-[200px]">Loading...</div>
+
+  
 }
 
 export default Blogs;

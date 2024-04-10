@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import Search from "../components/Search";
@@ -13,8 +13,8 @@ function debounce(f, delay) {
 
 function Products() {
   const [input, setInput] = useState("");
-  const [products, setProducts] = useState(null)
-  
+  const [products, setProducts] = useState(null);
+
   const handleSort = () => {
     setProducts((prevState) => {
       const clone = [...prevState[0]];
@@ -29,10 +29,13 @@ function Products() {
     debounce(() => {
       setProducts(
         val !== ""
-          ? [products[0].filter(
-              (product) =>
-                product.title.toLowerCase().indexOf(val.toLowerCase()) !== -1
-            ), products[1]]
+          ? [
+              products[0].filter(
+                (product) =>
+                  product.title.toLowerCase().indexOf(val.toLowerCase()) !== -1
+              ),
+              products[1],
+            ]
           : [products[1], products[1]]
       );
     }, 500)();
@@ -40,15 +43,15 @@ function Products() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('https://dummyjson.com/products');
+      const res = await fetch("https://dummyjson.com/products");
       const data = await res.json();
       setProducts([data?.products, data?.products]);
     };
     fetchData();
-  }, [])
+  }, []);
 
-  return (
-    
+  if (products) {
+    return (
       <section className="flex-1">
         <div className="container mx-auto">
           <Search
@@ -57,14 +60,15 @@ function Products() {
             handleInput={handleInput}
           />
           <div className="w-full grid grid-flow-col gap-[40px] overflow-x-auto">
-            {products && products[0]?.map((el, i) => {
-              return <Product key={i} prodData={el} />;
-            })}
+            {products &&
+              products[0]?.map((el, i) => {
+                return <Product key={i} prodData={el} />;
+              })}
           </div>
         </div>
       </section>
-    
-  );
+    );
+  } else return <div className="mx-auto mt-[200px]">Loading...</div>
 }
 
 export default Products;
