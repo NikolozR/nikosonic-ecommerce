@@ -1,5 +1,4 @@
 'use client'
-import { blogsData } from "../../data/blogsData";
 import Blog from "../../components/Blog";
 import { useEffect, useState } from "react";
 
@@ -22,9 +21,7 @@ function Blogs() {
           {blogs && blogs?.map((el) => (
             <Blog
               key={el.id}
-              title={el.title}
-              description={el.description}
-              date={el.date}
+              blogData={el}
             />
           ))}
         </div>
