@@ -1,12 +1,10 @@
-"use client"; 
-import { useState } from "react";
-import { productsData } from "../data/productsData";
+'use client'
+import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import Search from "../components/Search";
 
 function debounce(f, delay) {
   let id;
-
   return function () {
     clearTimeout(id);
     id = setTimeout(f, delay);
@@ -14,14 +12,14 @@ function debounce(f, delay) {
 }
 
 function Products() {
-  const [products, setProducts] = useState(productsData);
   const [input, setInput] = useState("");
-
+  const [products, setProducts] = useState(null)
+  
   const handleSort = () => {
     setProducts((prevState) => {
-      const clone = [...prevState];
+      const clone = [...prevState[0]];
       clone.sort((a, b) => a.price - b.price);
-      return clone;
+      return [clone, prevState[1]];
     });
   };
 
@@ -31,14 +29,23 @@ function Products() {
     debounce(() => {
       setProducts(
         val !== ""
-          ? productsData.filter(
+          ? [products[0].filter(
               (product) =>
                 product.title.toLowerCase().indexOf(val.toLowerCase()) !== -1
-            )
-          : productsData
+            ), products[1]]
+          : [products[1], products[1]]
       );
     }, 500)();
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('https://dummyjson.com/products');
+      const data = await res.json();
+      setProducts([data?.products, data?.products]);
+    };
+    fetchData();
+  }, [])
 
   return (
     
@@ -50,7 +57,7 @@ function Products() {
             handleInput={handleInput}
           />
           <div className="w-full grid grid-flow-col gap-[40px] overflow-x-auto">
-            {products.map((el, i) => {
+            {products && products[0]?.map((el, i) => {
               return <Product key={i} prodData={el} />;
             })}
           </div>
