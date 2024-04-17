@@ -28,7 +28,7 @@ function Header() {
               </li>
             </ul>
             <div className="flex gap-[15px]">
-              <Button>Sign up/Login</Button>
+              <Button>Log Out</Button>
             </div>
           </div>
         </div>
