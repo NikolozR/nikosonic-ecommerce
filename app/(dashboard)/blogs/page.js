@@ -1,5 +1,5 @@
 'use client'
-import Blog from "../../components/Blog";
+import Blog from "../../../components/Blog";
 import { useEffect, useState } from "react";
 
 function Blogs() {

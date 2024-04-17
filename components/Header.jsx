@@ -1,8 +1,15 @@
 import Link from 'next/link'
 import Button from "./Button";
+import { logout } from '@/app/actions';
 
 
 function Header() {
+
+  const handleLogOut = async () => {
+    'use server'
+    await logout()
+  }
+
   return (
     <header className='flex-[0_0_auto]'>
       <nav className='bg-customMain'>
@@ -28,7 +35,8 @@ function Header() {
               </li>
             </ul>
             <div className="flex gap-[15px]">
-              <Button>Log Out</Button>
+              
+              <Button onClick={handleLogOut}>Log Out</Button>
             </div>
           </div>
         </div>

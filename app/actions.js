@@ -18,7 +18,8 @@ export async function login(username, password) {
 
 export async function logout() {
     const cookieStore = cookies()
-  cookieStore.remove("token");
+    cookieStore.delete("token");
+    redirect('/login')
 } 
 
 
