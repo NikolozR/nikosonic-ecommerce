@@ -1,9 +1,7 @@
-import Header from "../../components/Header";
-import Footer from "../../components/Footer.jsx";
+import Header from "../components/Header";
+import Footer from "../components/Footer.jsx";
 import { Inter } from "next/font/google";
-import { cookies } from "next/headers.js";
 import "../globals.css";
-import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,9 +11,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const cookieStore = cookies();
-  const cookie = cookieStore.get("token");
-  if (!cookie) redirect("/login");
   return (
     <>
       <Header />
