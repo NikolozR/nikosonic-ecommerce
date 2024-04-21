@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
 export async function login(username, password) {
-    const cookieStore = cookies()
+  const cookieStore = cookies();
   const response = await fetch("https://dummyjson.com/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -10,17 +10,14 @@ export async function login(username, password) {
       username: username,
       password: password,
     }),
-  })
+  });
   const user = await response.json();
   cookieStore.set("token", user.token);
-  redirect('/')
+  redirect("/");
 }
 
 export async function logout() {
-    const cookieStore = cookies()
-    cookieStore.delete("token");
-    redirect('/login')
-} 
-
-
-
+  const cookieStore = cookies();
+  cookieStore.delete("token");
+  redirect("/login");
+}

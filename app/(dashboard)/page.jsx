@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import Product from "../../components/Product";
-import Search from "../../components/Search";
+import Product from "../components/Product";
+import Search from "../components/Search";
 
 function debounce(f, delay) {
   let id;
@@ -11,9 +11,23 @@ function debounce(f, delay) {
   };
 }
 
+async function getProducts() {
+  const res = await fetch("https://dummyjson.com/products");
+  const data = await res.json();
+  return data?.products
+}
+
 function Products() {
   const [input, setInput] = useState("");
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getProducts();
+      setProducts([data, data]);
+    };
+    fetchData();
+  }, [])
 
   const handleSort = () => {
     setProducts((prevState) => {
@@ -41,15 +55,6 @@ function Products() {
     }, 500)();
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("https://dummyjson.com/products");
-      const data = await res.json();
-      setProducts([data?.products, data?.products]);
-    };
-    fetchData();
-  }, []);
-
   if (products) {
     return (
       <section className="flex-1">
@@ -68,7 +73,7 @@ function Products() {
         </div>
       </section>
     );
-  } else return <div className="mx-auto mt-[200px]">Loading...</div>
+  } else return <div className="mx-auto mt-[200px]">Loading...</div>;
 }
 
 export default Products;

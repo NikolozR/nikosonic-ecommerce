@@ -1,37 +1,31 @@
-'use client'
-import Blog from "../../../components/Blog";
-import { useEffect, useState } from "react";
+import { notFound } from "next/navigation";
+import Blog from "../../components/Blog";
+import { host, proto } from "@/app/constants";
 
-function Blogs() {
-  const [blogs, setBlogs] = useState(null)
+async function getBlogs() {
+  const res = await fetch(proto + '://' + host +'/api/blogs');
+  if (res.status === 200) {
+    const data = await res.json();
+    return data;
+  } else {
+    notFound()
+  }
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('https://dummyjson.com/posts');
-      const data = await res.json();
-      setBlogs(data?.posts);
-    };
-    fetchData()
-  }, [])
+async function Blogs() {
+  const blogs = await getBlogs();
 
-  if (blogs) {
-    return (
-      <section className="flex-1">
-        <div className="container mx-auto">
-          <div className="w-full grid grid-flow-col gap-[40px] overflow-x-auto">
-            {blogs && blogs?.map((el) => (
-              <Blog
-                key={el.id}
-                blogData={el}
-              />
-            ))}
-          </div>
+
+
+  return (
+    <section className="flex-1">
+      <div className="container mx-auto">
+        <div className="w-full grid grid-flow-col gap-[40px] overflow-x-auto">
+          {blogs && blogs?.map((el) => <Blog key={el.id} blogData={el} />)}
         </div>
-      </section>
-    );
-  } else return <div className="mx-auto mt-[200px]">Loading...</div>
-
-  
+      </div>
+    </section>
+  );
 }
 
 export default Blogs;
