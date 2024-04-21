@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 export async function POST(request) {
 
     const {username, password} = await request.json()
@@ -29,3 +27,4 @@ export async function POST(request) {
 
 
 }
+

@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
+  const isLoggedIn = request.cookies.get('token') && request.cookies.get('token').value !== ''
   if (request.nextUrl.pathname.startsWith("/login")) {
-    return NextResponse.next()
+    if (isLoggedIn) {
+      return NextResponse.redirect(new URL('/', request.url))
+    }
   } else {
-    if (!request.cookies.get('token') || request.cookies.get('token' === '')) {
+    if (!isLoggedIn) {
       return NextResponse.redirect(new URL('/login', request.url))
     }
   }
+
   return NextResponse.next();
 }
 

@@ -24,10 +24,6 @@ async function handleLogin(username, password) {
 
 
 function Login() {
-  // const handleLogin = async (email, password) => {
-  //   "use server";
-  //   await login(email, password);
-  // };
   return <LoginForm handleLogin={handleLogin} />;
 }
 
