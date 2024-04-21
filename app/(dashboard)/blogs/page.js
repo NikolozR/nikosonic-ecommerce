@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
 import Blog from "../../components/Blog";
-import { host, proto } from "@/app/constants";
 
 async function getBlogs() {
-  const res = await fetch(proto + '://' + host +'/api/blogs');
+  const res = await fetch('http://localhost:3000/api/blogs');
   if (res.status === 200) {
     const data = await res.json();
     return data;
