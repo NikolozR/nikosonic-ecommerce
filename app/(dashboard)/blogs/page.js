@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import Blog from "../../components/Blog";
+import { host, proto } from "@/app/constants";
 
 async function getBlogs() {
-  const res = await fetch('http://localhost:3000/api/blogs')
+  const res = await fetch(proto + '://' + host +'/api/blogs');
   if (res.status === 200) {
     const data = await res.json();
     return data;
@@ -13,6 +14,8 @@ async function getBlogs() {
 
 async function Blogs() {
   const blogs = await getBlogs();
+
+
 
   return (
     <section className="flex-1">
