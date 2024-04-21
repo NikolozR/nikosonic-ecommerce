@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 async function handleLogin(username, password) {
-  const res = await fetch(proto + "://" + host + "http://localhost:3000/api/login", {
+  const res = await fetch("http://localhost:3000/api/login", {
     method: "POST",
     body: JSON.stringify({
       username,
