@@ -1,11 +1,9 @@
 import LoginForm from "@/app/components/LoginForm";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { host, proto } from "@/app/constants";
 
 async function handleLogin(username, password) {
-  "use server";
-  const res = await fetch(proto + "://" + host + "/api/login", {
+  const res = await fetch(proto + "://" + host + "http://localhost:3000/api/login", {
     method: "POST",
     body: JSON.stringify({
       username,

@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { host, proto } from "@/app/constants";
 
 export async function generateStaticParams() {
   const res = await fetch("https://dummyjson.com/posts");
@@ -14,7 +13,7 @@ export async function generateStaticParams() {
 }
 
 async function getPost(id) {
-  const res = await fetch(proto + "://" + host + "/api/blogs/" + id);
+  const res = await fetch("http://localhost:3000/api/blogs/" + id);
   if (res.status === 200) {
     const post = await res.json();
     return post;
