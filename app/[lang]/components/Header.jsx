@@ -37,7 +37,7 @@ function Header({dic, locale}) {
               <LocaleSwitcher></LocaleSwitcher>
             </div>
             <div className="flex gap-[15px]">
-              <Button onClick={handleLogOut}>Log Out</Button>
+              <Button handle={handleLogOut}>Log Out</Button>
             </div>
           </div>
         </div>
