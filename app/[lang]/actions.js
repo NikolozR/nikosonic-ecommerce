@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { headers } from "next/headers";
 
 export async function login(username, password) {
     const cookieStore = cookies()
@@ -22,5 +23,13 @@ export async function logout() {
     redirect('/login')
 } 
 
-
+export function localeChange(locale) {
+  const host = headers().get("host");
+  let pathname = headers().get("referer");
+  const p = pathname.slice(pathname.indexOf(host)).replace(host, "");
+  const pathSegments = p.slice(1).split("/");
+  const pathWithoutLocale = pathSegments.slice(1).join("/");
+  cookies().set("NEXT_LOCALE", locale);
+  redirect('/ka')
+}
 

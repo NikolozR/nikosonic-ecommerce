@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import Product from "../../components/Product";
-import Search from "../../components/Search";
+import Product from "../components/Product";
+import Search from "../components/Search";
 
 function debounce(f, delay) {
   let id;
