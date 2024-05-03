@@ -2,9 +2,10 @@
 import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import Search from "../components/Search";
+import { ChangeEvent } from "react";
 
-function debounce(f, delay) {
-  let id;
+function debounce(f: () => void, delay: number) {
+  let id: string | number | NodeJS.Timeout | undefined;
   return function () {
     clearTimeout(id);
     id = setTimeout(f, delay);
@@ -19,7 +20,7 @@ async function getProducts() {
 
 function Products() {
   const [input, setInput] = useState("");
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<[product[], product[]]>([[],[]]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +38,7 @@ function Products() {
     });
   };
 
-  const handleInput = (e) => {
+  const handleInput: (e: ChangeEvent<HTMLInputElement>) => void = (e) => {
     const val = e.target.value;
     setInput(val);
     debounce(() => {

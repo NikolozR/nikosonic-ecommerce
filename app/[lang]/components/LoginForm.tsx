@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 
-function LoginForm({handleLogin}) {
+function LoginForm({handleLogin} : loginFormProps) {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
 

@@ -7,7 +7,7 @@ function Profile() {
   const [pasword, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
 
-  const handleChange = (e, type) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
     if (type === "new") setPassword(e.target.value);
     else if (type === "confirm") setConfirmation(e.target.value);
   };

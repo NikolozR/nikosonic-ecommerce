@@ -11,7 +11,7 @@ export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'ka' }]
 }
 
-export default function RootLayout({ children, params: {lang} }) {
+export default function RootLayout({ children, params: {lang} }: childrenProps) {
 
 
     return (

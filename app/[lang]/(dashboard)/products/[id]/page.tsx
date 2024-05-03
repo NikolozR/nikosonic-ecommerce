@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-function ProductPage({ params }) {
+function ProductPage({ params }: { params: Params}) {
   const { id } = params;
-  const [product, setProduct] = useState();
-
+  const [product, setProduct] = useState<Product>();
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("https://dummyjson.com/products/" + id);
@@ -17,7 +17,7 @@ function ProductPage({ params }) {
     fetchData();
   }, []);
 
-  const discountedPrice = product?.price - (product?.price * product?.discountPercentage / 100);
+  const discountedPrice = product && (product.price - (product.price * product.discountPercentage / 100));
 
   if (product) {
       return (
@@ -42,7 +42,7 @@ function ProductPage({ params }) {
                   Price: ${product?.price.toFixed(2)}
                 </p>
                 <p className="text-gray-700 text-base">
-                  Discounted Price: ${discountedPrice.toFixed(2)}
+                  Discounted Price: ${discountedPrice?.toFixed(2)}
                 </p>
                 <p className="text-gray-700 text-base">Rating: {product?.rating}</p>
                 <p className="text-gray-700 text-base">Stock: {product?.stock}</p>

@@ -1,4 +1,4 @@
-async function getBlog(id) {
+async function getBlog(id: string) {
   const res = await fetch("https://dummyjson.com/posts/" + id);
   const data = await res.json();
   return data;
@@ -8,14 +8,13 @@ export async function generateStaticParams() {
   const res = await fetch("https://dummyjson.com/posts");
   const data = await res.json();
   const posts = data.posts;
-  return posts.map((post) => ({
+  return posts.map((post: Blog) => ({
     id: JSON.stringify(post.id),
   }));
 }
 
-async function BlogPost({ params }) {
-  const { id } = params;
-  const blog = await getBlog(id)
+async function BlogPost({ params: {id} }: {params: {id: string}}) {
+  const blog: Blog = await getBlog(id)
 
     return (
       <section className="flex-1 flex flex-col">

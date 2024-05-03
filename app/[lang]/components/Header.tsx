@@ -3,7 +3,7 @@ import Button from "./Button";
 import { logout } from "../actions";
 import LocaleSwitcher from "./LocaleSwitcher";
 
-function Header({dic, locale}) {
+function Header({dic, locale}: headerProps) {
   const handleLogOut = async () => {
     "use server";
     await logout();
@@ -21,16 +21,16 @@ function Header({dic, locale}) {
             </p>
             <ul className="flex gap-[40px]">
               <li>
-                <Link href={'/' + locale}>{dic.navbar.home}</Link>
+                <Link href={'/' + locale}>{dic?.navbar.home}</Link>
               </li>
               <li>
-                <Link href={"/" + locale + "/profile"}>{dic.navbar.profile}</Link>
+                <Link href={"/" + locale + "/profile"}>{dic?.navbar.profile}</Link>
               </li>
               <li>
-                <Link href={"/" + locale + "/blogs"}>{dic.navbar.blogs}</Link>
+                <Link href={"/" + locale + "/blogs"}>{dic?.navbar.blogs}</Link>
               </li>
               <li>
-                <Link href={"/" + locale + "/contacts"}>{dic.navbar.contacts}</Link>
+                <Link href={"/" + locale + "/contacts"}>{dic?.navbar.contacts}</Link>
               </li>
             </ul>
             <div>
