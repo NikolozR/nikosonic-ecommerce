@@ -6,6 +6,7 @@ import { cookies } from "next/headers.js";
 import "../globals.css";
 import { redirect } from "next/navigation";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -14,6 +15,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, params }) {
+  console.log(params.lang)
   const dict = await getDictionary(params.lang)
   const cookieStore = cookies();
   const cookie = cookieStore.get("token");
