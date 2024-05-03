@@ -15,7 +15,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, params }) {
-  console.log(params.lang)
   const dict = await getDictionary(params.lang)
   const cookieStore = cookies();
   const cookie = cookieStore.get("token");
