@@ -1,8 +1,7 @@
-import Button from "./Button";
 import Link from "next/link";
 import Image from "next/image";
 
-function Product({ prodData }) {
+function Product({ prodData }: { prodData: Product}) {
   return (
     <div className="min-w-[300px] max-w-[300px] bg-customMain rounded-[20px] pt-[17px] pr-[15px] pb-[10px] pl-[15px]">
       <Image
@@ -26,9 +25,9 @@ function Product({ prodData }) {
           </p>
         </div>
         <div className="flex justify-between mt-[20px]">
-          <Button>Add to cart</Button>
+          <button>Add to cart</button>
         <Link href={'/products/' + prodData?.id}>
-          <Button>Read More</Button>
+          <button>Read More</button>
         </Link>
 
         </div>

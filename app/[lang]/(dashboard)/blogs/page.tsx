@@ -6,13 +6,13 @@ async function getBlogs() {
   return data?.posts;
 }
 
-async function Blogs({params: {lang}}) {
+async function Blogs({params: {lang}}: {params: {lang: string}}) {
   const blogs = await getBlogs();
   return (
     <section className="flex-1">
       <div className="container mx-auto">
         <div className="w-full grid grid-flow-col gap-[40px] overflow-x-auto">
-          {blogs && blogs?.map((el) => <Blog key={el.id} blogData={el} locale={lang} />)}
+          {blogs && blogs?.map((el: Blog) => <Blog key={el.id} blogData={el} locale={lang} />)}
         </div>
       </div>
     </section>

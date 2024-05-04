@@ -1,8 +1,7 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { headers } from "next/headers";
 
-export async function login(username, password) {
+export async function login(username: string, password: string) {
     const cookieStore = cookies()
   const response = await fetch("https://dummyjson.com/auth/login", {
     method: "POST",

@@ -1,6 +1,3 @@
-import Button from "../../components/Button";
-
-
 function Contact() {
   return (
     <section className="flex-1 flex flex-col">
@@ -11,7 +8,7 @@ function Contact() {
             <input placeholder="Full Name" type="text" name="fullName" id="fullName" />
             <input placeholder="E-mail" type="email" name="email" id="email" />
             <input className="mb-[30px]" placeholder="Message" type="text" name="message" id="message" />
-            <Button>Contact us</Button>
+            <button>Contact us</button>
           </form>
           <div className="contact-info">
             <h2>Contact</h2>

@@ -1,13 +1,12 @@
 'use client';
 import { profileData } from "../../../../data/profileData";
-import Button from "../../components/Button";
 import { useState } from "react";
 
 function Profile() {
   const [pasword, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
 
-  const handleChange = (e, type) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
     if (type === "new") setPassword(e.target.value);
     else if (type === "confirm") setConfirmation(e.target.value);
   };
@@ -36,7 +35,7 @@ function Profile() {
             name="confirmPassword"
             id="confirmPassword"
           />
-          <Button>Save</Button>
+          <button>Save</button>
         </form>
       </div>
     </section>
