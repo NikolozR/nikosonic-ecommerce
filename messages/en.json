@@ -4,7 +4,7 @@
         "profile": "Profile",
         "blogs": "Blogs",
         "contacts": "Contact Us",
-        "log.out": "Log Out"
+        "logOut": "Log Out"
     },
     "Search": {
         "product": "Search Product",
