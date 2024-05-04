@@ -49,3 +49,9 @@ type NavbarDict = {
 type dictionary = {
   navbar: NavbarDict;
 };
+type CustomMiddleware = (
+  request: NextRequest,
+  event: NextFetchEvent,
+  response: NextResponse
+) => NextMiddlewareResult | Promise<NextMiddlewareResult>
+type MiddlewareFactory = (middleware: NextMiddleware) => NextMiddleware;

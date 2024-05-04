@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -12,8 +13,6 @@ export async function generateStaticParams() {
 }
 
 export default function RootLayout({ children, params: {locale} }: childrenProps<paramsLang>) {
-
-
     return (
       <html lang={locale}>
         <body className={inter.className + " h-dvh flex flex-col justify-center"}>

@@ -1,7 +1,6 @@
 import Header from "../components/Header";
-import { cookies } from "next/headers.js";
 import "../globals.css";
-import { redirect } from "next/navigation";
+
 
 
 
@@ -11,9 +10,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children } : {children: React.ReactNode}) {
-  const cookieStore = cookies();
-  const cookie = cookieStore.get("token");
-  if (!cookie) redirect("/login");
   return (
     <>
       <Header />
