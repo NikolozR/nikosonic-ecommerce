@@ -1,13 +1,11 @@
 import Header from "../components/Header";
-import Footer from "../components/Footer.jsx";
-import { Inter } from "next/font/google";
+import Footer from "../components/Footer";
 import { getDictionary } from "../dictionaries";
 import { cookies } from "next/headers.js";
 import "../globals.css";
 import { redirect } from "next/navigation";
 
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",

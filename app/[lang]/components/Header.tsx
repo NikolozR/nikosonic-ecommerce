@@ -6,6 +6,7 @@ import LocaleSwitcher from "./LocaleSwitcher";
 function Header({dic, locale}: headerProps) {
   const handleLogOut = async () => {
     "use server";
+    console.log("Adsfdggggggggggggggg")
     await logout();
   };
 

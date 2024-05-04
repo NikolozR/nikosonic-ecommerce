@@ -5,7 +5,8 @@ import i18nConfig from "../utils/i18n";
 import Button from "./Button";
 
 async function handleClick(locale: string) {
-  "use server";
+  'use server'
+  console.log("SAGGGGGGGGGGGGG")
   const host = headers().get("host");
   let pathname = headers().get("referer");
   const p = pathname?.slice(pathname.indexOf(host || '')).replace(host || '', "");
@@ -14,7 +15,7 @@ async function handleClick(locale: string) {
 
   const newPath = `/${locale}/${pathWithoutLocale}`;
   cookies().set("NEXT_LOCALE", locale);
-  redirect(newPath);
+  redirect(newPath)
 }
 function LocaleSwitcher() {
   return (
@@ -24,8 +25,8 @@ function LocaleSwitcher() {
           <Button
             key={locale}
             handle={async () => {
-              "use server";
-             return handleClick(locale);
+              'use server'
+            return handleClick(locale);
             }}
           >
             {locale}
