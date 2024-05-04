@@ -1,11 +1,15 @@
-type childrenProps = {
+type childrenProps<P = unknown> = P & {
   children: React.ReactNode;
-  handle?: () => void;
-  params?: {lang: string};
 };
+type paramsLang = {
+  params: {lang: string}
+}
+type handleVoid = {
+  handle: () => void
+}
 type headerProps = {
-  dic?: dictionary,
-  locale: string
+  dic?: dictionary;
+  locale: string;
 };
 type loginFormProps = {
   handleLogin: (email: string, password: string) => Promise<void>;
@@ -41,7 +45,7 @@ type NavbarDict = {
   profile: string;
   blogs: string;
   contacts: string;
-}
+};
 type dictionary = {
-  navbar: NavbarDict
+  navbar: NavbarDict;
 };
