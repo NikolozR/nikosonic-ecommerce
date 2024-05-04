@@ -1,0 +1,13 @@
+{
+    "Header": {
+        "home": "Home",
+        "profile": "Profile",
+        "blogs": "Blogs",
+        "contacts": "Contact Us",
+        "log.out": "Log Out"
+    },
+    "Search": {
+        "product": "Search Product",
+        "sort": "Sort By Price"
+    }
+}

@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { headers } from "next/headers";
 
 export async function login(username: string, password: string) {
     const cookieStore = cookies()
@@ -21,3 +22,14 @@ export async function logout() {
     cookieStore.delete("token");
     redirect('/login')
 } 
+
+export function getRoute() {
+  const host = headers().get("host");
+  let pathname = headers().get("referer");
+  const p = pathname?.slice(pathname.indexOf(host || '')).replace(host || '', "");
+  const pathSegments = p?.slice(1).split("/");
+  const pathWithoutLocale = pathSegments?.slice(1).join("/");
+  const newPath = `${pathWithoutLocale}`;
+  console.log(newPath)
+  return newPath
+}

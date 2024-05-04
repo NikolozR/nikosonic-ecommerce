@@ -1,12 +1,13 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import Button from "./Button";
 import { logout } from "../actions";
 import LocaleSwitcher from "./LocaleSwitcher";
 
-function Header({dic, locale}: headerProps) {
+async function Header() {
+  const headerT = await getTranslations('Header');
   const handleLogOut = async () => {
     "use server";
-    console.log("Adsfdggggggggggggggg")
     await logout();
   };
 
@@ -16,22 +17,22 @@ function Header({dic, locale}: headerProps) {
         <div className="container mx-auto">
           <div className="flex py-[15px] items-center justify-between">
             <p className="font-bold text-[24px] text-white tracking-[3px] cursor-pointer">
-              <Link href={"/" + locale}>
+              <Link href={"/"}>
                 <i>Filtro</i>
               </Link>
             </p>
             <ul className="flex gap-[40px]">
               <li>
-                <Link href={'/' + locale}>{dic?.navbar.home}</Link>
+                <Link href={'/'}>{headerT('home')}</Link>
               </li>
               <li>
-                <Link href={"/" + locale + "/profile"}>{dic?.navbar.profile}</Link>
+                <Link href={"/profile"}>{headerT('profile')}</Link>
               </li>
               <li>
-                <Link href={"/" + locale + "/blogs"}>{dic?.navbar.blogs}</Link>
+                <Link href={"/blogs"}>{headerT('blogs')}</Link>
               </li>
               <li>
-                <Link href={"/" + locale + "/contacts"}>{dic?.navbar.contacts}</Link>
+                <Link href={"/contacts"}>{headerT('contacts')}</Link>
               </li>
             </ul>
             <div>
