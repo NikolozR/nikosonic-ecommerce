@@ -1,7 +1,7 @@
 type childrenProps = {
   children: React.ReactNode;
   handle?: () => void;
-  params?: Params;
+  params?: {lang: string};
 };
 type headerProps = {
   dic?: dictionary,
