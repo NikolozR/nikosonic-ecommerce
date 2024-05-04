@@ -1,4 +1,3 @@
-import Button from "./Button";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -17,7 +16,7 @@ function Blog({ blogData, locale }: { blogData: Blog; locale: string }) {
           {blogData?.title}
         </h2>
         <Link href={`/${locale}/blogs/${blogData?.id}`}>
-          <Button>Read More</Button>
+          <button>Read More</button>
         </Link>
       </div>
     </div>

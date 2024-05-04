@@ -20,7 +20,7 @@ async function getProducts() {
 
 function Products() {
   const [input, setInput] = useState("");
-  const [products, setProducts] = useState<[product[], product[]]>([[],[]]);
+  const [products, setProducts] = useState<[Product[], Product[]]>([[],[]]);
 
   useEffect(() => {
     const fetchData = async () => {

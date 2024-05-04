@@ -1,4 +1,3 @@
-import Button from "./Button";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -26,9 +25,9 @@ function Product({ prodData }: { prodData: Product}) {
           </p>
         </div>
         <div className="flex justify-between mt-[20px]">
-          <Button>Add to cart</Button>
+          <button>Add to cart</button>
         <Link href={'/products/' + prodData?.id}>
-          <Button>Read More</Button>
+          <button>Read More</button>
         </Link>
 
         </div>

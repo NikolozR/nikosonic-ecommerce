@@ -1,6 +1,5 @@
 'use client';
 import { profileData } from "../../../../data/profileData";
-import Button from "../../components/Button";
 import { useState } from "react";
 
 function Profile() {
@@ -36,7 +35,7 @@ function Profile() {
             name="confirmPassword"
             id="confirmPassword"
           />
-          <Button>Save</Button>
+          <button>Save</button>
         </form>
       </div>
     </section>
