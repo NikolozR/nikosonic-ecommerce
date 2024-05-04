@@ -2,7 +2,7 @@ type childrenProps<P = unknown> = P & {
   children: React.ReactNode;
 };
 type paramsLang = {
-  params: {lang: string}
+  params: {locale: string}
 }
 type handleVoid = {
   handle: () => void

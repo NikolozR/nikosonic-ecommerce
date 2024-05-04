@@ -11,11 +11,11 @@ export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'ka' }]
 }
 
-export default function RootLayout({ children, params: {lang} }: childrenProps<paramsLang>) {
+export default function RootLayout({ children, params: {locale} }: childrenProps<paramsLang>) {
 
 
     return (
-      <html lang={lang}>
+      <html lang={locale}>
         <body className={inter.className + " h-dvh flex flex-col justify-center"}>
           {children}
         </body>
