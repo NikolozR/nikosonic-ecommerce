@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import Button from "./Button";
 import { logout } from "../actions";
 import LocaleSwitcher from "./LocaleSwitcher";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 async function Header() {
   const headerT = await getTranslations('Header');
@@ -13,7 +14,7 @@ async function Header() {
 
   return (
     <header className="flex-[0_0_auto]">
-      <nav className="bg-customMain">
+      <nav className="bg-customMain dark:bg-slate-800">
         <div className="container mx-auto">
           <div className="flex py-[15px] items-center justify-between">
             <p className="font-bold text-[24px] text-white tracking-[3px] cursor-pointer">
@@ -35,8 +36,9 @@ async function Header() {
                 <Link href={"/contacts"}>{headerT('contacts')}</Link>
               </li>
             </ul>
-            <div>
+            <div className="flex items-center gap-2">
               <LocaleSwitcher></LocaleSwitcher>
+              <ThemeSwitcher></ThemeSwitcher>
             </div>
             <div className="flex gap-[15px]">
               <Button handle={handleLogOut}>Log Out</Button>
