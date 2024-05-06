@@ -55,3 +55,16 @@ type CustomMiddleware = (
   response: NextResponse
 ) => NextMiddlewareResult | Promise<NextMiddlewareResult>
 type MiddlewareFactory = (middleware: NextMiddleware) => NextMiddleware;
+type CreateUser = {
+  name: string,
+  email: string,
+  passwordHash: string
+  age: number
+}
+type User = {
+  id: number,
+  name: string,
+  email: string,
+  role: string,
+  age: number
+}

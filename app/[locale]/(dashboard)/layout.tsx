@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import "../globals.css";
+import { hashPassword } from "../actions";
 
 
 
@@ -10,6 +11,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children } : {children: React.ReactNode}) {
+  console.log(hashPassword(''))
   return (
     <>
       <Header />
