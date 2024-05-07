@@ -15,7 +15,8 @@ module.exports = {
       },
       colors: {
         'customMain': '#C08267',
-        'customSecondary': '#A0583C'
+        'customSecondary': '#A0583C',
+        'labelGray': '#6C7275'
       },
       boxShadow: {
         'custom': '0 2px 5px rgba(0, 0, 0, 0.1)',

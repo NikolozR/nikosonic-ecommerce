@@ -1,19 +1,20 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 var bcrypt = require('bcryptjs');
-
-export async function login(username: string, password: string) {
-    const cookieStore = cookies()
-  const response = await fetch("https://dummyjson.com/auth/login", {
+const baseUrl = process.env.BASE_URL
+export async function login(email: string, password: string) {
+  const cookieStore = cookies()
+  const response = await fetch(baseUrl + "/api/auth-login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      username: username,
+      email: email,
       password: password,
     }),
   })
   const user = await response.json();
-  cookieStore.set("token", user.token);
+  console.log(user.rows[0].id)
+  cookieStore.set("user", JSON.stringify(user.rows[0]));
   redirect('/')
 }
 

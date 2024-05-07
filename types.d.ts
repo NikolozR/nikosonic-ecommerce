@@ -68,3 +68,7 @@ type User = {
   role: string,
   age: number
 }
+type LogInUser = {
+  email: string,
+  password: string
+}

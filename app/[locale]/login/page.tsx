@@ -6,7 +6,9 @@
       "use server";
       await login(email, password);
     };
-    return <LoginForm handleLogin={handleLogin} />;
+    return <div className="container">
+      <LoginForm handleLogin={handleLogin} />
+    </div>;
   }
 
   export default Login;

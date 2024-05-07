@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 export default function RootLayout({ children, params: {locale} }: childrenProps<paramsLang>) {
     return (
       <html lang={locale} suppressHydrationWarning>
-        <body className={inter.className + " h-dvh flex flex-col justify-center"}>
+        <body className={inter.className}>
         <Providers>
             {children}
         </Providers>
