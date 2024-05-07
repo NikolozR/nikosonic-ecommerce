@@ -7,13 +7,13 @@ function LoginForm({ handleLogin }: loginFormProps) {
   return (
     <main className="flex-1 flex flex-col items-center justify-center">
       <div className="w-fit flex flex-col justify-center">
-        <h1 className="text-[40px] leading-[44px] font-medium text-black mb-[24px]">
+        <h1 className="text-[40px] leading-[44px] font-medium text-black mb-[24px] dark:text-white">
           Sign In
         </h1>
-        <p className="text-[16px] leading-[26px] text-labelGray mb-4">
+        <p className="text-[16px] leading-[26px] text-neutral-4 mb-4 dark:text-gray-200">
           Don’t have an accout yet?{" "}
           <Link href="/register">
-            <span className="text-[#38CB89] cursor-pointer">Sign Up</span>
+            <span className="text-[#38CB89] font-bold cursor-pointer">Sign Up</span>
           </Link>
         </p>
         <form
@@ -26,7 +26,7 @@ function LoginForm({ handleLogin }: loginFormProps) {
         >
           <input
             type="email"
-            className="w-[456px] focus-visible:outline-none focus:caret-slate-400 max-w-full border-b-[1px] border-solid border-[#E8ECEF] text-[24px] pb-[12px] placeholder:text-labelGray placeholder:text-[16px] placeholder:leading-[26px]"
+            className="w-[456px] focus-visible:outline-none bg-transparent focus:caret-slate-400 max-w-full border-b-[1px] border-solid border-[#E8ECEF] text-[24px] pb-[12px] placeholder:text-neutral-4 placeholder:text-[16px] placeholder:leading-[26px]"
             placeholder="Your email"
             onChange={(e) =>
               setLoginInput((prev) => {
@@ -35,7 +35,7 @@ function LoginForm({ handleLogin }: loginFormProps) {
             }
           />
           <input
-            className="w-[456px] focus-visible:outline-none focus:caret-slate-400 max-w-full border-b-[1px] border-solid border-[#E8ECEF] text-[24px] pb-[12px] placeholder:text-labelGray placeholder:text-[16px] placeholder:leading-[26px]"
+            className="w-[456px] focus-visible:outline-none bg-transparent focus:caret-slate-400 max-w-full border-b-[1px] border-solid border-[#E8ECEF] text-[24px] pb-[12px] placeholder:text-neutral-4 placeholder:text-[16px] placeholder:leading-[26px]"
             type={"password"}
             placeholder="Password"
             onChange={(e) =>
@@ -45,7 +45,7 @@ function LoginForm({ handleLogin }: loginFormProps) {
             }
           />
           <button
-            className="bg-[#141718] py-[10px] px-0 block text-center w-full text-[16px] leading-[28px] text-white rounded-md"
+            className="bg-[#141718] dark:bg-[#F3F5F7] py-[10px] px-0 block text-center w-full text-[16px] leading-[28px] text-white dark:text-black rounded-md"
             type="submit"
           >
             Sign In

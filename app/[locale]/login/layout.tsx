@@ -1,6 +1,7 @@
 import "../globals.css";
 import Image from "next/image";
-import LandingSignIn from '../../../public/landingSignIn-removebg-preview.png'
+import LandingSignInLight from '../../../public/landingSignIn-removebg-preview.png'
+import LandingSignInDark from '../../../public/whiteMarshalss-removebg-preview.png'
 
 export const metadata = {
   title: "Create Next App",
@@ -10,12 +11,19 @@ export const metadata = {
 export default function LoginLayout({ children }: childrenProps) {
   return (
     <div className="m-0 w-dvw flex min-h-dvh">
-      <div className="w-[70%] flex-col justify-center items-center flex min-h-full bg-[#F3F5F7] ">
+      <div className="w-[70%] flex-col justify-center items-center flex min-h-full bg-[#F3F5F7] dark:bg-black ">
         <Image
-          src={LandingSignIn}
+          src={LandingSignInLight}
           width={700}
           priority={true}
-          className="max-w-full max-h-full object-contain"
+          className="max-w-full max-h-full object-contain dark:hidden"
+          alt=""
+        />
+        <Image
+          src={LandingSignInDark}
+          width={600}
+          priority={true}
+          className="max-w-full hidden rotate-[30deg] max-h-full object-contain dark:block"
           alt=""
         />
       </div>

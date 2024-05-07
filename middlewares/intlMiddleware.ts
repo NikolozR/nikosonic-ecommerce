@@ -10,7 +10,6 @@ export function intlMiddleware(middleware: CustomMiddleware) {
     request: NextRequest,
     event: NextFetchEvent,
   ) => {
-    console.log("asffffffff")
     const handleInternationalization = createMiddleware({
       defaultLocale: "en",
       locales,
