@@ -19,3 +19,7 @@ export async function getAllUsers() {
     })
     return response
 }
+
+export async function createUser() {
+
+}

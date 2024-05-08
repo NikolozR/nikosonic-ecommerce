@@ -1,7 +1,6 @@
 import { getAllUsers } from "../../api/api";
 import UserListItem from "./UserListItem";
-import ModalOpener from "./ModalOpener";
-import AdminUserForm from "./AdminUserForm";
+
 
 const getUsers = async () => {
   const response = await getAllUsers();
@@ -13,9 +12,6 @@ async function UserList() {
   const users: User[] = await getUsers();
   return (
     <div className="container">
-      <ModalOpener type="add">
-        <AdminUserForm id={4} name="" email="" age={0} role="" />
-      </ModalOpener>
       <div className="mt-[100px]">
         <div className="grid grid-cols-5 bg-gray-200 dark:bg-[#292929] py-5 pl-3 mb-6">
           <p className="text-[20px] text-[#6A6A65] dark:text-white">ID</p>

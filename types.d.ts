@@ -72,3 +72,16 @@ type LogInUser = {
   email: string,
   password: string
 }
+type AdminFormUser = {
+  id?: number,
+  name: string,
+  email: string,
+  role: string,
+  age: number,
+  type: 'add' | 'edit',
+  handleSubmit: (formData: FormData) => Promise<void>
+}
+interface ModalContextValue {
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+}

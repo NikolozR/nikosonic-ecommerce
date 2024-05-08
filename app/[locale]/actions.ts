@@ -27,3 +27,6 @@ export async function testPassword(
   const toTest = await bcrypt.compareSync(unHashedPassword, hashedPassword);
   return toTest;
 }
+export async function handleAdminSubmit(formData: FormData) {
+  console.log(formData)
+}

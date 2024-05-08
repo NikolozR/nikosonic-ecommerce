@@ -1,26 +1,21 @@
 "use client";
-function Modal({
-  children,
-  isOpen,
-  setIsOpen,
-}: {
-  children: React.ReactNode;
-  isOpen: boolean;
-  setIsOpen: (a: boolean) => void;
-}) {
+import { useContext } from "react";
+import { ModalContext } from "../../providers/modalProvider";
+function Modal({children}: childrenProps) {
+  const {isOpen, setIsOpen} = useContext(ModalContext)
   return (
     <div
       className={
-        "fixed left-0 top-0 w-full h-full justify-center items-start z-50 overflow-auto bg-[rgba(0,0,0,0.8)]" +
+        "fixed left-0 top-0 w-full h-full justify-center items-start z-50 overflow-auto bg-[rgba(0,0,0,0.4)]" +
         (isOpen ? " flex" : " hidden")
       }
     >
-      <div className="relative top-[50%] bg-white w-[50%] max-h-[75%]">
+      <div className="relative bg-white dark:bg-neutral-7 w-[50%] p-20 mt-40">
         <div
-          className="absolute top-0 left-0 cursor-pointer"
+          className="absolute top-4 right-4 cursor-pointer font-bold"
           onClick={() => setIsOpen(false)}
         >
-          x
+          X
         </div>
         {children}
       </div>
