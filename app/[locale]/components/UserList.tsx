@@ -1,17 +1,31 @@
 import { getAllUsers } from "../../api/api";
 import UserListItem from "./UserListItem";
-
+import { ModalProvider } from "../../providers/ModalProvider";
+import AdminUserForm from "./AdminUserForm";
+import { handleAddSubmit } from "../actions";
+import Modal from "./Modal";
+import AddButton from "./AddButton";
 
 const getUsers = async () => {
-  const response = await getAllUsers();
-  const data = await response.json();
-  return data.result.rows.sort((a: User, b: User) => a.id - b.id);
+  const data = await getAllUsers();
+  return data.sort((a: User, b: User) => a.id - b.id);
 };
+
+async function handleSubmit(formData: FormData) {
+  "use server";
+  return await handleAddSubmit(formData);
+}
 
 async function UserList() {
   const users: User[] = await getUsers();
   return (
     <div className="container">
+      <ModalProvider>
+          <AddButton />
+        <Modal>
+          <AdminUserForm type="add" handleSubmit={handleSubmit} />
+        </Modal>
+      </ModalProvider>
       <div className="mt-[100px]">
         <div className="grid grid-cols-5 bg-gray-200 dark:bg-[#292929] py-5 pl-3 mb-6">
           <p className="text-[20px] text-[#6A6A65] dark:text-white">ID</p>

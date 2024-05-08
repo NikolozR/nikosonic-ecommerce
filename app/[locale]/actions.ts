@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { getUserAuth } from "../api/api";
+import { getUserAuth, updateUser, createUser, deleteUser } from "../api/api";
+import { revalidateTag } from "next/cache";
 var bcrypt = require("bcryptjs");
 
 export async function login(email: string, password: string) {
@@ -27,6 +28,34 @@ export async function testPassword(
   const toTest = await bcrypt.compareSync(unHashedPassword, hashedPassword);
   return toTest;
 }
-export async function handleAdminSubmit(formData: FormData) {
-  console.log(formData)
+export async function handleUpdateSubmit(formData: FormData) {
+  const {id, name, email, age, role} = Object.fromEntries(formData)
+  const userData = {
+    id: Number(id.toString()),
+    name: name.toString(),
+    email: email.toString(),
+    age: Number(age.toString()),
+    role: role.toString()
+  }
+  await updateUser(userData)
+  revalidateTag('users')
+}
+
+export async function handleAddSubmit(formData: FormData) {
+  const {name, password, email, age, role} = Object.fromEntries(formData)
+  const hashedPassword: string = await hashPassword(password.toString())
+  const userData: CreateUser = {
+    name: name.toString(),
+    email: email.toString(),
+    passwordHash: hashedPassword,
+    age: Number(age.toString()),
+    role: role.toString()
+  }
+  await createUser(userData)
+  revalidateTag('users')
+}
+
+export async function handleDeleteSubmit(id: number) {
+  await deleteUser(id)
+  revalidateTag('users')
 }

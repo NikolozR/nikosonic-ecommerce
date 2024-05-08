@@ -58,8 +58,9 @@ type MiddlewareFactory = (middleware: NextMiddleware) => NextMiddleware;
 type CreateUser = {
   name: string,
   email: string,
-  passwordHash: string
-  age: number
+  passwordHash: string,
+  age: number,
+  role: string
 }
 type User = {
   id: number,
@@ -74,10 +75,10 @@ type LogInUser = {
 }
 type AdminFormUser = {
   id?: number,
-  name: string,
-  email: string,
-  role: string,
-  age: number,
+  name?: string,
+  email?: string,
+  role?: string,
+  age?: number,
   type: 'add' | 'edit',
   handleSubmit: (formData: FormData) => Promise<void>
 }
