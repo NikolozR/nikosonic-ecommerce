@@ -1,5 +1,5 @@
 import UserList from "../../components/UserList";
-import { ModalProvider } from "../../../providers/modalProvider";
+import { ModalProvider } from "../../../providers/ModalProvider";
 
 function AdminPanel() {
   return (

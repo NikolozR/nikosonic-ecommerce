@@ -1,6 +1,6 @@
 'use client'
 import { useContext } from "react";
-import { ModalContext } from "../../providers/modalProvider";
+import { ModalContext } from "../../providers/ModalProvider";
 
 
 function AdminUserForm({
