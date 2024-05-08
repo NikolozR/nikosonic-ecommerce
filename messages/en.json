@@ -4,6 +4,7 @@
         "profile": "Profile",
         "blogs": "Blogs",
         "contacts": "Contact Us",
+        "admin": "Admin",
         "logOut": "Log Out"
     },
     "Search": {

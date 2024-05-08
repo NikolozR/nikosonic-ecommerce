@@ -13,14 +13,14 @@ function Product({ prodData }: { prodData: Product}) {
         alt="Product Image"
       />
       <div className="pt-[15px]">
-        <h4 className="text-white text-[21px] font-bold mb-[15px]">
+        <h4 className="text-neutral-7 dark:text-white text-[21px] font-bold mb-[15px]">
           {prodData.title}
         </h4>
-        <p className="text-white text-[14px] font-light leading-[29px] mb-[20px]">
+        <p className="text-neutral-7 dark:text-white text-[14px] font-light leading-[29px] mb-[20px]">
           {prodData.description}
         </p>
         <div className="flex items-center justify-between">
-          <p className="text-[27px] text-white font-extrabold">
+          <p className="text-[27px] text-neutral-7 dark:text-white font-extrabold">
             ${prodData.price}0
           </p>
         </div>

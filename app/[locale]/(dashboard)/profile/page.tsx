@@ -1,5 +1,4 @@
 'use client';
-import { profileData } from "../../../../data/profileData";
 import { useState } from "react";
 
 function Profile() {
@@ -14,10 +13,10 @@ function Profile() {
   return (
     <section className="profile">
       <div className="container mx-auto">
-        <p className="full-name mt-[20px]">Full Name: {profileData.fullName}</p>
-        <p className="surname">Surname: {profileData.surname}</p>
-        <p className="email">Email: {profileData.email}</p>
-        <p className="bio">Bio: {profileData.bio}</p>
+        <p className="full-name mt-[20px]">Full Name: </p>
+        <p className="surname">Surname:</p>
+        <p className="email">Email:</p>
+        <p className="bio">Bio: </p>
         <form className="flex flex-col gap-[20px] items-center mt-[50px]" action="" method="post">
           <input
             type="password"

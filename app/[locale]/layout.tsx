@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from './providers';
+import { ThemeProvider } from "next-themes";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,10 +16,10 @@ export async function generateStaticParams() {
 export default function RootLayout({ children, params: {locale} }: childrenProps<paramsLang>) {
     return (
       <html lang={locale} suppressHydrationWarning>
-        <body className={inter.className + " h-dvh flex flex-col justify-center"}>
-        <Providers>
+        <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
-        </Providers>
+        </ThemeProvider>
         </body>
       </html>
     );

@@ -55,3 +55,34 @@ type CustomMiddleware = (
   response: NextResponse
 ) => NextMiddlewareResult | Promise<NextMiddlewareResult>
 type MiddlewareFactory = (middleware: NextMiddleware) => NextMiddleware;
+type CreateUser = {
+  name: string,
+  email: string,
+  passwordHash: string,
+  age: number,
+  role: string
+}
+type User = {
+  id: number,
+  name: string,
+  email: string,
+  role: string,
+  age: number
+}
+type LogInUser = {
+  email: string,
+  password: string
+}
+type AdminFormUser = {
+  id?: number,
+  name?: string,
+  email?: string,
+  role?: string,
+  age?: number,
+  type: 'add' | 'edit',
+  handleSubmit: (formData: FormData) => Promise<void>
+}
+interface ModalContextValue {
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+}
