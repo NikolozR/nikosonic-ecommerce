@@ -1,6 +1,7 @@
 "use client";
 import { useContext } from "react";
-import { ModalContext } from "../../providers/modalProvider";
+import { ModalContext } from "../../providers/ModalProvider";
+
 function Modal({children}: childrenProps) {
   const {isOpen, setIsOpen} = useContext(ModalContext)
   return (
