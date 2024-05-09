@@ -5,8 +5,8 @@ import Link from "next/link";
 function LoginForm({ handleLogin }: loginFormProps) {
   const [{email, password}, setLoginInput] = useState<LogInUser>({ email: "", password: "" });
   return (
-    <main className="flex-1 flex flex-col items-center justify-center">
-      <div className="w-fit flex flex-col justify-center">
+    <main className="w-full flex flex-col items-center justify-center">
+      <div className="flex w-full px-4 sm:px-0 sm:w-1/2 flex-col justify-center">
         <h1 className="text-[40px] leading-[44px] font-medium text-black mb-[24px] dark:text-white">
           Sign In
         </h1>
@@ -17,7 +17,7 @@ function LoginForm({ handleLogin }: loginFormProps) {
           </Link>
         </p>
         <form
-          className="flex flex-col gap-[32px] justify-center items-center w-full mb-[34px]"
+          className="flex flex-col w-full gap-[32px] justify-center items-center mb-[34px]"
           action=""
           onSubmit={(e) => {
             e.preventDefault()
@@ -26,7 +26,7 @@ function LoginForm({ handleLogin }: loginFormProps) {
         >
           <input
             type="email"
-            className="w-[456px] focus-visible:outline-none bg-transparent focus:caret-slate-400 max-w-full border-b-[1px] border-solid border-[#E8ECEF] text-[24px] pb-[12px] placeholder:text-neutral-4 placeholder:text-[16px] placeholder:leading-[26px]"
+            className="w-[100%] focus-visible:outline-none bg-transparent focus:caret-slate-400 max-w-full border-b-[1px] border-solid border-[#E8ECEF] text-[24px] pb-[12px] placeholder:text-neutral-4 placeholder:text-[16px] placeholder:leading-[26px]"
             placeholder="Your email"
             onChange={(e) =>
               setLoginInput((prev) => {
@@ -35,7 +35,7 @@ function LoginForm({ handleLogin }: loginFormProps) {
             }
           />
           <input
-            className="w-[456px] focus-visible:outline-none bg-transparent focus:caret-slate-400 max-w-full border-b-[1px] border-solid border-[#E8ECEF] text-[24px] pb-[12px] placeholder:text-neutral-4 placeholder:text-[16px] placeholder:leading-[26px]"
+            className="w-[100%] focus-visible:outline-none bg-transparent focus:caret-slate-400 max-w-full border-b-[1px] border-solid border-[#E8ECEF] text-[24px] pb-[12px] placeholder:text-neutral-4 placeholder:text-[16px] placeholder:leading-[26px]"
             type={"password"}
             placeholder="Password"
             onChange={(e) =>

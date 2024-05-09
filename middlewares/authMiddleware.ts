@@ -6,12 +6,18 @@ export const authMiddleware: MiddlewareFactory = (next) => {
     const pathname = request.nextUrl.pathname;
     const user = cookies().get("user");
     if (!user?.value) {
-      if (pathname.indexOf("/login") === -1) {
+      if (
+        pathname.indexOf("/login") === -1 &&
+        pathname.indexOf("/register") === -1
+      ) {
         const url = new URL(`/login`, request.url);
         return NextResponse.redirect(url);
       }
     } else {
       if (pathname.indexOf("/login") !== -1) {
+        const url = new URL(`/`, request.url);
+        return NextResponse.redirect(url);
+      } else if (pathname.indexOf("/register") !== -1) {
         const url = new URL(`/`, request.url);
         return NextResponse.redirect(url);
       }

@@ -14,6 +14,9 @@ type headerProps = {
 type loginFormProps = {
   handleLogin: (email: string, password: string) => Promise<void>;
 };
+type registerFormProps = {
+  handleRegister: (name:string, email: string, password: string, age: number) => Promise<void>;
+};
 type searchProps = {
   handleSort: () => void;
   val: string;
@@ -62,6 +65,12 @@ type CreateUser = {
   age: number,
   role: string
 }
+type RegisterUser = {
+  name: string,
+  email: string,
+  password: string,
+  age: number,
+}
 type User = {
   id: number,
   name: string,
@@ -73,6 +82,7 @@ type LogInUser = {
   email: string,
   password: string
 }
+
 type AdminFormUser = {
   id?: number,
   name?: string,
