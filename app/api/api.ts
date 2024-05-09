@@ -1,4 +1,5 @@
 const baseUrl = process.env.BASE_URL;
+console.log(baseUrl)
 
 export async function getUserAuth(email: string, password: string) {
   const response = await fetch(baseUrl + "/api/auth-login", {

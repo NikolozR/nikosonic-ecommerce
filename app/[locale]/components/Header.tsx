@@ -5,6 +5,7 @@ import { logout } from "../actions";
 import LocaleSwitcher from "./LocaleSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { cookies } from "next/headers";
+ 
 
 async function Header() {
   const headerT = await getTranslations("Header");
