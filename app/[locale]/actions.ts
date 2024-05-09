@@ -11,6 +11,20 @@ export async function login(email: string, password: string) {
   cookieStore.set("user", JSON.stringify(user));
   redirect("/");
 }
+export async function register(name: string, email: string, password: string, age: number) {
+  const cookieStore = cookies();
+  const hashedPassword: string = await hashPassword(password)
+  const userData: CreateUser = {
+    name,
+    email,
+    passwordHash: hashedPassword,
+    age,
+    role: "user"
+  }
+  const user = await createUser(userData)
+  cookieStore.set("user", JSON.stringify(user));
+  redirect("/");
+}
 export async function logout() {
   const cookieStore = cookies();
   cookieStore.delete("user");
@@ -54,6 +68,8 @@ export async function handleAddSubmit(formData: FormData) {
   await createUser(userData)
   revalidateTag('users')
 }
+
+
 
 export async function handleDeleteSubmit(id: number) {
   await deleteUser(id)
