@@ -15,7 +15,7 @@ export async function getUserAuth(email: string, password: string) {
 }
 
 export async function getAllUsers() {
-  const response = await fetch(baseUrl + "/api/get-users", {
+  const response = await fetch(baseUrl + "/api/users/getAll", {
     cache: 'no-store',
     next: {tags: ['users']},
     method: "GET",
@@ -26,7 +26,7 @@ export async function getAllUsers() {
 }
 
 export async function updateUser({ id, name, email, age, role }: User) {
-  const response = await fetch(baseUrl + "/api/update-user", {
+  const response = await fetch(baseUrl + "/api/users/update", {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -42,7 +42,7 @@ export async function updateUser({ id, name, email, age, role }: User) {
 
 export async function createUser({name, email, age, passwordHash, role}: CreateUser) {
   try {
-    const response = await fetch(baseUrl + "/api/create-user", {
+    const response = await fetch(baseUrl + "/api/users/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -62,9 +62,49 @@ export async function createUser({name, email, age, passwordHash, role}: CreateU
 
 export async function deleteUser(id: number) {
   try {
-    const response = await fetch(baseUrl + "/api/delete-user/" + id, {
+    const response = await fetch(baseUrl + "/api/users/delete/" + id, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function addCart(id: number, productId: number) {
+  const response = await fetch(baseUrl + "/api/cart/add" , {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userId: id,
+      productId: productId
+    }),
+  });
+  return await response.json();
+}
+
+export async function emptyCart(userId: number) {
+  try {
+    const response = await fetch(baseUrl + "/api/cart/empty/" + userId, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function decrementCart(userId: number, productId: number) {
+  try {
+    const response = await fetch(baseUrl + "/api/cart/decrement" , {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: userId,
+        productId: productId
+      }),
     });
     return await response.json();
   } catch (err) {
