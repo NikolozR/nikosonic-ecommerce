@@ -1,7 +1,9 @@
 import { getCart } from "../../../api/api";
 import Image from "next/image";
 import DeleteAll from "../../components/checkOutButtons/DeleteAll";
-
+import IncrementProductIcon from "../../components/checkOutButtons/IncrementProductIcon";
+import DecrementProductIcon from "../../components/checkOutButtons/DecrementProductIcon";
+import DeleteIcon from "../../components/checkOutButtons/DeleteIcon";
 export const revalidate = 0;
 
 export default async function CheckOut() {
@@ -40,6 +42,11 @@ export default async function CheckOut() {
               <h2>{product.title}</h2>
               <p>Price: ${product.price}</p>
               <p>Quantity: {productQuantityMap[product.id]}</p>
+            </div>
+            <div>
+              <IncrementProductIcon />
+              <DecrementProductIcon />
+              <DeleteIcon />
             </div>
           </div>
         ))}
