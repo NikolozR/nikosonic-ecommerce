@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import AddChartButton from "./AddChartButton";
 
-function Product({ prodData }: { prodData: Product}) {
+function Product({ prodData }: { prodData: Product }) {
   return (
     <div className="min-w-[300px] max-w-[300px] bg-customMain rounded-[20px] pt-[17px] pr-[15px] pb-[10px] pl-[15px]">
       <Image
@@ -25,11 +26,10 @@ function Product({ prodData }: { prodData: Product}) {
           </p>
         </div>
         <div className="flex justify-between mt-[20px]">
-          <button>Add to cart</button>
-        <Link href={'/products/' + prodData?.id}>
-          <button>Read More</button>
-        </Link>
-
+          <AddChartButton productId={prodData.id} />
+          <Link href={"/products/" + prodData?.id}>
+            <button>Read More</button>
+          </Link>
         </div>
       </div>
     </div>

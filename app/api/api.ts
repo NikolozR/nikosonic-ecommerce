@@ -16,8 +16,8 @@ export async function getUserAuth(email: string, password: string) {
 
 export async function getAllUsers() {
   const response = await fetch(baseUrl + "/api/users/getAll", {
-    cache: 'no-store',
-    next: {tags: ['users']},
+    cache: "no-store",
+    next: { tags: ["users"] },
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
@@ -34,13 +34,19 @@ export async function updateUser({ id, name, email, age, role }: User) {
       name,
       email,
       age,
-      role
+      role,
     }),
   });
   return await response.json();
 }
 
-export async function createUser({name, email, age, passwordHash, role}: CreateUser) {
+export async function createUser({
+  name,
+  email,
+  age,
+  passwordHash,
+  role,
+}: CreateUser) {
   try {
     const response = await fetch(baseUrl + "/api/users/create", {
       method: "POST",
@@ -50,15 +56,17 @@ export async function createUser({name, email, age, passwordHash, role}: CreateU
         email,
         age,
         passwordHash,
-        role
+        role,
       }),
     });
     return await response.json();
   } catch (err) {
-    return NextResponse.json({err}, {status: 500, statusText: "Invalid credentials"})
-  } 
+    return NextResponse.json(
+      { err },
+      { status: 500, statusText: "Invalid credentials" }
+    );
+  }
 }
-
 
 export async function deleteUser(id: number) {
   try {
@@ -68,17 +76,17 @@ export async function deleteUser(id: number) {
     });
     return await response.json();
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
 export async function addCart(id: number, productId: number) {
-  const response = await fetch(baseUrl + "/api/cart/add" , {
+  const response = await fetch(baseUrl + "/api/cart/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       userId: id,
-      productId: productId
+      productId: productId,
     }),
   });
   return await response.json();
@@ -92,22 +100,31 @@ export async function emptyCart(userId: number) {
     });
     return await response.json();
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
 export async function decrementCart(userId: number, productId: number) {
   try {
-    const response = await fetch(baseUrl + "/api/cart/decrement" , {
+    const response = await fetch(baseUrl + "/api/cart/decrement", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         userId: userId,
-        productId: productId
+        productId: productId,
       }),
     });
     return await response.json();
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
+}
+
+export async function getCart(userId: string) {
+  const response = await fetch(baseUrl + "/api/cart/getAllcart/" + userId, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  return response;
 }

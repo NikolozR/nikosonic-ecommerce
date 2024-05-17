@@ -1,7 +1,11 @@
+"use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { getUserAuth, updateUser, createUser, deleteUser } from "../api/api";
 import { revalidateTag } from "next/cache";
+import { addCart } from "../api/api";
+import { getCart } from "../api/api";
+
 var bcrypt = require("bcryptjs");
 
 export async function login(email: string, password: string) {
@@ -11,17 +15,22 @@ export async function login(email: string, password: string) {
   cookieStore.set("user", JSON.stringify(user));
   redirect("/");
 }
-export async function register(name: string, email: string, password: string, age: number) {
+export async function register(
+  name: string,
+  email: string,
+  password: string,
+  age: number
+) {
   const cookieStore = cookies();
-  const hashedPassword: string = await hashPassword(password)
+  const hashedPassword: string = await hashPassword(password);
   const userData: CreateUser = {
     name,
     email,
     passwordHash: hashedPassword,
     age,
-    role: "user"
-  }
-  const user = await createUser(userData)
+    role: "user",
+  };
+  const user = await createUser(userData);
   cookieStore.set("user", JSON.stringify(user));
   redirect("/");
 }
@@ -43,35 +52,59 @@ export async function testPassword(
   return toTest;
 }
 export async function handleUpdateSubmit(formData: FormData) {
-  const {id, name, email, age, role} = Object.fromEntries(formData)
+  const { id, name, email, age, role } = Object.fromEntries(formData);
   const userData = {
     id: Number(id.toString()),
     name: name.toString(),
     email: email.toString(),
     age: Number(age.toString()),
-    role: role.toString()
-  }
-  await updateUser(userData)
-  revalidateTag('users')
+    role: role.toString(),
+  };
+  await updateUser(userData);
+  revalidateTag("users");
 }
 
 export async function handleAddSubmit(formData: FormData) {
-  const {name, password, email, age, role} = Object.fromEntries(formData)
-  const hashedPassword: string = await hashPassword(password.toString())
+  const { name, password, email, age, role } = Object.fromEntries(formData);
+  const hashedPassword: string = await hashPassword(password.toString());
   const userData: CreateUser = {
     name: name.toString(),
     email: email.toString(),
     passwordHash: hashedPassword,
     age: Number(age.toString()),
-    role: role.toString()
-  }
-  await createUser(userData)
-  revalidateTag('users')
+    role: role.toString(),
+  };
+  await createUser(userData);
+  revalidateTag("users");
 }
 
-
-
 export async function handleDeleteSubmit(id: number) {
-  await deleteUser(id)
-  revalidateTag('users')
+  await deleteUser(id);
+  revalidateTag("users");
+}
+
+export async function addChartFunction(productId: number) {
+  "use server";
+  const Cookiestore = cookies();
+  const cookie = Cookiestore.get("user")?.value;
+  const user = JSON.parse(cookie ?? "");
+  const userId = user.responseUser.id;
+  addCart(userId, productId);
+}
+
+export async function cartCount() {
+  "use server";
+  const Cookiestore = cookies();
+  const cookie = Cookiestore.get("user")?.value;
+  const user = JSON.parse(cookie ?? "");
+  const userId = user.responseUser.id;
+
+  const productArr = await getCart(userId);
+  const product = await productArr.json();
+
+  const count = product.rows.reduce((acc: number, curr: any) => {
+    return acc + curr.quantity;
+  }, 0);
+
+  return count;
 }
