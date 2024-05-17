@@ -9,10 +9,10 @@ export const revalidate = 0;
 export default async function CheckOut() {
   const cart = await getCart("29");
   const cartItems = await cart.json();
-  console.log(cartItems, "items");
+  //   console.log(cartItems, "items");
 
-  const productQuantityMap = [];
-  cartItems.rows.forEach((item) => {
+  const productQuantityMap: ProductQuantityMap = [];
+  cartItems.rows.forEach((item: CartItem) => {
     productQuantityMap[item.productid] = item.quantity;
   });
 
@@ -31,19 +31,22 @@ export default async function CheckOut() {
       <DeleteAll />
       <div>
         {products.map((product) => (
-          <div key={product.id} className="flex items-center">
+          <div
+            key={product.id}
+            className=" w-full flex justify-between  items-center mb-[15px]"
+          >
             <Image
-              width={100}
-              height={100}
+              width={150}
+              height={150}
               src={product.thumbnail}
               alt="prodcut"
             />
-            <div>
+            <div className="flex flex-col items-center justify-center">
               <h2>{product.title}</h2>
               <p>Price: ${product.price}</p>
               <p>Quantity: {productQuantityMap[product.id]}</p>
             </div>
-            <div>
+            <div className="flex flex-col items-center justify-center">
               <IncrementProductIcon />
               <DecrementProductIcon />
               <DeleteIcon />
