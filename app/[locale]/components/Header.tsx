@@ -5,7 +5,7 @@ import { logout } from "../actions";
 import LocaleSwitcher from "./LocaleSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { cookies } from "next/headers";
- 
+import Chart from "./chart";
 
 async function Header() {
   const headerT = await getTranslations("Header");
@@ -50,6 +50,7 @@ async function Header() {
               <LocaleSwitcher></LocaleSwitcher>
               <ThemeSwitcher></ThemeSwitcher>
             </div>
+            <Chart />
             <div className="flex gap-[15px]">
               <Button handle={handleLogOut}>Log Out</Button>
             </div>
