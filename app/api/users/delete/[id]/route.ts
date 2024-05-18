@@ -7,6 +7,8 @@ export async function DELETE(
 ) {
   const id = params.id;
 
+  console.log(request);
+
   try {
     const res = await sql`DELETE From Users WHERE id = ${Number(id)};`;
     return NextResponse.json({ res }, { status: 200 });

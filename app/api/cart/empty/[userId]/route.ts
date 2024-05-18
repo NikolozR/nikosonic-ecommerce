@@ -6,7 +6,7 @@ export async function DELETE(
   { params }: { params: { userId: string } }
 ) {
   const userId = params.userId;
-
+  console.log(request);
   try {
     const res = await sql`DELETE From cart WHERE userId = ${Number(userId)};`;
     return NextResponse.json({ res }, { status: 200 });
