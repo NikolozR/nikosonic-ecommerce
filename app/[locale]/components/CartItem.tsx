@@ -48,7 +48,7 @@ export default function CartItem({
           quantity={quantity}
           setQuantity={setQuantity}
         />
-        <DeleteIcon productId={productId} />
+        <DeleteIcon productId={productId} quantity={quantity} />
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ export async function DELETE(
 ) {
   const { id } = params;
 
+  console.log(request);
+
   try {
     if (!id) throw new Error("Product ID is required");
 
