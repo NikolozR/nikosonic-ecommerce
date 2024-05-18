@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { getUserAuth, updateUser, createUser, deleteUser } from "../api/api";
+import {getUserAuth, updateUser, createUser, deleteUser, emptyCart} from "../api/api";
 import { revalidateTag } from "next/cache";
 import { addCart } from "../api/api";
 import { getCart } from "../api/api";
@@ -127,4 +127,9 @@ export async function decrementCart(userId: number, productId: number) {
   } catch (err) {
     console.log(err);
   }
+}
+
+export async function emptyAllInCart(userId: number) {
+  await emptyCart(userId);
+  revalidateTag("users");
 }
