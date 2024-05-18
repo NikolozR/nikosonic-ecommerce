@@ -1,13 +1,8 @@
 import { sql } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
   const id = params.id;
-
-  console.log(request);
 
   try {
     const res = await sql`DELETE From Users WHERE id = ${Number(id)};`;
