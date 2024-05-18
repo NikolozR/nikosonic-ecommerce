@@ -12,7 +12,12 @@ interface Props {
   initialQuantity: number;
 }
 
-export default function CartItem({ product, initialQuantity, userId, productId }: Props) {
+export default function CartItem({
+  product,
+  initialQuantity,
+  userId,
+  productId,
+}: Props) {
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -20,7 +25,10 @@ export default function CartItem({ product, initialQuantity, userId, productId }
   }, []);
 
   return (
-    <div key={product.id} className=" w-full flex justify-between  items-center mb-[15px]">
+    <div
+      key={product.id}
+      className=" w-full flex justify-between  items-center mb-[15px]"
+    >
       <Image width={150} height={150} src={product.thumbnail} alt="prodcut" />
       <div className="flex flex-col items-center justify-center">
         <h2>{product.title}</h2>
@@ -28,9 +36,19 @@ export default function CartItem({ product, initialQuantity, userId, productId }
         <p>Quantity: {quantity}</p>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <IncrementProductButton userId={userId} productId={productId} quantity={quantity} setQuantity={setQuantity} />
-        <DecrementProductButton userId={userId} productId={productId} quantity={quantity} setQuantity={setQuantity} />
-        <DeleteIcon />
+        <IncrementProductButton
+          userId={userId}
+          productId={productId}
+          quantity={quantity}
+          setQuantity={setQuantity}
+        />
+        <DecrementProductButton
+          userId={userId}
+          productId={productId}
+          quantity={quantity}
+          setQuantity={setQuantity}
+        />
+        <DeleteIcon productId={productId} />
       </div>
     </div>
   );

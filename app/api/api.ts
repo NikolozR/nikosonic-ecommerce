@@ -1,3 +1,4 @@
+"use server";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 const baseUrl = process.env.BASE_URL;
@@ -40,7 +41,13 @@ export async function updateUser({ id, name, email, age, role }: User) {
   return await response.json();
 }
 
-export async function createUser({ name, email, age, passwordHash, role }: CreateUser) {
+export async function createUser({
+  name,
+  email,
+  age,
+  passwordHash,
+  role,
+}: CreateUser) {
   try {
     const response = await fetch(baseUrl + "/api/users/create", {
       method: "POST",
@@ -55,7 +62,10 @@ export async function createUser({ name, email, age, passwordHash, role }: Creat
     });
     return await response.json();
   } catch (err) {
-    return NextResponse.json({ err }, { status: 500, statusText: "Invalid credentials" });
+    return NextResponse.json(
+      { err },
+      { status: 500, statusText: "Invalid credentials" }
+    );
   }
 }
 
@@ -102,4 +112,17 @@ export async function getCart(userId: string) {
   });
   revalidatePath("/checkout");
   return response;
+}
+
+export async function singleDelete(productId: number) {
+  const response = await fetch(
+    baseUrl + "/api/cart/singleDelete/" + productId,
+    {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+
+  revalidatePath("/checkout");
+  return await response.json();
 }
