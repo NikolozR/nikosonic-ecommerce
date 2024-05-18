@@ -224,3 +224,10 @@ li a {
   height: 22px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
+.cart {
+  transition: all 500ms;
+}
+.cart:hover {
+  transition: all 500ms;
+}
