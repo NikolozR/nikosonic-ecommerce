@@ -15,12 +15,7 @@ type loginFormProps = {
   handleLogin: (email: string, password: string) => Promise<void>;
 };
 type registerFormProps = {
-  handleRegister: (
-    name: string,
-    email: string,
-    password: string,
-    age: number
-  ) => Promise<void>;
+  handleRegister: (name: string, email: string, password: string, age: number) => Promise<void>;
 };
 type searchProps = {
   handleSort: () => void;

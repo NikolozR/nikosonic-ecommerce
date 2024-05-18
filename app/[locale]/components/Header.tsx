@@ -9,9 +9,9 @@ import Chart from "./chart";
 
 async function Header() {
   const headerT = await getTranslations("Header");
-  const { responseUser }: { responseUser: User } = JSON.parse(
-    cookies().get("user")?.value ?? ""
-  );
+  const user = cookies().get("user");
+
+
   const handleLogOut = async () => {
     "use server";
     await logout();
@@ -40,11 +40,12 @@ async function Header() {
               <li>
                 <Link href={"/contacts"}>{headerT("contacts")}</Link>
               </li>
-              {responseUser.role === "admin" && (
+              {user?.value !== undefined || user?.value !== null ? (
                 <li>
                   <Link href={"/admin"}>{headerT("admin")}</Link>
                 </li>
-              )}
+
+              ): null}
             </ul>
             <div className="flex items-center gap-2">
               <LocaleSwitcher></LocaleSwitcher>
