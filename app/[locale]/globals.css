@@ -215,3 +215,12 @@ li a {
     text-wrap: balance;
   }
 }
+
+/* cart icon style */
+.icon-bg {
+  background-color: #9d0208;
+  border-radius: 50px;
+  width: 22px;
+  height: 22px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
