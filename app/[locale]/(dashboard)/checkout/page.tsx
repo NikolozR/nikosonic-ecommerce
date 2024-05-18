@@ -1,4 +1,4 @@
-import { getCart, addCart } from "../../../api/api";
+import { getCart } from "../../../api/api";
 import DeleteAll from "../../components/checkOutButtons/DeleteAll";
 import { cookies } from "next/headers";
 import CartItem from "../../components/CartItem";
