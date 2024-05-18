@@ -85,9 +85,9 @@ export async function handleDeleteSubmit(id: number) {
 
 export async function addChartFunction(productId: number) {
   "use server";
-  const Cookiestore = cookies();
-  const cookie = Cookiestore.get("user")?.value;
-  const user = JSON.parse(cookie ?? "");
+  const cookieStore = cookies();
+  const cookie = cookieStore.get("user")?.value;
+  const user = JSON.parse(cookie as string);
   const userId = user.responseUser.id;
   addCart(userId, productId);
 }

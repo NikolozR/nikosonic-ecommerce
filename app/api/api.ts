@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-
+import { revalidatePath } from "next/cache";
 const baseUrl = process.env.BASE_URL;
 
 export async function getUserAuth(email: string, password: string) {
@@ -125,6 +125,6 @@ export async function getCart(userId: string) {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-
+  revalidatePath("/checkout");
   return response;
 }

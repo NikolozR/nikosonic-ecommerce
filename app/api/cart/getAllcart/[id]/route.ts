@@ -11,7 +11,7 @@ export async function GET(
 
   try {
     const result = await sql`
-      SELECT * FROM cart WHERE userId = ${Number(params.id)}; 
+      SELECT * FROM cart WHERE userId = ${Number(params.id)};
     `;
     const rows = result.rows;
     return NextResponse.json({ rows }, { status: 200 });
