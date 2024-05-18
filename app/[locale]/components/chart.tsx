@@ -2,9 +2,20 @@
 import Link from "next/link";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { useAppContext } from "../../context/index";
+import { useEffect } from "react";
+import { cartCount } from "../actions";
 
 export default function Chart() {
-  const { state } = useAppContext();
+  const { state, setState } = useAppContext();
+
+  useEffect(() => {
+    async function getcart() {
+      const count = await cartCount();
+      setState(count);
+    }
+
+    getcart();
+  }, [setState]);
 
   return (
     <div className="text-xl relative">

@@ -9,22 +9,19 @@ export const revalidate = 0;
 export default async function CheckOut() {
   const cart = await getCart("29");
   const cartItems = await cart.json();
-  //   console.log(cartItems, "items");
 
   const productQuantityMap: ProductQuantityMap = [];
   cartItems.rows.forEach((item: CartItem) => {
     productQuantityMap[item.productid] = item.quantity;
   });
 
-  const productPromises = cartItems.rows.map((item: Product) =>
+  const productPromises = cartItems.rows.map((item: CartItem) =>
     fetch(`https://dummyjson.com/products/${item.productid}`).then((res) =>
       res.json()
     )
   );
 
   const products = await Promise.all(productPromises);
-
-  //   console.log(products, "products");
 
   return (
     <div className="w-4/5 mx-auto mt-[30px]">
