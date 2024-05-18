@@ -6,8 +6,15 @@ export default function AddChartButton({ productId }: { productId: number }) {
 
   async function handleAddProduct() {
     addChartFunction(productId);
-    setState((perv: number) => perv + 1);
+    setState((prev: number) => prev + 1);
   }
 
-  return <button onClick={() => handleAddProduct()}>Add to cart</button>;
+  return (
+    <button
+      className="bg-black p-[10px] text-white font-bold rounded-[.5rem] text-[14px] h-[40px]"
+      onClick={() => handleAddProduct()}
+    >
+      Add to cart
+    </button>
+  );
 }

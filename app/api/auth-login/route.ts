@@ -10,23 +10,18 @@ export async function POST(request: Request) {
     const res = await sql`
       SELECT * FROM Users WHERE email = ${data.email};
     `;
-    const validPass = await testPassword(data.password, res.rows[0].passwordhash)
-    if (
-      res.rows.length === 0 || !validPass
-    ) {
-      return NextResponse.json(
-        { error: "Invalid email or password" },
-        { status: 401 }
-      );
+    const validPass = await testPassword(data.password, res?.rows[0].passwordhash);
+    if (res?.rows.length === 0 || !validPass) {
+      return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
     } else {
-      const user = res.rows[0]
+      const user = res?.rows[0];
       const responseUser: User = {
         id: user.id,
         name: user.name,
         email: user.email,
         age: user.age,
-        role: user.role
-      }
+        role: user.role,
+      };
       return NextResponse.json({ responseUser }, { status: 200 });
     }
   } catch (error) {

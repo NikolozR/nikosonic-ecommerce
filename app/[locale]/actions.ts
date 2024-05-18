@@ -8,6 +8,8 @@ import { getCart } from "../api/api";
 
 var bcrypt = require("bcryptjs");
 
+const baseUrl = process.env.BASE_URL;
+
 export async function login(email: string, password: string) {
   const cookieStore = cookies();
   const response = await getUserAuth(email, password);
@@ -15,12 +17,7 @@ export async function login(email: string, password: string) {
   cookieStore.set("user", JSON.stringify(user));
   redirect("/");
 }
-export async function register(
-  name: string,
-  email: string,
-  password: string,
-  age: number
-) {
+export async function register(name: string, email: string, password: string, age: number) {
   const cookieStore = cookies();
   const hashedPassword: string = await hashPassword(password);
   const userData: CreateUser = {
@@ -44,10 +41,7 @@ export async function hashPassword(unHashedPassword: string) {
   var hash = await bcrypt.hashSync(unHashedPassword, salt);
   return hash;
 }
-export async function testPassword(
-  unHashedPassword: string,
-  hashedPassword: string
-) {
+export async function testPassword(unHashedPassword: string, hashedPassword: string) {
   const toTest = await bcrypt.compareSync(unHashedPassword, hashedPassword);
   return toTest;
 }
@@ -84,7 +78,6 @@ export async function handleDeleteSubmit(id: number) {
 }
 
 export async function addChartFunction(productId: number) {
-  "use server";
   const cookieStore = cookies();
   const cookie = cookieStore.get("user")?.value;
   const user = JSON.parse(cookie as string);
@@ -93,7 +86,6 @@ export async function addChartFunction(productId: number) {
 }
 
 export async function cartCount() {
-  "use server";
   const Cookiestore = cookies();
   const cookie = Cookiestore.get("user")?.value;
   const user = JSON.parse(cookie ?? "");
@@ -102,9 +94,37 @@ export async function cartCount() {
   const productArr = await getCart(userId);
   const product = await productArr.json();
 
-  const count = product.rows.reduce((acc: number, curr: any) => {
+  const count = product?.rows.reduce((acc: number, curr: any) => {
     return acc + curr.quantity;
   }, 0);
 
   return count;
+}
+
+export async function incrementItemAmount(id: number, productId: number) {
+  const response = await fetch(baseUrl + "/api/cart/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userId: id,
+      productId: productId,
+    }),
+  });
+  return await response.json();
+}
+
+export async function decrementCart(userId: number, productId: number) {
+  try {
+    const response = await fetch(baseUrl + "/api/cart/decrement", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: userId,
+        productId: productId,
+      }),
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
 }

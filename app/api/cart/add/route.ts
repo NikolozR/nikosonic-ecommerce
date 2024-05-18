@@ -11,7 +11,7 @@ export async function POST(request: Request) {
             WHERE userId = ${userId} AND productId = ${productId};
         `;
 
-    if (existingCartItem.rows.length > 0) {
+    if (existingCartItem?.rows.length > 0) {
       var res = await sql`
                 UPDATE cart
                 SET quantity = quantity + 1
@@ -26,9 +26,6 @@ export async function POST(request: Request) {
     return NextResponse.json(res, { status: 201 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json(
-      { error: "Failed to add item to cart" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to add item to cart" }, { status: 500 });
   }
 }

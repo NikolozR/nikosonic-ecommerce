@@ -1,11 +1,7 @@
 import { sql } from "@vercel/postgres";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { userId: string } }
-) {
-  console.log(request);
+export async function DELETE(request: NextRequest, { params }: { params: { userId: string } }) {
   const userId = params.userId;
 
   try {
