@@ -17,7 +17,6 @@ export async function getUserAuth(email: string, password: string) {
 
 export async function getAllUsers() {
   const response = await fetch(baseUrl + "/api/users/getAll", {
-    cache: "no-store",
     next: { tags: ["users"] },
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -105,12 +104,13 @@ export async function addCart(id: number, productId: number) {
   return await response.json();
 }
 
-export async function getCart(userId: string) {
+export async function getCart(userId: number) {
   const response = await fetch(baseUrl + "/api/cart/getAllcart/" + userId, {
+    cache: 'force-cache',
+    next: { tags: ["cart"] },
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-  revalidatePath("/checkout");
   return response;
 }
 

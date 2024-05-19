@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 interface Props {
   product: Product;
-  userId: number;
   productId: number;
   initialQuantity: number;
 }
@@ -15,7 +14,6 @@ interface Props {
 export default function CartItem({
   product,
   initialQuantity,
-  userId,
   productId,
 }: Props) {
   const [quantity, setQuantity] = useState(0);
@@ -59,13 +57,11 @@ export default function CartItem({
       </div>
       <div className="  flex   items-center justify-between mt-[10px] sm:flex-col">
         <IncrementProductButton
-          userId={userId}
           productId={productId}
           quantity={quantity}
           setQuantity={setQuantity}
         />
         <DecrementProductButton
-          userId={userId}
           productId={productId}
           quantity={quantity}
           setQuantity={setQuantity}

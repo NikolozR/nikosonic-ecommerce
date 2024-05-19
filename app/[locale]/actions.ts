@@ -1,10 +1,8 @@
 "use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import {getUserAuth, updateUser, createUser, deleteUser, emptyCart} from "../api/api";
+import {getUserAuth, updateUser, createUser, deleteUser, emptyCart, addCart, getCart} from "../api/api";
 import { revalidateTag } from "next/cache";
-import { addCart } from "../api/api";
-import { getCart } from "../api/api";
 
 var bcrypt = require("bcryptjs");
 
@@ -76,44 +74,53 @@ export async function handleDeleteSubmit(id: number) {
   await deleteUser(id);
   revalidateTag("users");
 }
-
-export async function addChartFunction(productId: number) {
-  const cookieStore = cookies();
-  const cookie = cookieStore.get("user")?.value;
-  const user = JSON.parse(cookie as string);
-  const userId = user.responseUser.id;
-  addCart(userId, productId);
-}
-
-export async function cartCount() {
+async function getUserId() {
   const Cookiestore = cookies();
   const cookie = Cookiestore.get("user")?.value;
   const user = JSON.parse(cookie ?? "");
   const userId = user.responseUser.id;
+  return userId
+}
 
+export async function getAllCart() {
+  const userId: number = await getUserId();
+  const cartRes = await getCart(userId)
+  const cart = await cartRes.json();
+  return cart;
+}
+
+export async function addCartFunction(productId: number) {
+  const userId: number = await getUserId();
+  await addCart(userId, productId);
+  revalidateTag('cart')
+}
+
+export async function cartCount() {
+  const userId = await getUserId();
   const productArr = await getCart(userId);
   const product = await productArr.json();
-
   const count = product?.rows.reduce((acc: number, curr: any) => {
     return acc + curr.quantity;
   }, 0);
-
   return count;
 }
 
-export async function incrementItemAmount(id: number, productId: number) {
+export async function incrementItemAmount(productId: number) {
+  const userId = await getUserId()
   const response = await fetch(baseUrl + "/api/cart/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      userId: id,
+      userId: userId,
       productId: productId,
     }),
   });
+  revalidateTag('cart')
   return await response.json();
 }
 
-export async function decrementCart(userId: number, productId: number) {
+export async function decrementCart(productId: number) {
+  const userId = await getUserId();
   try {
     const response = await fetch(baseUrl + "/api/cart/decrement", {
       method: "POST",
@@ -129,7 +136,8 @@ export async function decrementCart(userId: number, productId: number) {
   }
 }
 
-export async function emptyAllInCart(userId: number) {
+export async function emptyAllInCart() {
+  const userId = await getUserId();
   await emptyCart(userId);
-  revalidateTag("users");
+  revalidateTag("cart");
 }

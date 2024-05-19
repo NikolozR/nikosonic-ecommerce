@@ -2,12 +2,10 @@ import { sql } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
-  request: NextRequest,
+  _: NextRequest,
   { params }: { params: { id: string } }
 ) {
   const { id } = params;
-
-  console.log(request);
 
   try {
     if (!id) throw new Error("Product ID is required");
