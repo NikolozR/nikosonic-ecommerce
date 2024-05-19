@@ -11,7 +11,7 @@ export default function AddChartButton({ productId }: { productId: number }) {
 
   return (
     <button
-      className="bg-black p-[10px] text-white font-bold rounded-[.5rem] text-[14px] h-[40px]"
+      className=" cart bg-black p-[10px] text-white font-bold rounded-[.5rem] text-[14px] h-[40px] hover:bg-[#588157] "
       onClick={() => handleAddProduct()}
     >
       Add to cart

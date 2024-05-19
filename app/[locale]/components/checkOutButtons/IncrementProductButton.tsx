@@ -9,7 +9,11 @@ interface Props {
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function IncrementProductButton({ userId, productId, setQuantity }: Props) {
+export default function IncrementProductButton({
+  userId,
+  productId,
+  setQuantity,
+}: Props) {
   const { setState } = useAppContext();
 
   function handleSetNewAmount() {
@@ -21,7 +25,7 @@ export default function IncrementProductButton({ userId, productId, setQuantity 
   return (
     <>
       <button onClick={handleSetNewAmount}>
-        <MdAdd className="w-[20px] h-[20px] cursor-pointer mb-[7px]" />
+        <MdAdd className="w-[20px] h-[20px]  cursor-pointer mb-[7px]  text-[#004e89] hover:scale-150 btn-transition hover:text-[#a4161a] dark:text-[#ffffff]" />
       </button>
     </>
   );

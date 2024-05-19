@@ -27,15 +27,37 @@ export default function CartItem({
   return (
     <div
       key={product.id}
-      className=" w-full flex justify-between  items-center mb-[15px]"
+      className=" w-full border-light flex flex-col  justify-between  items-center mb-[15px] p-[15px] dark:border-[#ffffff] sm:flex-row  lg:w-4/5 lg:m-auto "
     >
-      <Image width={150} height={150} src={product.thumbnail} alt="prodcut" />
-      <div className="flex flex-col items-center justify-center">
-        <h2>{product.title}</h2>
-        <p>Price: ${product.price}</p>
-        <p>Quantity: {quantity}</p>
+      <div className="overflow-hidden">
+        <Image
+          className=" rounded-md mb-[25px] cursor-pointer hover"
+          width={200}
+          height={200}
+          src={product.thumbnail}
+          alt="prodcut"
+        />
       </div>
       <div className="flex flex-col items-center justify-center">
+        <h2 className=" text-[#004e89] text-[18px] mb-[7px] font-bold dark:text-[#ffffff]">
+          {product.title}
+        </h2>
+        <p className="text-[#004e89] mb-[7px] font-bold dark:text-[#ffffff]">
+          Price:$
+          {product.price}
+        </p>
+        <p className="text-[#004e89] mb-[7px] font-bold dark:text-[#ffffff]">
+          Quantity:
+          {quantity}
+        </p>
+      </div>
+      <div className="">
+        <p className="text-[#004e89] mb-[7px] text-center font-bold dark:text-[#ffffff]">
+          {" "}
+          Total Price: ${product.price * quantity}
+        </p>
+      </div>
+      <div className="  flex   items-center justify-between mt-[10px] sm:flex-col">
         <IncrementProductButton
           userId={userId}
           productId={productId}
