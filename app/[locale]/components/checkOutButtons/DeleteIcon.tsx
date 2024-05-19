@@ -15,7 +15,6 @@ export default function DeleteIcon({
   const handleDelete = () => {
     singleDelete(productId);
     setState((prev: number) => prev - quantity);
-    // window.location.reload();
   };
 
   return (
