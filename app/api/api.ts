@@ -114,14 +114,17 @@ export async function getCart(userId: number) {
   return response;
 }
 
-export async function singleDelete(productId: number) {
+export async function singleDelete(userId:number, productId: number) {
   const response = await fetch(
-    baseUrl + "/api/cart/singleDelete/" + productId,
+    baseUrl + "/api/cart/remove",
     {
-      method: "DELETE",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-    }
+      body: JSON.stringify({
+        userId: userId,
+        productId: productId,
+      }),
+    },
   );
-  revalidateTag('cart')
   return await response.json();
 }

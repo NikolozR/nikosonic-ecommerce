@@ -20,7 +20,7 @@ export default function CartItem({
 
   useEffect(() => {
     setQuantity(initialQuantity);
-  }, []);
+  }, [initialQuantity]);
 
   return (
     <div

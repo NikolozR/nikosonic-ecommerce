@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import {getUserAuth, updateUser, createUser, deleteUser, emptyCart, addCart, getCart} from "../api/api";
+import {getUserAuth, updateUser, createUser, deleteUser, emptyCart, addCart, getCart, singleDelete} from "../api/api";
 import { revalidateTag } from "next/cache";
 
 var bcrypt = require("bcryptjs");
@@ -140,4 +140,10 @@ export async function emptyAllInCart() {
   const userId = await getUserId();
   await emptyCart(userId);
   revalidateTag("cart");
+}
+
+export async function deleteSingleCartItem(productId: number) {
+  const userId = await getUserId();
+  await singleDelete(userId, productId)
+  revalidateTag('cart')
 }

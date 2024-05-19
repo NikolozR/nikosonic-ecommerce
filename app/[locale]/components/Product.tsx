@@ -17,7 +17,7 @@ function Product({ prodData }: { prodData: Product }) {
       <div className="w-full mt-[2rem] flex-1">
         <h4 className="font-bold mb-[15px] line-clamp-1">{prodData.title}</h4>
         <div className="flex items-center justify-between">
-          <p className="font-extrabold text-[20px]">${prodData.price}0</p>
+          <p className="font-extrabold text-[20px]">${prodData.price}</p>
         </div>
         <p className="font-light leading-[25px] mb-[20px] text-[13px] line-clamp-2 mt-[.5rem]">
           {prodData.description}

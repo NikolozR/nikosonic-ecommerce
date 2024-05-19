@@ -3,6 +3,7 @@ import CartItem from "../../components/CartItem";
 import { getAllCart } from "../../actions";
 
 async function productFetch() {
+  console.log("called")
   const cartItems = await getAllCart();
   const productQuantityMap: ProductQuantityMap = [];
   cartItems.rows.forEach((item: CartItem) => {
@@ -25,10 +26,10 @@ async function productFetch() {
 
 export default async function CheckOut() {
   const {productQuantityMap, products} = await productFetch();
-
+  console.log(productQuantityMap)
   return (
     <div className="w-full mx-auto mt-[30px] flex flex-col items-center">
-      <DeleteAll />
+      {products.length === 0 ? <p>No Products</p> : <DeleteAll />}
       <div className="w-full">
         {products.map((product: Product, idx) => (
           <CartItem
