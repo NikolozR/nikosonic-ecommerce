@@ -5,7 +5,6 @@ import CartItem from "../../components/CartItem";
 export const revalidate = 0;
 
 export default async function CheckOut() {
-
   const cart = await getCart("29");
   const cartItems = await cart.json();
   const userId = JSON.parse(cookies().get("user")?.value as string)
@@ -28,12 +27,9 @@ export default async function CheckOut() {
 
   console.log(products);
 
-
-
-
   return (
     <div className="w-4/5 mx-auto mt-[30px]">
-      <DeleteAll userId={userId}/>
+      <DeleteAll userId={userId} />
       <div>
         {products.map((product: Product, idx) => (
           <CartItem

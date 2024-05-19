@@ -231,3 +231,26 @@ li a {
 .cart:hover {
   transition: all 500ms;
 }
+
+/* cart page style */
+.border-light {
+  border-bottom: solid 2px #004e89;
+}
+
+.border-night {
+  border-bottom: solid 2px #ffffff;
+}
+.hover {
+  transition: all 1s;
+}
+.hover:hover {
+  transform: scale(1.3);
+}
+
+.btn-transition {
+  transition: all 500ms;
+}
+
+.btn-transition:hover {
+  transition: all 1s;
+}
