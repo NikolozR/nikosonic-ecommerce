@@ -21,7 +21,7 @@ export default function Chart() {
     <div className="text-xl relative">
       <Link href="/checkout">
         <span className="icon-bg absolute text-[11px] font-bold top-[-17px] right-[-14px] text-white flex items-center justify-center">
-          {state ? state : ""}
+          {state ? state : "0"}
         </span>
         <MdOutlineShoppingCart suppressHydrationWarning />
       </Link>

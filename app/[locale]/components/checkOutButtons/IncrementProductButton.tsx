@@ -25,7 +25,7 @@ export default function IncrementProductButton({
   return (
     <>
       <button onClick={handleSetNewAmount}>
-        <MdAdd className="w-[20px] h-[20px] cursor-pointer mb-[7px]  text-[#004e89] hover:scale-150 btn-transition hover:text-[#a4161a] dark:text-[#ffffff]" />
+        <MdAdd className="w-[20px] h-[20px]  cursor-pointer mb-[7px]  text-[#004e89] hover:scale-150 btn-transition hover:text-[#a4161a] dark:text-[#ffffff]" />
       </button>
     </>
   );

@@ -28,9 +28,9 @@ export default async function CheckOut() {
   console.log(products);
 
   return (
-    <div className="w-4/5 mx-auto mt-[30px]">
+    <div className="w-full mx-auto mt-[30px] flex flex-col items-center">
       <DeleteAll userId={userId} />
-      <div>
+      <div className="w-full">
         {products.map((product: Product, idx) => (
           <CartItem
             key={idx}
