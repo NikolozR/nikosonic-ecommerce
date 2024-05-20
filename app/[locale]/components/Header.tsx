@@ -5,13 +5,13 @@ import { logout } from "../actions";
 import LocaleSwitcher from "./LocaleSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { cookies } from "next/headers";
- 
+import Chart from "./chart";
 
 async function Header() {
   const headerT = await getTranslations("Header");
-  const { responseUser }: { responseUser: User } = JSON.parse(
-    cookies().get("user")?.value ?? ""
-  );
+  const user = cookies().get("user");
+
+
   const handleLogOut = async () => {
     "use server";
     await logout();
@@ -27,29 +27,31 @@ async function Header() {
                 <i>Filtro</i>
               </Link>
             </p>
-            <ul className="flex gap-[40px]">
+            <ul className="flex gap-[1rem] lg:gap-[25px]">
               <li>
-                <Link href={"/"}>{headerT("home")}</Link>
+                <Link href={"/"} className="text-[0.75em] lg:text-[1.25em]">{headerT("home")}</Link>
               </li>
               <li>
-                <Link href={"/profile"}>{headerT("profile")}</Link>
+                <Link href={"/profile"} className="text-[0.75em] lg:text-[1.25em]">{headerT("profile")}</Link>
               </li>
               <li>
-                <Link href={"/blogs"}>{headerT("blogs")}</Link>
+                <Link href={"/blogs"} className="text-[0.75em] lg:text-[1.25em]">{headerT("blogs")}</Link>
               </li>
               <li>
-                <Link href={"/contacts"}>{headerT("contacts")}</Link>
+                <Link href={"/contacts"} className="text-[0.75em] lg:text-[1.25em]">{headerT("contacts")}</Link>
               </li>
-              {responseUser.role === "admin" && (
+              {user?.value !== undefined || user?.value !== null ? (
                 <li>
-                  <Link href={"/admin"}>{headerT("admin")}</Link>
+                  <Link href={"/admin"} className="text-[0.75em] lg:text-[1.25em]">{headerT("admin")}</Link>
                 </li>
-              )}
+
+              ): null}
             </ul>
             <div className="flex items-center gap-2">
               <LocaleSwitcher></LocaleSwitcher>
               <ThemeSwitcher></ThemeSwitcher>
             </div>
+            <Chart />
             <div className="flex gap-[15px]">
               <Button handle={handleLogOut}>Log Out</Button>
             </div>
