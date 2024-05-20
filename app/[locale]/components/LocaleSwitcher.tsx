@@ -13,7 +13,7 @@ function LocaleSwitcher() {
       {locales.map((locale: 'en' | 'ka') => {
         return (
           <Link key={locale} locale={locale} href={pathname}>
-            {locale}
+            {locale.toLocaleUpperCase()}
           </Link>
 
         );

@@ -1,7 +1,7 @@
 "use client";
 import { AiFillDelete } from "react-icons/ai";
-import { singleDelete } from "../../../api/api";
 import { useAppContext } from "../../../context";
+import { deleteSingleCartItem } from "../../actions";
 export const revalidate = 0;
 
 export default function DeleteIcon({
@@ -13,9 +13,8 @@ export default function DeleteIcon({
 }) {
   const { setState } = useAppContext();
   const handleDelete = () => {
-    singleDelete(productId);
+    deleteSingleCartItem(productId);
     setState((prev: number) => prev - quantity);
-    // window.location.reload();
   };
 
   return (

@@ -1,35 +1,35 @@
-import { getCart } from "../../../api/api";
 import DeleteAll from "../../components/checkOutButtons/DeleteAll";
-import { cookies } from "next/headers";
 import CartItem from "../../components/CartItem";
-export const revalidate = 0;
+import { getAllCart } from "../../actions";
 
-export default async function CheckOut() {
-  const cart = await getCart("29");
-  const cartItems = await cart.json();
-  const userId = JSON.parse(cookies().get("user")?.value as string)
-    ?.responseUser?.id;
-
+async function productFetch() {
+  console.log("called")
+  const cartItems = await getAllCart();
   const productQuantityMap: ProductQuantityMap = [];
   cartItems.rows.forEach((item: CartItem) => {
     productQuantityMap[item.productid] = item.quantity;
   });
-
   const productPromises: Product[] = cartItems.rows.map((item: CartItem) =>
-    fetch(`https://dummyjson.com/products/${item.productid}`).then((res) =>
+    fetch(`https://dummyjson.com/products/${item.productid}`, {
+      cache: 'force-cache'
+    }).then((res) =>
       res.json()
     )
   );
-
   const products: Product[] = (await Promise.all(productPromises)).sort(
     (a, b) => a.id - b.id
   );
+  return {
+    products, productQuantityMap
+  };
+}
 
-  console.log(products);
-
+export default async function CheckOut() {
+  const {productQuantityMap, products} = await productFetch();
+  console.log(productQuantityMap)
   return (
     <div className="w-full mx-auto mt-[30px] flex flex-col items-center">
-      <DeleteAll userId={userId} />
+      {products.length === 0 ? <p>No Products</p> : <DeleteAll />}
       <div className="w-full">
         {products.map((product: Product, idx) => (
           <CartItem
@@ -37,7 +37,6 @@ export default async function CheckOut() {
             product={product}
             initialQuantity={productQuantityMap[product.id]}
             productId={product.id}
-            userId={userId}
           />
         ))}
       </div>

@@ -3,14 +3,12 @@ import { incrementItemAmount } from "../../actions";
 import { useAppContext } from "../../../context";
 
 interface Props {
-  userId: number;
   productId: number;
   quantity: number;
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function IncrementProductButton({
-  userId,
   productId,
   setQuantity,
 }: Props) {
@@ -18,7 +16,7 @@ export default function IncrementProductButton({
 
   function handleSetNewAmount() {
     setQuantity((quantity) => quantity + 1);
-    incrementItemAmount(userId, productId);
+    incrementItemAmount(productId);
     setState((prev: number) => prev + 1);
   }
 

@@ -2,12 +2,12 @@
 import { useAppContext } from "../../../context";
 import { emptyAllInCart } from "../../actions";
 
-export default function DeleteAll({ userId }: { userId: number }) {
+export default function DeleteAll() {
   const { setState } = useAppContext();
 
   function deleteAllClick() {
     setState(() => 0);
-    emptyAllInCart(userId);
+    emptyAllInCart();
   }
 
   return (

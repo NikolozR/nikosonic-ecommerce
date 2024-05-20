@@ -1,6 +1,5 @@
 "use server";
 import { NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
 const baseUrl = process.env.BASE_URL;
 
 export async function getUserAuth(email: string, password: string) {
@@ -17,7 +16,6 @@ export async function getUserAuth(email: string, password: string) {
 
 export async function getAllUsers() {
   const response = await fetch(baseUrl + "/api/users/getAll", {
-    cache: "no-store",
     next: { tags: ["users"] },
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -105,24 +103,27 @@ export async function addCart(id: number, productId: number) {
   return await response.json();
 }
 
-export async function getCart(userId: string) {
+export async function getCart(userId: number) {
   const response = await fetch(baseUrl + "/api/cart/getAllcart/" + userId, {
+    cache: 'force-cache',
+    next: { tags: ["cart"] },
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-  revalidatePath("/checkout");
   return response;
 }
 
-export async function singleDelete(productId: number) {
+export async function singleDelete(userId:number, productId: number) {
   const response = await fetch(
-    baseUrl + "/api/cart/singleDelete/" + productId,
+    baseUrl + "/api/cart/remove",
     {
-      method: "DELETE",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-    }
+      body: JSON.stringify({
+        userId: userId,
+        productId: productId,
+      }),
+    },
   );
-
-  revalidatePath("/checkout");
   return await response.json();
 }

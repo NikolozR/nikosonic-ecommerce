@@ -27,22 +27,22 @@ async function Header() {
                 <i>Filtro</i>
               </Link>
             </p>
-            <ul className="flex gap-[40px]">
+            <ul className="flex gap-[1rem] lg:gap-[25px]">
               <li>
-                <Link href={"/"}>{headerT("home")}</Link>
+                <Link href={"/"} className="text-[0.75em] lg:text-[1.25em]">{headerT("home")}</Link>
               </li>
               <li>
-                <Link href={"/profile"}>{headerT("profile")}</Link>
+                <Link href={"/profile"} className="text-[0.75em] lg:text-[1.25em]">{headerT("profile")}</Link>
               </li>
               <li>
-                <Link href={"/blogs"}>{headerT("blogs")}</Link>
+                <Link href={"/blogs"} className="text-[0.75em] lg:text-[1.25em]">{headerT("blogs")}</Link>
               </li>
               <li>
-                <Link href={"/contacts"}>{headerT("contacts")}</Link>
+                <Link href={"/contacts"} className="text-[0.75em] lg:text-[1.25em]">{headerT("contacts")}</Link>
               </li>
               {user?.value !== undefined || user?.value !== null ? (
                 <li>
-                  <Link href={"/admin"}>{headerT("admin")}</Link>
+                  <Link href={"/admin"} className="text-[0.75em] lg:text-[1.25em]">{headerT("admin")}</Link>
                 </li>
 
               ): null}
