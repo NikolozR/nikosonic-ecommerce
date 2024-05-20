@@ -27,6 +27,7 @@ export async function register(name: string, email: string, password: string, ag
   };
   const user = await createUser(userData);
   cookieStore.set("user", JSON.stringify(user));
+  revalidateTag('users')
   redirect("/");
 }
 export async function logout() {

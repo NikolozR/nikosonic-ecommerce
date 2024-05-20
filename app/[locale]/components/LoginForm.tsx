@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+// import Link from "next/link";
 
 function LoginForm({ handleLogin }: loginFormProps) {
   const [{email, password}, setLoginInput] = useState<LogInUser>({ email: "", password: "" });
@@ -11,10 +11,10 @@ function LoginForm({ handleLogin }: loginFormProps) {
           Sign In
         </h1>
         <p className="text-[16px] leading-[26px] text-neutral-4 mb-4 dark:text-gray-200">
-          Don’t have an accout yet?{" "}
+          {/* Don’t have an accout yet?{" "}
           <Link href="/register">
             <span className="text-[#38CB89] font-bold cursor-pointer">Sign Up</span>
-          </Link>
+          </Link> */}
         </p>
         <form
           className="flex flex-col w-full gap-[32px] justify-center items-center mb-[34px]"
