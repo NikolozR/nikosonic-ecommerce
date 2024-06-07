@@ -1,5 +1,5 @@
 'use client'
-import { ModalContext } from "../../providers/ModalProvider";
+import { ModalContext } from "../providers/ModalProvider";
 import { useContext } from "react";
 
 function AddButton() {

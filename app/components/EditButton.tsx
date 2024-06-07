@@ -1,6 +1,6 @@
 'use client'
 import { useContext } from "react";
-import { ModalContext } from "../../providers/ModalProvider";
+import { ModalContext } from "../providers/ModalProvider";
 
 function EditButton() {
     const {setIsOpen} = useContext(ModalContext)

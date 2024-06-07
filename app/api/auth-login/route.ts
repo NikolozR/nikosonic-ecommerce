@@ -1,6 +1,6 @@
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
-import { testPassword } from "../../[locale]/actions";
+import { testPassword } from "../../actions";
 
 export const revalidate = 0;
 

@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import {getUserAuth, updateUser, createUser, deleteUser, emptyCart, addCart, getCart, singleDelete} from "../api/api";
+import {getUserAuth, updateUser, createUser, deleteUser, emptyCart, addCart, getCart, singleDelete} from "./api/api";
 import { revalidateTag } from "next/cache";
 
 var bcrypt = require("bcryptjs");

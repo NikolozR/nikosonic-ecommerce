@@ -1,6 +1,6 @@
-import { getAllUsers } from "../../api/api";
+import { getAllUsers } from "../api/api";
 import UserListItem from "./UserListItem";
-import { ModalProvider } from "../../providers/ModalProvider";
+import { ModalProvider } from "../providers/ModalProvider";
 import AdminUserForm from "./AdminUserForm";
 import { handleAddSubmit } from "../actions";
 import Modal from "./Modal";

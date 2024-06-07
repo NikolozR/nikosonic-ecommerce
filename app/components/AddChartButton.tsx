@@ -1,6 +1,6 @@
 'use client'
 import { addCartFunction } from "../actions";
-import { useAppContext } from "../../context/index";
+import { useAppContext } from "../context/index";
 async function handleAddProduct(productId: number, setState: (a: number | ((a:number) => number)) => number) {
   setState((prev: number) => prev + 1);
   await addCartFunction(productId);

@@ -1,6 +1,6 @@
 import { MdAdd } from "react-icons/md";
 import { incrementItemAmount } from "../../actions";
-import { useAppContext } from "../../../context";
+import { useAppContext } from "../../context";
 
 interface Props {
   productId: number;
