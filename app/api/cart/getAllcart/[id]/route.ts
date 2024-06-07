@@ -8,7 +8,6 @@ export async function GET(_: NextRequest, { params }: { params: { id: string } }
     const result = await sql`
       SELECT * FROM cart WHERE userId = ${Number(params.id)};
     `;
-
     const rows = result.rows;
     return NextResponse.json({ rows }, { status: 200 });
   } catch (error) {

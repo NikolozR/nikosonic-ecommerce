@@ -3,7 +3,7 @@ import AdminUserForm from "./AdminUserForm";
 import EditButton from "./EditButton";
 import { handleDeleteSubmit, handleUpdateSubmit } from "../actions";
 import DeleteButton from "./DeleteButton";
-import { ModalProvider } from "../../providers/ModalProvider";
+import { ModalProvider } from "../providers/ModalProvider";
 
 const handleSubmit = async (formData: FormData) => {
   "use server";

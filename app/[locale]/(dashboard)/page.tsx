@@ -1,15 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import Product from "../components/Product";
-import Search from "../components/Search";
+import Product from "../../components/Product";
+import Search from "../../components/Search";
 import { ChangeEvent } from "react";
 import { debounce } from "../../../scripts/debounce";
 
-async function getProducts() {
-  const res = await fetch("https://dummyjson.com/products");
-  const data = await res.json();
-  return data?.products;
-}
 
 function Products() {
   const [input, setInput] = useState("");
@@ -17,8 +12,6 @@ function Products() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getProducts();
-      setProducts([data, data]);
     };
     fetchData();
   }, []);

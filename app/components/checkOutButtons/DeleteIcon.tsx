@@ -1,6 +1,6 @@
 "use client";
 import { AiFillDelete } from "react-icons/ai";
-import { useAppContext } from "../../../context";
+import { useAppContext } from "../../context";
 import { deleteSingleCartItem } from "../../actions";
 export const revalidate = 0;
 

@@ -1,5 +1,5 @@
 import { FiMinus } from "react-icons/fi";
-import { useAppContext } from "../../../context";
+import { useAppContext } from "../../context";
 import { decrementCart } from "../../actions";
 
 interface Props {

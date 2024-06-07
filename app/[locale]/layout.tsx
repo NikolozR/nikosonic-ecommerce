@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { locales } from "../../navigation";
 import { ThemeProvider } from "next-themes";
 import { unstable_setRequestLocale } from "next-intl/server";
@@ -23,11 +24,13 @@ export default function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <AppWrapper>{children}</AppWrapper>
-        </ThemeProvider>
-      </body>
+      <UserProvider>
+        <body className={inter.className}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <AppWrapper>{children}</AppWrapper>
+          </ThemeProvider>
+        </body>
+      </UserProvider>
     </html>
   );
 }

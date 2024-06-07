@@ -4,12 +4,13 @@ import Button from "./Button";
 import { logout } from "../actions";
 import LocaleSwitcher from "./LocaleSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { cookies } from "next/headers";
 import Chart from "./chart";
+import { getSession } from "@auth0/nextjs-auth0";
 
 async function Header() {
   const headerT = await getTranslations("Header");
-  const user: User = JSON.parse(cookies().get("user")?.value as string).responseUser;
+  const session = await getSession();
+  const user = session?.user;
   console.log(user)
   const handleLogOut = async () => {
     "use server";
@@ -23,7 +24,7 @@ async function Header() {
           <div className="flex py-[15px] items-center justify-between">
             <p className="hidden sm:block font-bold text-[24px] text-white tracking-[3px] cursor-pointer">
               <Link href={"/"}>
-                <i>Filtro</i>
+                <i>3Legant</i>
               </Link>
             </p>
             <ul className="flex justify-between sm:gap-[1rem] lg:gap-[25px]">
@@ -56,7 +57,7 @@ async function Header() {
                   {headerT("contacts")}
                 </Link>
               </li>
-              {user.role === 'admin' ? (
+              {user?.role === "admin" ? (
                 <li>
                   <Link
                     href={"/admin"}
@@ -73,7 +74,14 @@ async function Header() {
             </div>
             <Chart />
             <div className="flex gap-[15px]">
-              <Button handle={handleLogOut}>Log Out</Button>
+              {!user ? (
+                <>
+                  <a href="/api/auth/login">Log In</a>
+                  <a href="/api/auth/signup">Register</a>
+                </>
+              ) : (
+                <a href="/api/auth/logout">Log Out</a>
+              )}
             </div>
           </div>
         </div>

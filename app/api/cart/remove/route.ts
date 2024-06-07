@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const body: { userId: number; productId: number } = await request.json();
   const { userId, productId } = body;
-
   try {
     const res = await sql`
                     DELETE FROM cart

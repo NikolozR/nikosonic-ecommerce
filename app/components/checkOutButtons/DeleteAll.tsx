@@ -1,5 +1,5 @@
 "use client";
-import { useAppContext } from "../../../context";
+import { useAppContext } from "../../context";
 import { emptyAllInCart } from "../../actions";
 
 export default function DeleteAll() {
