@@ -2,6 +2,6 @@ import { handleAuth, handleLogin } from "@auth0/nextjs-auth0";
 
 export const GET = handleAuth({
   signup: handleLogin({ 
-    returnTo: '/api/nika',
+    returnTo: '/api/users/create',
     authorizationParams: { screen_hint: "signup" } }),
 });

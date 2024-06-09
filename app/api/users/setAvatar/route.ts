@@ -1,15 +1,13 @@
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
-export const revalidate = 0;
-
-export async function PATCH(request: Request) {
-  const { name, sub, surname, displayname }: UpdateUser = await request.json();
+export async function PATCH(req: Request) {
+  const body = await req.json();
   try {
     await sql`
    UPDATE users
-      SET name = ${name}, surname = ${surname}, displayName = ${displayname}
-      WHERE sub = ${sub};
+      SET avatarurl = ${body.url}
+      WHERE sub = ${body.sub};
     `;
     return NextResponse.json(
       { message: "Information was updated succesfully" },
