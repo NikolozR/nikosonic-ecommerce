@@ -131,18 +131,3 @@ type AdminFormUser = {
   type: "add" | "edit";
   handleSubmit: (formData: FormData) => Promise<void>;
 };
-interface ModalContextValue {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-}
-
-type ProductQuantityMap = {
-  [productid: number]: number;
-};
-interface CartItem {
-  id: number;
-  userid: number;
-  productid: number;
-  quantity: number;
-  createdat: string;
-}

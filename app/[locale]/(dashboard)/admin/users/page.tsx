@@ -1,9 +1,8 @@
-import UserList from "../../../../components/UserList";
 
 function AdminPanel() {
   return (
     <div>
-        <UserList></UserList>
+        User List
     </div>
   );
 }
