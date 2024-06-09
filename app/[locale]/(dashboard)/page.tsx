@@ -1,59 +1,27 @@
-"use client";
-import { useEffect, useState } from "react";
-import Product from "../../components/Product";
-import Search from "../../components/Search";
-import { ChangeEvent } from "react";
-import { debounce } from "../../../scripts/debounce";
+import Hero from "../../components/Hero";
+import Image from "next/image";
+import JBL from '../../../public/jbl.png'
+import Beats from '../../../public/beats.png'
+import Marshall from '../../../public/marshall.png'
+import Sony from '../../../public/sony.png'
+import Bose from '../../../public/bose.jpg'
 
+function Landing() {
+  return (
+    <>
+      <Hero />
+      <div className="container">
+        <div className="flex ">
+        <Image src={JBL} width={100} height={50} alt="JBL Logo" />
+        <Image src={Marshall} width={100} height={50} alt="JBL Logo" />
+        <Image src={Sony} width={100} height={50} alt="JBL Logo" />
+        <Image src={Beats} width={100} height={50} alt="JBL Logo" />
+        <Image src={Bose} width={100} height={50} alt="JBL Logo" />
 
-function Products() {
-  const [input, setInput] = useState("");
-  const [products, setProducts] = useState<[Product[], Product[]]>([[], []]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-    };
-    fetchData();
-  }, []);
-
-  const handleSort = () => {
-    setProducts((prevState) => {
-      const clone = [...prevState[0]];
-      clone.sort((a, b) => a.price - b.price);
-      return [clone, prevState[1]];
-    });
-  };
-
-  const handleInput: (e: ChangeEvent<HTMLInputElement>) => void = (e) => {
-    const val = e.target.value;
-    setInput(val);
-    debounce(() => {
-      setProducts(
-        val !== ""
-          ? [
-              products[0].filter((product) => product.title.toLowerCase().indexOf(val.toLowerCase()) !== -1),
-              products[1],
-            ]
-          : [products[1], products[1]]
-      );
-    }, 500)();
-  };
-
-  if (products) {
-    return (
-      <section className="flex-1">
-        <div className="py-[30px] px-[20px] flex flex-col items-center gap-[40px]">
-          <Search handleSort={handleSort} val={input} handleInput={handleInput} />
-          <div className="p-[2rem] grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[100px]">
-            {products &&
-              products[0]?.map((el, i) => {
-                return <Product key={i} prodData={el} />;
-              })}
-          </div>
         </div>
-      </section>
-    );
-  } else return <div className="mx-auto mt-[200px]">Loading...</div>;
+      </div>
+    </>
+  );
 }
 
-export default Products;
+export default Landing;

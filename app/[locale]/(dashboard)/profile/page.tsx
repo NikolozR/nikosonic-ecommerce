@@ -1,41 +1,38 @@
-'use client';
-import { useState } from "react";
+import { getAuth0User, handleProfileChange } from "../../../actions";
+import { getUserBySub } from "../../../api/api";
+import NewPassword from "../../../components/NewPassword";
+import ProfileDetails from "../../../components/ProfileDetails";
+import ProfileSidebar from "../../../components/ProfileSidebar";
+import Button from "../../../components/shared/Button";
 
-function Profile() {
-  const [pasword, setPassword] = useState("");
-  const [confirmation, setConfirmation] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
-    if (type === "new") setPassword(e.target.value);
-    else if (type === "confirm") setConfirmation(e.target.value);
-  };
-
+async function Profile() {
+  const auth0User = await getAuth0User();
+  const sub: string = auth0User?.sub;
+  const user: User = await getUserBySub(auth0User?.sub);
   return (
-    <section className="profile">
-      <div className="container mx-auto">
-        <p className="full-name mt-[20px]">Full Name: </p>
-        <p className="surname">Surname:</p>
-        <p className="email">Email:</p>
-        <p className="bio">Bio: </p>
-        <form className="flex flex-col gap-[20px] items-center mt-[50px]" action="" method="post">
-          <input
-            type="password"
-            value={pasword}
-            onChange={(e) => handleChange(e, "new")}
-            placeholder="New Password"
-            name="newPassword"
-            id="newPassword"
-          />
-          <input
-            type="password"
-            value={confirmation}
-            onChange={(e) => handleChange(e, "confirm")}
-            placeholder="Confirm New Password"
-            name="confirmPassword"
-            id="confirmPassword"
-          />
-          <button>Save</button>
-        </form>
+    <section className="mb-[80px]">
+      <div className="container">
+        <h1 className="font-poppins text-[3.375rem] font-medium text-center py-[40px]">
+          My Profile
+        </h1>
+        <div className="flex gap-[80px]">
+          <ProfileSidebar user={user} />
+          <form className="w-[60%] flex flex-col" action={handleProfileChange}>
+            <ProfileDetails user={user} />
+            {sub?.split("|")[0] === "auth0" && <NewPassword />}
+            <div className="mt-[24px]">
+
+            <Button
+              type="submit"
+              fontSize="1rem"
+              leading="28px"
+              padding="px-[40px] py-[12px]"
+            >
+              Save Changes
+            </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );

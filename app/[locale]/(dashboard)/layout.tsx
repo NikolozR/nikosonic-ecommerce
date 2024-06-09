@@ -1,4 +1,5 @@
-import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 import "../globals.css";
 
 export const metadata = {
@@ -13,8 +14,10 @@ export default async function RootLayout({
 }) {
   return (
     <>
-      <Header />
-      <main className="flex flex-col flex-1">{children}</main>
+      <NavBar />
+
+      {children}
+      <Footer />
     </>
   );
 }

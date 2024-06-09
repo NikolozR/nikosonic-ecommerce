@@ -1,6 +1,25 @@
 type childrenProps<P = unknown> = P & {
   children: React.ReactNode;
 };
+type ButtonProps = {
+  type: "button" | "submit" | "reset";
+  fontSize: string;
+  padding: string; // Tailwind Selector
+  leading?: string;
+  className?: string;
+};
+type InputProps = {
+  name: string;
+  label?: string;
+  labelClassName?: string;
+  inputClassName?: string;
+  placeHolder?: string;
+  defaultValue?: string;
+  disabled?: boolean;
+  additionalInfo?: string;
+  handleChange?: ChangeEventHandler<HTMLInputElement>;
+  type?: "text" | "file";
+};
 type paramsLang = {
   params: { locale: string };
 };
@@ -11,17 +30,7 @@ type headerProps = {
   dic?: dictionary;
   locale: string;
 };
-type loginFormProps = {
-  handleLogin: (email: string, password: string) => Promise<void>;
-};
-type registerFormProps = {
-  handleRegister: (name: string, email: string, password: string, age: number) => Promise<void>;
-};
-type searchProps = {
-  handleSort: () => void;
-  val: string;
-  handleInput: (e: ChangeEvent<HTMLInputElement>) => void;
-};
+interface;
 interface Product {
   id: number;
   title: string;
@@ -58,25 +67,33 @@ type CustomMiddleware = (
   response: NextResponse
 ) => NextMiddlewareResult | Promise<NextMiddlewareResult>;
 type MiddlewareFactory = (middleware: NextMiddleware) => NextMiddleware;
-type CreateUser = {
-  name: string;
-  email: string;
-  passwordHash: string;
-  age: number;
-  role: string;
-};
-type RegisterUser = {
-  name: string;
-  email: string;
-  password: string;
-  age: number;
-};
+// type CreateUser = {
+//   role: string[],
+//   nickname: string,
+//   name: string,
+//   picture: string,
+//   updated_at: string,
+//   email: string,
+//   email_verified: boolean,
+//   sub: string,
+//   sid: string,
+//   given_name?: string,
+//   family_name?: string,
+// } | undefined;
 type User = {
   id: number;
   name: string;
   email: string;
-  role: string;
-  age: number;
+  sub: string;
+  avatarurl: string;
+  surname: string;
+  displayname: string;
+};
+type UpdateUser = {
+  sub: string;
+  name: string;
+  surname: string;
+  displayname: string;
 };
 type LogInUser = {
   email: string;

@@ -3,7 +3,20 @@ import createNextIntlPlugin from "next-intl/plugin";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["picsum.photos", "cdn.dummyjson.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "s.gravatar.com"
+      },
+      {
+        protocol: "https",
+        hostname: "ajiiuxbajmikw9o0.public.blob.vercel-storage.com"
+      },
+    ],
   },
 };
 
