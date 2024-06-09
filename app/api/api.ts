@@ -35,19 +35,6 @@ export async function getUserBySub(sub: string) {
     return data.rows[0];
 }
 
-export async function updateUser({ id, name, email }: User) {
-  const response = await fetch(baseUrl + "/api/users/update", {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      id,
-      name,
-      email,
-    }),
-  });
-  return await response.json();
-}
-
 export async function deleteUser(id: number) {
   try {
     const response = await fetch(baseUrl + "/api/users/delete/" + id, {
@@ -60,3 +47,20 @@ export async function deleteUser(id: number) {
   }
 }
 
+export async function updateUser(body: UpdateUser) {
+  const res = await fetch(baseUrl + "/api/users/update", {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  return res;
+}
+
+export async function createProduct(body: CreateProduct) {
+  const res = await fetch(baseUrl + "/api/products/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  return res;
+}
