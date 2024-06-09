@@ -1,12 +1,16 @@
 type childrenProps<P = unknown> = P & {
   children: React.ReactNode;
 };
+type keyValuyPair = {
+  [key: string]: any;
+}
 type ButtonProps = {
   type: "button" | "submit" | "reset";
   fontSize: string;
   padding: string; // Tailwind Selector
   leading?: string;
   className?: string;
+  disabled?: boolean;
 };
 type InputProps = {
   name: string;
@@ -18,8 +22,27 @@ type InputProps = {
   disabled?: boolean;
   additionalInfo?: string;
   handleChange?: ChangeEventHandler<HTMLInputElement>;
-  type?: "text" | "file";
+  type?: "text" | "file" | 'number';
+  required?: boolean;
+  multiple?: boolean;
 };
+type FileUploadProps = {
+  selectedFile?: File | null;
+  selectedFiles?: FileList | null;
+  multiple?: boolean;
+  fileWrongSize?: boolean;
+  ref: RefObject<HTMLInputElement>;
+  handleFileChange: () => void
+}
+interface CreateProduct extends keyValuyPair {
+  name: string;
+  brand: string;
+  color: string;
+  price: number;
+  thumbnail_url: string;
+  gallery_urls: string[];
+  description: string;
+}
 type paramsLang = {
   params: { locale: string };
 };
@@ -30,7 +53,6 @@ type headerProps = {
   dic?: dictionary;
   locale: string;
 };
-interface;
 interface Product {
   id: number;
   title: string;

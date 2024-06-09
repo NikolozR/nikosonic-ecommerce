@@ -54,15 +54,25 @@ async function NavBar() {
                 {headerT("contacts")}
               </Link>
             </li>
-            {user?.role === "admin" ? (
+            {user?.role[0] === "Admin" ? (
+              <>
               <li>
                 <Link
-                  href={"/admin"}
+                  href={"/admin/users"}
                   className="text-[1rem] font-grotesk text-black font-medium"
                 >
-                  {headerT("admin")}
+                  {"Users"}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={"/admin/products"}
+                  className="text-[1rem] font-grotesk text-black font-medium"
+                >
+                  {"Add Products"}
+                </Link>
+              </li>
+              </>
             ) : null}
           </ul>
           <div>
