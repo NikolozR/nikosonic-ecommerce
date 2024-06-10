@@ -1,15 +1,9 @@
 "use server";
-import { createProduct, deleteUser, updateUser } from "./api/api";
+import { createProduct, updateUser } from "./api/api";
 import { revalidateTag } from "next/cache";
 import { getSession } from "@auth0/nextjs-auth0";
 import { put } from "@vercel/blob";
 
-const baseUrl = process.env.BASE_URL;
-
-export async function handleDeleteSubmit(id: number) {
-  await deleteUser(id);
-  revalidateTag("users");
-}
 export async function getAuth0User() {
   const session = await getSession();
   const user = session?.user;

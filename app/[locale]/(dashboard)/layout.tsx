@@ -15,7 +15,6 @@ export default async function RootLayout({
   return (
     <>
       <NavBar />
-
       {children}
       <Footer />
     </>
