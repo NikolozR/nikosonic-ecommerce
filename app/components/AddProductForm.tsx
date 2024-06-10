@@ -39,7 +39,6 @@ function AddProductForm() {
     setSelectedFiles(imageFiles);
   };
   const handleFileChange = () => {
-    console.log("eeeeee");
     const imageFiles =
       thumbnailFileInputRef.current && thumbnailFileInputRef.current.files;
     const isFileSizeExceeded = Array.from(imageFiles ?? []).some(

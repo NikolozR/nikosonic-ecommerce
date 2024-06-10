@@ -1,5 +1,6 @@
 "use server";
 import { getSession } from "@auth0/nextjs-auth0";
+import { revalidateTag } from "next/cache";
 const baseUrl = process.env.BASE_URL;
 
 export async function uploadAvatar(url: string) {
@@ -52,6 +53,7 @@ export async function updateUser(body: UpdateUser) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+
   return res;
 }
 
@@ -61,5 +63,26 @@ export async function createProduct(body: CreateProduct) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+  revalidateTag('products-newest')
   return res;
+}
+export async function getNewest(limit: number) {
+  const res = await fetch(baseUrl + '/api/products/getNewest/' + limit, {
+    next: {
+      tags: ['products', 'products-newest']
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  return (await res.json()).rows;
+}
+export async function getMostVieweds(limit: number) {
+  const res = await fetch(baseUrl + '/api/products/getPopular/' + limit, {
+    next: {
+      tags: ['products', 'products-popular']
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  return (await res.json()).rows;
 }

@@ -50,7 +50,7 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
         )}
       </div>
       <input
-        name={multiple ? "gallery_url" : "thumbnail_url"}
+        name={multiple ? "gallery_urls" : "thumbnail_url"}
         type="file"
         ref={ref}
         required
