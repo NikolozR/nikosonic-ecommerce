@@ -10,8 +10,9 @@ export async function GET(
   try {
     const result = await sql`
       SELECT *
-FROM products
-ORDER BY createdat DESC
+FROM your_table_name
+WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '10 days'
+ORDER BY created_at DESC
 LIMIT ${Number(params.limit)};
     `;
     const rows = result.rows;

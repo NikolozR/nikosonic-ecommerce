@@ -1,6 +1,5 @@
 "use server";
 import { createProduct, updateUser } from "./api/api";
-import { revalidateTag } from "next/cache";
 import { getSession } from "@auth0/nextjs-auth0";
 import { put } from "@vercel/blob";
 
@@ -19,7 +18,6 @@ export async function handleProfileChange(formData: FormData) {
   });
   const res = await updateUser(body);
   if (res.status === 200) {
-    revalidateTag("singleUser");
     return await res.json();
   }
 }
@@ -35,11 +33,11 @@ export async function handleProductAddSubmit(formData: FormData) {
     description: ""
   };
   formData.forEach((val, key) => {
-    if (val !== '' && key !== 'gallery_url' && key !== 'thumbnail_url') {
+    if (val !== '' && key !== 'gallery_urls' && key !== 'thumbnail_url') {
       body[key] = val;
     }
   })
-  const imageFiles = formData.getAll('gallery_url') as File[];
+  const imageFiles = formData.getAll('gallery_urls') as File[];
   const imageFile = formData.get('thumbnail_url') as File;
   const thumbBlob = await put(imageFile.name, imageFile, {
     access: 'public',
@@ -53,7 +51,6 @@ export async function handleProductAddSubmit(formData: FormData) {
   }
   const res = await createProduct(body);
   if (res.status === 200) {
-    revalidateTag("products");
     return await res.json();
   }
 }

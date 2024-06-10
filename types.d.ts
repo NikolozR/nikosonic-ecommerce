@@ -54,17 +54,18 @@ type headerProps = {
   locale: string;
 };
 interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
+  product_id: number;
+  name: string;
   brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
+  color: string;
+  price: number;
+  avarage_rating: number;
+  thumbnail_url: string;
+  gallery_urls: string;
+  description: string;
+  created_at: string;
+  views: number;
+  review_count: number;
 }
 interface Blog {
   id: number;
