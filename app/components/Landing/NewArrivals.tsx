@@ -9,7 +9,7 @@ async function NewArrivals() {
       <div className="container">
         <h2 className="font-poppins text-[#003285] font-medium py-[40px] text-[2.5rem]">New Arrivals</h2>
         <div className="grid grid-cols-4 gap-[50px] pb-[40px]">
-          {products.map((product) => (
+          {products?.map((product) => (
             <ProductItem
               key={product.product_id}
               product={product}

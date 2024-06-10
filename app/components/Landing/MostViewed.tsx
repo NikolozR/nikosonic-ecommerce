@@ -13,7 +13,7 @@ async function MostViewed() {
           Most Viewed
         </h2>
         <div className="grid grid-cols-4 gap-[50px] pb-[40px]">
-          {products.map((product) => (
+          {products?.map((product) => (
             <ProductItem
               key={product.product_id}
               product={product}
