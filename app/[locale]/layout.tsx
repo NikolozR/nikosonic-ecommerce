@@ -1,5 +1,5 @@
-import { Inter, Poppins, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { Inter, Poppins, Space_Grotesk } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { locales } from "../../navigation";
 import { ThemeProvider } from "next-themes";

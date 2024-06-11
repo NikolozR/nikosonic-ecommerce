@@ -12,6 +12,7 @@ function AddProductForm() {
   const thumbnailFileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectValue, setSelectValue] = useState<string | null>(null);
 
   const formRef = useRef<HTMLFormElement>(null);
   const [adding, setAdding] = useState(false);
@@ -22,7 +23,7 @@ function AddProductForm() {
       if (message) {
         timer = setTimeout(() => {
           setMessage(null);
-        }, 5000);
+        }, 3000);
       }
       return () => clearTimeout(timer);
     }
@@ -65,8 +66,9 @@ function AddProductForm() {
       if (thumbnailFileInputRef.current) {
         thumbnailFileInputRef.current.value = "";
       }
-      setSelectedFile(null)
-      setSelectedFile(null)
+      setSelectedFile(null);
+      setSelectedFile(null);
+      setSelectValue(""); // Reset select value
       window.history.replaceState({}, document.title, window.location.pathname);
     } catch (error) {
       console.error("Failed to add product", error);
@@ -81,7 +83,7 @@ function AddProductForm() {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="mb-[100px] flex flex-col gap-[50px] items-center"
+        className="mb-[100px] flex flex-col gap-[100px] items-center"
       >
         <div className="flex w-[80%] justify-between gap-[150px]">
           <div className="w-[42%] flex flex-col gap-5">
@@ -115,6 +117,21 @@ function AddProductForm() {
             <Input label="Brand" name="brand" type="text" required />
             <Input label="Price" name="price" type="number" required />
             <Input label="Color" name="color" type="text" required />
+            <select
+              name="category"
+              id="category"
+              className="border cursor-pointer text-[#6C7275] border-[#CBCBCB] rounded-md px-3 py-2 focus:outline-none "
+              required
+              value={selectValue ?? ""}
+              onChange={(e) => setSelectValue(e.target.value)}
+            >
+              <option value="" disabled className="text-gray-300">
+                Select Category
+              </option>
+              <option value="headband">Headband</option>
+              <option value="earbud">Earbud</option>
+              <option value="earphone">Earphone</option>
+            </select>
           </div>
         </div>
         <Button

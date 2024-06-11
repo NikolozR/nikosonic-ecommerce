@@ -11,6 +11,7 @@ type ButtonProps = {
   leading?: string;
   className?: string;
   disabled?: boolean;
+  handleClick?: () => void;
 };
 type InputProps = {
   name: string;
@@ -42,6 +43,7 @@ interface CreateProduct extends keyValuyPair {
   thumbnail_url: string;
   gallery_urls: string[];
   description: string;
+  category: 'headband' | 'earbud' |  'earphone'
 }
 type paramsLang = {
   params: { locale: string };
@@ -66,6 +68,7 @@ interface Product {
   created_at: string;
   views: number;
   review_count: number;
+  category: 'headband' | 'earbud' |  'earphone'
 }
 interface Blog {
   id: number;

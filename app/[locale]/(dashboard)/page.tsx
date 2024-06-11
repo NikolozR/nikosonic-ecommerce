@@ -10,39 +10,64 @@ import ShopCollection from "../../components/Landing/ShopCollection";
 import MostViewed from "../../components/Landing/MostViewed";
 import DreQuote from "../../components/Landing/DreQuote";
 import BusinessFeatures from "../../components/Landing/BusinessFeatures";
-import NewsLetter from "../../components/shared/NewsLetter";
 import NewsFeed from "../../components/Landing/NewsFeed";
 
 function Landing() {
   return (
     <>
       <Hero />
-      <div className="container">
-        <div className="grid grid-cols-5 gap-[50px] py-[40px]">
-          <div className="w-full h-[100px] relative">
-            <Image src={JBL} style={{objectFit: 'contain'}} fill alt="JBL Logo" />
-          </div>
-          <div className="w-full h-[100px] relative">
-            <Image src={Sony} style={{objectFit: 'contain'}} fill alt="Sony Logo" />
-          </div>
-          <div className="w-full h-[100px] relative">
-            <Image src={Beats} style={{objectFit: 'contain'}} fill alt="Beats Logo" />
-          </div>  
-          <div className="w-full h-[100px] relative">
-            <Image src={Marshall} style={{objectFit: 'contain'}} fill alt="Marshall Logo" />
-          </div>
-          <div className="w-full h-[100px] relative">
-            <Image src={Bose} style={{objectFit: 'contain'}} fill alt="Bose Logo" />
+      <main>
+        <div className="container">
+          <div className="grid grid-cols-5 gap-[50px] py-[40px]">
+            <div className="w-full h-[100px] relative">
+              <Image
+                src={JBL}
+                style={{ objectFit: "contain" }}
+                fill
+                alt="JBL Logo"
+              />
+            </div>
+            <div className="w-full h-[100px] relative">
+              <Image
+                src={Sony}
+                style={{ objectFit: "contain" }}
+                fill
+                alt="Sony Logo"
+              />
+            </div>
+            <div className="w-full h-[100px] relative">
+              <Image
+                src={Beats}
+                style={{ objectFit: "contain" }}
+                fill
+                alt="Beats Logo"
+              />
+            </div>
+            <div className="w-full h-[100px] relative">
+              <Image
+                src={Marshall}
+                style={{ objectFit: "contain" }}
+                fill
+                alt="Marshall Logo"
+              />
+            </div>
+            <div className="w-full h-[100px] relative">
+              <Image
+                src={Bose}
+                style={{ objectFit: "contain" }}
+                fill
+                alt="Bose Logo"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <NewArrivals />
-      <ShopCollection />
-      <MostViewed />
-      <DreQuote />
-      <BusinessFeatures/>
-      <NewsFeed />
-      <NewsLetter />
+        <NewArrivals />
+        <ShopCollection />
+        <MostViewed />
+        <DreQuote />
+        <BusinessFeatures />
+        <NewsFeed />
+      </main>
     </>
   );
 }

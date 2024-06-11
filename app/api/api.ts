@@ -25,14 +25,14 @@ export async function getAllUsers() {
   return data.rows;
 }
 export async function getUserBySub(sub: string) {
-    const response = await fetch(baseUrl + "/api/users/get/" + sub, {
-      next: {tags: ['singleUser']},
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
+  const response = await fetch(baseUrl + "/api/users/get/" + sub, {
+    next: { tags: ["singleUser"] },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
 
-    const data = await response.json();
-    return data.rows[0];
+  const data = await response.json();
+  return data.rows[0];
 }
 
 export async function deleteUser(id: number) {
@@ -63,26 +63,69 @@ export async function createProduct(body: CreateProduct) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
-  revalidateTag('products-newest')
+  revalidateTag("products");
   return res;
 }
 export async function getNewest(limit: number) {
-  const res = await fetch(baseUrl + '/api/products/getNewest/' + limit, {
+  const res = await fetch(baseUrl + "/api/products/getNewest/" + limit, {
     next: {
-      tags: ['products', 'products-newest']
+      tags: ["products", "products-newest"],
     },
     method: "GET",
     headers: { "Content-Type": "application/json" },
-  })
+  });
   return (await res.json()).rows;
 }
 export async function getMostVieweds(limit: number) {
-  const res = await fetch(baseUrl + '/api/products/getPopular/' + limit, {
+  const res = await fetch(baseUrl + "/api/products/getPopular/" + limit, {
     next: {
-      tags: ['products', 'products-popular']
+      tags: ["products", "products-popular"],
     },
     method: "GET",
     headers: { "Content-Type": "application/json" },
-  })
+  });
+  return (await res.json()).rows;
+}
+
+export async function getAllProducts() {
+  const res = await fetch(baseUrl + "/api/products/get", {
+    next: {
+      tags: ["products"],
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  return (await res.json()).rows;
+}
+
+export async function getProductsByFilter(searchParams: {
+  [key: string]: string;
+}) {
+  let stringBuilder = "?";
+  for (let key in searchParams) {
+    if (searchParams.hasOwnProperty(key)) {
+      stringBuilder += `${key}=${searchParams[key]}&`;
+    }
+  }
+  stringBuilder = stringBuilder.slice(0, -1);
+
+  const res = await fetch(baseUrl + "/api/products/get" + stringBuilder, {
+    next: {
+      tags: ["products"],
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  return (await res.json()).rows;
+}
+export async function getBrands() {
+  const res = await fetch(baseUrl + "/api/brands/get", {
+    next: {
+      tags: ["brands"],
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
   return (await res.json()).rows;
 }

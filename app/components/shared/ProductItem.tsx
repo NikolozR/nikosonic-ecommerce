@@ -43,7 +43,7 @@ function ProductItem({
         </Button>
       </div>
       <div className="bg-white px-3 text-[#141718] font-semibold flex flex-col gap-2">
-        <div className="flex">
+        <div className="flex mt-[10px]">
           {[...Array(5)].map((_, index) => (
             <FaStar
               key={index}
@@ -51,8 +51,7 @@ function ProductItem({
             />
           ))}
         </div>
-        <h2>{product.brand}</h2>
-        <p>{product.name}</p>
+        <h2>{product.brand + " " + product.name}</h2>
         <span>${product.price}</span>
       </div>
     </div>

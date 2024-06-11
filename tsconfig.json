@@ -22,6 +22,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
+    "downlevelIteration": true,
     "plugins": [
       {
         "name": "next"
