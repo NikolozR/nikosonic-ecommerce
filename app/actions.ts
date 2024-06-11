@@ -30,7 +30,8 @@ export async function handleProductAddSubmit(formData: FormData) {
     price: 0,
     thumbnail_url: "",
     gallery_urls: [],
-    description: ""
+    description: "",
+    category: 'headband'
   };
   formData.forEach((val, key) => {
     if (val !== '' && key !== 'gallery_urls' && key !== 'thumbnail_url') {
@@ -53,4 +54,54 @@ export async function handleProductAddSubmit(formData: FormData) {
   if (res.status === 200) {
     return await res.json();
   }
+}
+
+export async function setSearchParams(
+  name: string,
+  value: string,
+  currentSearchParams: { [key: string]: string }[],
+  isCheckbox: boolean,
+  checked?: boolean,
+) {
+  let updatedSearchParams = [...currentSearchParams];
+  const index = updatedSearchParams.findIndex((param) => param[name]);
+
+  if (isCheckbox) {
+    if (checked) {
+      if (index !== -1) {
+        updatedSearchParams[index][name] += `,${value}`;
+      } else {
+        updatedSearchParams.push({ [name]: value });
+      }
+    } else {
+      if (index !== -1) {
+        const values = updatedSearchParams[index][name]
+          .split(",")
+          .filter((v) => v !== value);
+        if (values.length > 0) {
+          updatedSearchParams[index][name] = values.join(",");
+        } else {
+          updatedSearchParams.splice(index, 1);
+        }
+      }
+    }
+  } else {
+    if (index !== -1) {
+      if (value === "") {
+        updatedSearchParams.splice(index, 1);
+      } else {
+        updatedSearchParams[index][name] = value;
+      }
+    } else if (value !== "") {
+      updatedSearchParams.push({ [name]: value });
+    }
+  }
+
+  const params = new URLSearchParams();
+  updatedSearchParams.forEach((param) => {
+    const [key, val] = Object.entries(param)[0];
+    params.append(key, val);
+  });
+
+  return params;
 }

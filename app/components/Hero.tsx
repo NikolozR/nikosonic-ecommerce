@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LandingPlaceholder from "../../public/LandingPlaceholder.png";
 import Button from "./shared/Button";
 
@@ -30,7 +31,7 @@ function Hero() {
                 fontSize="1.125rem"
                 padding="px-[56px] py-[12px]"
               >
-                Shop Now
+                <Link href={"/products"}>Shop Now</Link>
               </Button>
             </div>
           </div>
