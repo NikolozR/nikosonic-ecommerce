@@ -10,10 +10,11 @@ import { getAuth0User } from "../../../../actions";
 
 export async function generateStaticParams() {
   const idsRes: { product_id: number }[] = await getProductIds();
+  console.log(idsRes)
   const ids = idsRes?.map((el) => el.product_id + '');
   return ids?.map((id) => ({
     productId: id,
-  }));
+  })) ?? [];
 }
 
 async function ProductDetailsPage({
