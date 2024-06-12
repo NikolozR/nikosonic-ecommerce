@@ -2,7 +2,7 @@
 import { CiCamera } from "react-icons/ci";
 import type { PutBlobResult } from "@vercel/blob";
 import { useState, useRef } from "react";
-import { uploadAvatar } from "../api/api";
+import { uploadAvatar } from "../../api/api";
 import Image from "next/image";
 import { TailSpin } from "react-loader-spinner";
 

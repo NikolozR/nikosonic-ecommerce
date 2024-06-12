@@ -1,8 +1,8 @@
 import { getAuth0User, handleProfileChange } from "../../../actions";
 import { getUserBySub } from "../../../api/api";
-import NewPassword from "../../../components/NewPassword";
-import ProfileDetails from "../../../components/ProfileDetails";
-import ProfileSidebar from "../../../components/ProfileSidebar";
+import NewPassword from "../../../components/Profile/NewPassword";
+import ProfileDetails from "../../../components/Profile/ProfileDetails";
+import ProfileSidebar from "../../../components/Profile/ProfileSidebar";
 import Button from "../../../components/shared/Button";
 
 async function Profile() {

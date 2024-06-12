@@ -10,8 +10,10 @@ type ButtonProps = {
   padding: string; // Tailwind Selector
   leading?: string;
   className?: string;
+  title?: string;
   disabled?: boolean;
   handleClick?: () => void;
+  stopPropagation?: boolean
 };
 type InputProps = {
   name: string;
@@ -60,15 +62,25 @@ interface Product {
   name: string;
   brand: string;
   color: string;
+  stock: number;
   price: number;
-  avarage_rating: number;
+  average_rating: number;
   thumbnail_url: string;
-  gallery_urls: string;
+  gallery_urls: string[];
   description: string;
   created_at: string;
   views: number;
   review_count: number;
   category: 'headband' | 'earbud' |  'earphone'
+}
+interface Review {
+  review_id: number;
+  user_id: number;
+  product_id: number;
+  rating: number;
+  comment: string;
+  created_at: string;
+  updated_at: string;
 }
 interface Blog {
   id: number;
@@ -77,6 +89,12 @@ interface Blog {
   userId: number;
   tags: string[];
   reactions: number;
+}
+interface CreateReview {
+  userId: number;
+  productId: number;
+  rating: number;
+  comment: string;
 }
 type NavbarDict = {
   home: string;

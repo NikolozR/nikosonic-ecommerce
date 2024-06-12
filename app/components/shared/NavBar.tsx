@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
-import ShopIcon from '../../public/shop.svg';
-import SearchIcon from '../../public/search.svg';
+import ShopIcon from '../../../public/shop.svg';
+import SearchIcon from '../../../public/search.svg';
 import Image from "next/image";
 import ProfileDropDown from "./ProfileDropDown";
-import { getAuth0User } from "../actions";
+import { getAuth0User } from "../../actions";
 
 async function NavBar() {
   const headerT = await getTranslations("Header");

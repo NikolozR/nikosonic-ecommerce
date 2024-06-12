@@ -1,4 +1,4 @@
-import Hero from "../../components/Hero";
+import Hero from "../../components/Landing/Hero";
 import Image from "next/image";
 import JBL from "../../../public/jbl.png";
 import Beats from "../../../public/beats.png";

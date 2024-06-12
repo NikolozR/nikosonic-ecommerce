@@ -129,3 +129,57 @@ export async function getBrands() {
   });
   return (await res.json()).rows;
 }
+
+export async function increaseView(productId: Number) {
+  await fetch(baseUrl + "/api/products/incrementViews/" + productId, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+  });
+  revalidateTag("products-popular");
+}
+
+export async function getSingleProduct(productId: string) {
+  const res = await fetch(baseUrl + "/api/products/get/" + productId, {
+    method: "GET",
+    cache: 'no-store',
+    headers: { "Content-Type": "application/json" },
+  });
+  const data = await res.json();
+  return data.rows && data.rows[0];
+}
+
+export async function getReviews(productId: string) {
+  const res = await fetch(baseUrl + "/api/reviews/get/" + productId, {
+    next: {
+      tags: ['reviews']
+    },
+    method: "GET",
+    cache: 'no-store',
+    headers: { "Content-Type": "application/json" },
+  });
+  return (await res.json()).rows;
+}
+
+export async function createReview(body: CreateReview) {
+  try {
+    await fetch(baseUrl + "/api/reviews/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    revalidateTag("reviews");
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function getProductIds() {
+  const res = await fetch(baseUrl + "/api/products/get/ids", {
+    next: {
+      tags: ["products"],
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  return (await res.json()).rows;
+}

@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import ProfileIcon from '../../public/profile.svg';
+import ProfileIcon from '../../../public/profile.svg';
 
 function ProfileDropDown() {
   const [isOpen, setIsOpen] = useState(false);
