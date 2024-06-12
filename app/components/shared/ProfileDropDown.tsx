@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import ProfileIcon from '../../../public/profile.svg';
+import ThemeSwitcher from './ThemeSwitcher';
 
 function ProfileDropDown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +33,18 @@ function ProfileDropDown() {
       <Image 
         src={ProfileIcon} 
         className="cursor-pointer" 
-        width={20} 
-        height={20} 
+        width={24} 
+        height={24} 
         alt="Profile Icon" 
         onClick={toggleDropDown}
       />
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
           <div className="py-1">
+            <div className='px-4 py-2 hover:bg-gray-100 flex justify-between'>
+              <span className='text-sm text-gray-700'>Theme</span>
+              <ThemeSwitcher></ThemeSwitcher>
+            </div>
             <a 
               href="/profile" 
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

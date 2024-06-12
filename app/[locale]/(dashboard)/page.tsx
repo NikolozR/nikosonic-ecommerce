@@ -12,7 +12,7 @@ import DreQuote from "../../components/Landing/DreQuote";
 import BusinessFeatures from "../../components/Landing/BusinessFeatures";
 import NewsFeed from "../../components/Landing/NewsFeed";
 
-function Landing() {
+async function Landing() {
   return (
     <>
       <Hero />
@@ -61,9 +61,9 @@ function Landing() {
             </div>
           </div>
         </div>
-        <NewArrivals />
+          <NewArrivals />
         <ShopCollection />
-        <MostViewed />
+          <MostViewed />
         <DreQuote />
         <BusinessFeatures />
         <NewsFeed />

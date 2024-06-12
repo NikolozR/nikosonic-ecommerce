@@ -3,13 +3,16 @@ import { FaStar } from "react-icons/fa6";
 import Button from "./Button";
 import { CiHeart } from "react-icons/ci";
 import ClientSideWrapper from "./ClientSideProductWrapper";
+import AddToCartButton from "./AddToCartButton";
 
 function ProductItem({
   product,
   isNew = false,
   isHot = false,
+  user,
 }: {
   product: Product;
+  user: User;
   isNew?: boolean;
   isHot?: boolean;
 }) {
@@ -38,14 +41,7 @@ function ProductItem({
             alt={product.name}
           />
         </ClientSideWrapper>
-        <Button
-          type="button"
-          className="opacity-0 group-hover:opacity-100 group-hover:bottom-[25px] transition-all z-50 ease-in-out duration-[0.3s] absolute bottom-[0px] left-[50%] text-nowrap translate-x-[-50%]"
-          fontSize="1rem"
-          padding="px-[74px] py-[9px]"
-        >
-          Add To Cart
-        </Button>
+        <AddToCartButton user={user} product={product} />
       </div>
       <ClientSideWrapper productId={product.product_id}>
         <div className="bg-white px-3 text-[#141718] font-semibold flex flex-col gap-2">

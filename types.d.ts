@@ -13,7 +13,7 @@ type ButtonProps = {
   title?: string;
   disabled?: boolean;
   handleClick?: () => void;
-  stopPropagation?: boolean
+  stopPropagation?: boolean;
 };
 type InputProps = {
   name: string;
@@ -34,6 +34,7 @@ type FileUploadProps = {
   selectedFiles?: FileList | null;
   multiple?: boolean;
   fileWrongSize?: boolean;
+  placeholder?: string;
   ref: RefObject<HTMLInputElement>;
   handleFileChange: () => void
 }
@@ -46,6 +47,10 @@ interface CreateProduct extends keyValuyPair {
   gallery_urls: string[];
   description: string;
   category: 'headband' | 'earbud' |  'earphone'
+}
+interface CartItem extends Product {
+  userId: number;
+  quantity: number;
 }
 type paramsLang = {
   params: { locale: string };
@@ -81,14 +86,27 @@ interface Review {
   comment: string;
   created_at: string;
   updated_at: string;
-}
-interface Blog {
   id: number;
+  name: string;
+  email: string;
+  sub: string;
+  avatarurl: string;
+  surname: string;
+  displayname: string;
+}
+interface CreateBlog extends keyValuyPair {
   title: string;
-  body: string;
-  userId: number;
-  tags: string[];
-  reactions: number;
+  author_id: number;
+  content: string;
+  thumbnail_url: string;
+}
+interface Blog extends User {
+  blog_id: number;
+  title: string;
+  author_id: number;
+  content: string;
+  thumbnail_url: string;
+  created_at: string;
 }
 interface CreateReview {
   userId: number;

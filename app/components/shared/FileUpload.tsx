@@ -9,6 +9,7 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
   multiple = false,
   fileWrongSize,
   handleFileChange,
+  placeholder
 }, ref) => {
   return (
     <label htmlFor="thumbnail_url" className="relative cursor-pointer">
@@ -40,9 +41,7 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
             </div>
             <div>
               <p className="pb-[5px] font-bold text-[0.9rem]">
-                {multiple
-                  ? "Browse Product Gallery"
-                  : "Browse Product Thumbnail"}
+                {placeholder}
               </p>
               <span className="text-[0.75rem] text-gray-400">4.5mb max</span>
             </div>

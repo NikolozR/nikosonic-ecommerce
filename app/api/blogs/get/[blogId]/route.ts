@@ -5,14 +5,14 @@ export const revalidate = 0;
 
 export async function GET(
   _: Request,
-  { params: { productId } }: { params: { productId: string } }
+  { params: { blogId } }: { params: { blogId: string } }
 ) {
   try {
     const res = await sql`
-      SELECT reviews.*, users.*
-      FROM reviews
-      JOIN users ON reviews.user_id = users.id
-      WHERE reviews.product_id = ${Number(productId)};
+      SELECT blogs.*, users.*
+      FROM blogs
+      JOIN users ON blogs.author_id = users.id
+      WHERE blogs.blog_id = ${Number(blogId)};
     `;
     const rows = res.rows;
     return NextResponse.json({ rows }, { status: 200 });

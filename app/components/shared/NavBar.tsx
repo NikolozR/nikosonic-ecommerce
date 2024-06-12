@@ -1,10 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
-import ShopIcon from '../../../public/shop.svg';
 import SearchIcon from '../../../public/search.svg';
 import Image from "next/image";
 import ProfileDropDown from "./ProfileDropDown";
 import { getAuth0User } from "../../actions";
+import ThemeSwitcher from "./ThemeSwitcher";
+import CartIcon from "./CartIcon";
 
 async function NavBar() {
   const headerT = await getTranslations("Header");
@@ -76,7 +77,7 @@ async function NavBar() {
             ) : null}
           </ul>
           <div>
-            <div className="flex gap-[15px]">
+            <div className="flex gap-[15px] items-center">
               <Image src={SearchIcon} width={24} height={24} alt="Search Icon"></Image>
               {!user ? (
                 <>
@@ -92,15 +93,11 @@ async function NavBar() {
                   >
                     Register
                   </a>
+                  <ThemeSwitcher></ThemeSwitcher>
                 </>
               ) : (
                 <div className="flex gap-[15px] items-center">
-                  <div className="flex items-center gap-[5px]">
-                    <Image src={ShopIcon} className="cursor-pointer" width={24} height={24} alt="Shop Icon" />
-                    <span className="rounded-[50%] flex items-center justify-center w-[20px] h-[20px] bg-[#141718] text-[#FFAB00] text-[12px]">
-                      0
-                    </span>
-                  </div>
+                  <CartIcon />
                   <ProfileDropDown />
                 </div>
               )}

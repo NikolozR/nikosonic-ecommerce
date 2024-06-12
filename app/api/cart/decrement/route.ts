@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   try {
     const existingCartItem = await sql`
             SELECT * FROM cart
-            WHERE userId = ${userId} AND productId = ${productId};
+            WHERE user_id = ${userId} AND product_id = ${productId};
         `;
     if (existingCartItem?.rows.length > 0) {
       const currentQuantity = existingCartItem?.rows[0].quantity;
@@ -16,18 +16,18 @@ export async function POST(request: Request) {
         await sql`
                     UPDATE cart
                     SET quantity = quantity - 1
-                    WHERE userId = ${userId} AND productId = ${productId};
+                    WHERE user_id = ${userId} AND product_id = ${productId};
                 `;
       } else {
         await sql`
                     DELETE FROM cart
-                    WHERE userId = ${userId} AND productId = ${productId};
+                    WHERE user_id = ${userId} AND product_id= ${productId};
                 `;
       }
+      return NextResponse.json({ message: "Item removed from cart" }, { status: 200 });
     } else {
       return NextResponse.json({ error: "Item not found in cart" }, { status: 404 });
     }
-    return NextResponse.json({ message: "Item removed from cart" }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Failed to remove item from cart" }, { status: 500 });
   }
