@@ -3,17 +3,13 @@ import { NextResponse } from "next/server";
 
 export const revalidate = 0;
 
-export async function GET(
-  _: Request,
-  { params: { productId } }: { params: { productId: string } }
-) {
+export async function GET(_: Request) {
   try {
     const res = await sql`
-      SELECT reviews.*, users.*
-      FROM reviews
-      JOIN users ON reviews.user_id = users.id
-      WHERE reviews.product_id = ${Number(productId)};
-    `;
+      SELECT blogs.*, users.*
+      FROM blogs
+      JOIN users ON blogs.author_id = users.id;
+      `;
     const rows = res.rows;
     return NextResponse.json({ rows }, { status: 200 });
   } catch (error) {

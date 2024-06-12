@@ -1,9 +1,12 @@
 import Link from "next/link";
-import { getNewest } from "../../api/api";
+import { getNewest, getUserBySub } from "../../api/api";
 import Button from "../shared/Button";
 import ProductItem from "../shared/ProductItem";
+import { getAuth0User } from "../../actions";
 async function NewArrivals() {
   const products: Product[] = await getNewest(4);
+  const sub = (await getAuth0User())?.sub;
+  const user = await getUserBySub(sub);
   return (
     <section className="bg-[#F3F5F7] pb-[40px]">
       <div className="container">
@@ -16,6 +19,7 @@ async function NewArrivals() {
               key={product.product_id}
               product={product}
               isNew
+              user={user}
             ></ProductItem>
           ))}
         </div>

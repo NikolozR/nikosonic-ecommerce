@@ -1,7 +1,8 @@
 "use server";
-import { createProduct, updateUser } from "./api/api";
+import { createBlog, createProduct, getUserBySub, updateUser } from "./api/api";
 import { getSession } from "@auth0/nextjs-auth0";
 import { put } from "@vercel/blob";
+import { cookies } from "next/headers";
 
 export async function getAuth0User() {
   const session = await getSession();
@@ -31,26 +32,50 @@ export async function handleProductAddSubmit(formData: FormData) {
     thumbnail_url: "",
     gallery_urls: [],
     description: "",
-    category: 'headband'
+    category: "headband",
   };
   formData.forEach((val, key) => {
-    if (val !== '' && key !== 'gallery_urls' && key !== 'thumbnail_url') {
+    if (val !== "" && key !== "gallery_urls" && key !== "thumbnail_url") {
       body[key] = val;
     }
-  })
-  const imageFiles = formData.getAll('gallery_urls') as File[];
-  const imageFile = formData.get('thumbnail_url') as File;
+  });
+  const imageFiles = formData.getAll("gallery_urls") as File[];
+  const imageFile = formData.get("thumbnail_url") as File;
   const thumbBlob = await put(imageFile.name, imageFile, {
-    access: 'public',
-  })
+    access: "public",
+  });
   body.thumbnail_url = thumbBlob.url;
   for (const i of imageFiles) {
     const blob = await put(i.name, i, {
-      access: 'public',
+      access: "public",
     });
-    body.gallery_urls.push(blob.url)
+    body.gallery_urls.push(blob.url);
   }
   const res = await createProduct(body);
+  if (res.status === 200) {
+    return await res.json();
+  }
+}
+export async function handleBlogCreation(formData: FormData) {
+  const sub: string = (await getAuth0User())?.sub;
+  const user: User = await getUserBySub(sub);
+  let body: CreateBlog = {
+    title: "",
+    content: "",
+    author_id: user.id,
+    thumbnail_url: "",
+  };
+  formData.forEach((val, key) => {
+    if (val !== "" && key !== "thumbnail_url") {
+      body[key] = val;
+    }
+  });
+  const imageFile = formData.get("thumbnail_url") as File;
+  const thumbBlob = await put(imageFile.name, imageFile, {
+    access: "public",
+  });
+  body.thumbnail_url = thumbBlob.url;
+  const res = await createBlog(body);
   if (res.status === 200) {
     return await res.json();
   }
@@ -61,7 +86,7 @@ export async function setSearchParams(
   value: string,
   currentSearchParams: { [key: string]: string }[],
   isCheckbox: boolean,
-  checked?: boolean,
+  checked?: boolean
 ) {
   let updatedSearchParams = [...currentSearchParams];
   const index = updatedSearchParams.findIndex((param) => param[name]);

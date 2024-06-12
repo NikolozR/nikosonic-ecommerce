@@ -10,10 +10,9 @@ import { getAuth0User } from "../../../../actions";
 
 export async function generateStaticParams() {
   const idsRes: { product_id: number }[] = await getProductIds();
+
   const ids: string[] = idsRes?.map((el) => el.product_id + '');
-  console.log(ids?.map((id) => ({
-    productId: id,
-  })))
+
   return ids?.map((id) => ({
     productId: id,
   })) ?? [];
@@ -24,11 +23,16 @@ async function ProductDetailsPage({
 }: {
   params: { productId: string };
 }) {
-  const product: Product = await getSingleProduct(productId);
-  const reviews: Review[] = await getReviews(productId);
   const auth0user = await getAuth0User();
-  const user: User = await getUserBySub(auth0user?.sub);
-  console.log(product)
+  const userPromise = getUserBySub(auth0user?.sub);
+  const productPromise = getSingleProduct(productId);
+  const reviewsPromise = getReviews(productId);
+
+  const [user, product, reviews] = await Promise.all([
+    userPromise,
+    productPromise,
+    reviewsPromise,
+  ]);
   return (
     <main>
       <div className="container">
@@ -36,7 +40,7 @@ async function ProductDetailsPage({
         <Reviews
           reviews={reviews}
           productId={product.product_id}
-          userId={user.id}
+          user={user}
         />
       </div>
     </main>

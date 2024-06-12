@@ -92,6 +92,7 @@ function AddProductForm() {
               ref={thumbnailFileInputRef}
               selectedFile={selectedFile}
               fileWrongSize={fileWrongSize}
+              placeholder="Browse Product Thumbnail"
             ></FileUpload>
             <FileUpload
               multiple
@@ -99,6 +100,7 @@ function AddProductForm() {
               ref={galleryFilesInputRef}
               selectedFiles={selectedFiles}
               fileWrongSize={multipleFileWrongSize}
+              placeholder="Browse Product Gallery"
             ></FileUpload>
             <label
               htmlFor="description"

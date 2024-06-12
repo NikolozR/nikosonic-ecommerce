@@ -1,6 +1,7 @@
 "use server";
 import { getSession } from "@auth0/nextjs-auth0";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
+import { getAuth0User } from "../actions";
 const baseUrl = process.env.BASE_URL;
 
 export async function uploadAvatar(url: string) {
@@ -26,6 +27,16 @@ export async function getAllUsers() {
 }
 export async function getUserBySub(sub: string) {
   const response = await fetch(baseUrl + "/api/users/get/" + sub, {
+    next: { tags: ["singleUser"] },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  const data = await response.json();
+  return data.rows[0];
+}
+export async function getUserByID(id: number) {
+  const response = await fetch(baseUrl + "/api/users/get?id=" + id, {
     next: { tags: ["singleUser"] },
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -66,6 +77,38 @@ export async function createProduct(body: CreateProduct) {
   revalidateTag("products");
   return res;
 }
+export async function getAllBlogs() {
+  const res = await fetch(baseUrl + "/api/blogs/get", {
+    next: {
+      tags: ["blogs"],
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  return (await res.json()).rows;
+}
+
+export async function getBlogByID(id: number) {
+  const res = await fetch(baseUrl + "/api/blogs/get/" + id, {
+    next: {
+      tags: ["singleBlog"],
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  return (await res.json()).rows[0];
+}
+
+export async function createBlog(body: CreateBlog) {
+ const res =  await fetch(baseUrl + "/api/blogs/create", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  revalidateTag('blogs')
+  return res;
+}
+
 export async function getNewest(limit: number) {
   const res = await fetch(baseUrl + "/api/products/getNewest/" + limit, {
     next: {
@@ -140,8 +183,11 @@ export async function increaseView(productId: Number) {
 
 export async function getSingleProduct(productId: string) {
   const res = await fetch(baseUrl + "/api/products/get/" + productId, {
+    next: {
+      tags: ["product"],
+    },
     method: "GET",
-    cache: 'no-store',
+    cache: "no-store",
     headers: { "Content-Type": "application/json" },
   });
   const data = await res.json();
@@ -151,10 +197,10 @@ export async function getSingleProduct(productId: string) {
 export async function getReviews(productId: string) {
   const res = await fetch(baseUrl + "/api/reviews/get/" + productId, {
     next: {
-      tags: ['reviews']
+      tags: ["reviews"],
     },
     method: "GET",
-    cache: 'no-store',
+    cache: "no-store",
     headers: { "Content-Type": "application/json" },
   });
   return (await res.json()).rows;
@@ -168,6 +214,8 @@ export async function createReview(body: CreateReview) {
       body: JSON.stringify(body),
     });
     revalidateTag("reviews");
+    revalidateTag("product");
+    revalidatePath("/products/[productId]");
   } catch (e) {
     console.log(e);
   }
@@ -182,4 +230,36 @@ export async function getProductIds() {
     headers: { "Content-Type": "application/json" },
   });
   return (await res.json()).rows;
+}
+
+
+export async function addCartItem(productId: number, userId: number, quantity: number) {
+  const res = await fetch(baseUrl + "/api/cart/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      productId,
+      userId,
+      quantity
+    }),
+  });
+  revalidateTag('cart')
+  return (await res.json());
+}
+
+export async function getCartItems(userId: number) {
+  const res = await fetch(baseUrl + "/api/cart/get/" + userId, {
+    next: {
+      tags: ["cart"],
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  return (await res.json()).rows;
+}
+
+export async function getUser() {
+  const sub = (await getAuth0User())?.sub;
+  const user = await getUserBySub(sub);
+  return user;
 }

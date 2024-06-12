@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   try {
     const res = await sql`
                     DELETE FROM cart
-                    WHERE userId = ${userId} AND productId = ${productId};
+                    WHERE user_id = ${userId} AND product_id = ${productId};
                 `;
     return NextResponse.json({ res }, { status: 200 });
   } catch (error) {

@@ -24,8 +24,8 @@ export async function GET(_: Request) {
 
       if (existingUser.rowCount === 0) {
         await sql`
-          INSERT INTO users (name, email, sub, avatarurl, surname)
-          VALUES (${name}, ${email}, ${sub}, ${avatarurl}, ${surname});
+          INSERT INTO users (name, email, sub, avatarurl, surname, displayname)
+          VALUES (${name}, ${email}, ${sub}, ${avatarurl}, ${surname}, ${name});
         `;
       }
     } catch (error) {

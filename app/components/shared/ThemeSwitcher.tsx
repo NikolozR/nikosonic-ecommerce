@@ -1,9 +1,9 @@
 "use client";
 
-import { FiSun, FiMoon } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import Image from "next/image";
+import { CiSun } from "react-icons/ci";
+import { AiFillMoon } from "react-icons/ai";
 
 export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -11,26 +11,29 @@ export default function ThemeSwitcher() {
 
   useEffect(() => setMounted(true), []);
 
-  if (!mounted)
-    return (
-      <Image
-        src="data:image/svg+xml;base64,PHN2ZyBzdHJva2U9IiNGRkZGRkYiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMCIgdmlld0JveD0iMCAwIDI0IDI0IiBoZWlnaHQ9IjIwMHB4IiB3aWR0aD0iMjAwcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB4PSIyIiB5PSIyIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjIiIHJ4PSIyIj48L3JlY3Q+PC9zdmc+Cg=="
-        width={36}
-        height={36}
-        sizes="36x36"
-        alt="Loading Light/Dark Toggle"
-        priority={false}
-        title="Loading Light/Dark Toggle"
-      />
-    );
+  if (!mounted) return null;
 
-  if (resolvedTheme === "dark") {
-    return <FiSun className="cursor-pointer" onClick={() => setTheme("light")} />;
-  }
+  const isDark = resolvedTheme === "dark";
 
-  if (resolvedTheme === "light") {
-    return <FiMoon className="cursor-pointer" onClick={() => setTheme("dark")} />;
-  }
+  return (
+    <div className="flex items-center justify-center">
+      <label className="relative inline-block w-[40px] h-fit">
+        <input
+          type="checkbox"
+          checked={isDark}
+          className="opacity-0 w-0 h-0 peer"
+          onChange={() => setTheme(isDark ? "light" : "dark")}
+        />
+        <span className={`cursor-pointer h-[20px] absolute z-20 left-0 right-0 bottom-0 duration-300 rounded-full
+           ${isDark ? "bg-darkSwitch" : "bg-lightSwitch"} peer-checked:bg-darkSwitch`}>
+          {isDark ? (
+            <AiFillMoon className="text-lightSwitch duration-300 absolute rotate-[-90deg] top-[50%] right-0 translate-y-[-50%]" size={20} />
+          ) : (
+            <CiSun className="text-[#ab7303a3] duration-300 absolute top-[50%] translate-y-[-50%]" size={20} />
+          )}
+        </span>
 
-  return <></>;
+      </label>
+    </div>
+  );
 }

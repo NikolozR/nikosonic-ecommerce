@@ -2,30 +2,30 @@ import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const body: { userId: number; productId: number } = await request.json();
-  const { userId, productId } = body;
+  const body: { userId: number; productId: number; quantity: number } = await request.json();
+  const { userId, productId, quantity } = body;
 
   try {
     const existingCartItem = await sql`
-            SELECT * FROM cart
-            WHERE userId = ${userId} AND productId = ${productId};
-        `;
+      SELECT * FROM cart
+      WHERE user_id = ${userId} AND product_id = ${productId};
+    `;
 
-    if (existingCartItem?.rows.length > 0) {
-      var res = await sql`
-                UPDATE cart
-                SET quantity = quantity + 1
-                WHERE userId = ${userId} AND productId = ${productId};
-            `;
+    if (existingCartItem?.rowCount > 0) {
+      await sql`
+        UPDATE cart
+        SET quantity = quantity + ${quantity}
+        WHERE user_id = ${userId} AND product_id = ${productId};
+      `;
     } else {
-      var res = await sql`
-                INSERT INTO cart (userId, productId, quantity) 
-                VALUES (${userId}, ${productId}, ${1}) 
-            `;
+      await sql`
+        INSERT INTO cart (user_id, product_id, quantity)
+        VALUES (${userId}, ${productId}, ${quantity});
+      `;
     }
-    return NextResponse.json(res, { status: 201 });
+    return NextResponse.json({ message: "Item added to cart successfully" }, { status: 200 });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return NextResponse.json({ error: "Failed to add item to cart" }, { status: 500 });
   }
 }
