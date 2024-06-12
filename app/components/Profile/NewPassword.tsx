@@ -1,4 +1,4 @@
-import Input from "./shared/Input"
+import Input from "../shared/Input"
 
 function NewPassword() {
   return (

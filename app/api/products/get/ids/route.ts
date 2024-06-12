@@ -3,22 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const revalidate = 0;
 
-export async function GET(
-  _: NextRequest,
-  { params }: { params: { limit: string } }
-) {
+export async function GET(_: NextRequest) {
   try {
     const result = await sql`
-      SELECT *
-FROM products
-WHERE createdat >= CURRENT_TIMESTAMP - INTERVAL '10 days'
-ORDER BY createdat DESC
-LIMIT ${Number(params.limit)};
+      SELECT product_id FROM products;
     `;
     const rows = result.rows;
     return NextResponse.json({ rows }, { status: 200 });
-  } catch (error) {
-    console.log(error);
+} catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
 }

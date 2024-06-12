@@ -1,6 +1,6 @@
 'use client'
-import { locales } from "../../i18n";
-import {Link, usePathname} from "../../navigation";
+import { locales } from "../../../i18n";
+import {Link, usePathname} from "../../../navigation";
 
 
 

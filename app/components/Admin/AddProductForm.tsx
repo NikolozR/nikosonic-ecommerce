@@ -1,9 +1,9 @@
 "use client";
-import Input from "./shared/Input";
-import Button from "./shared/Button";
+import Input from "../shared/Input";
+import Button from "../shared/Button";
 import React, { useEffect, useRef, useState } from "react";
-import { handleProductAddSubmit } from "../actions";
-import FileUpload from "./shared/FileUpload";
+import { handleProductAddSubmit } from "../../actions";
+import FileUpload from "../shared/FileUpload";
 function AddProductForm() {
   const [multipleFileWrongSize, setMultipleFileWrongSize] = useState(false);
   const [fileWrongSize, setFileWrongSize] = useState(false);

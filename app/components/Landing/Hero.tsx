@@ -1,6 +1,6 @@
 import Link from "next/link";
-import LandingPlaceholder from "../../public/LandingPlaceholder.png";
-import Button from "./shared/Button";
+import LandingPlaceholder from "../../../public/LandingPlaceholder.png";
+import Button from "../shared/Button";
 
 function Hero() {
   return (

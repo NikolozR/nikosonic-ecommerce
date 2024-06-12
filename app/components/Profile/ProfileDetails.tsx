@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "./shared/Input";
+import Input from "../shared/Input";
 
 function ProfileDetails({user}: {user: User}) {
   return (
