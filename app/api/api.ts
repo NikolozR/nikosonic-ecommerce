@@ -78,14 +78,18 @@ export async function createProduct(body: CreateProduct) {
   return res;
 }
 export async function getAllBlogs() {
-  const res = await fetch(baseUrl + "/api/blogs/get", {
-    next: {
-      tags: ["blogs"],
-    },
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
-  return (await res.json()).rows;
+  try {
+    const res = await fetch(baseUrl + "/api/blogs/get", {
+      next: {
+        tags: ["blogs"],
+      },
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    return (await res.json()).rows;
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 export async function getBlogByID(id: number) {
