@@ -2,7 +2,6 @@
 import { createBlog, createProduct, getUserBySub, updateUser } from "./api/api";
 import { getSession } from "@auth0/nextjs-auth0";
 import { put } from "@vercel/blob";
-import { cookies } from "next/headers";
 
 export async function getAuth0User() {
   const session = await getSession();

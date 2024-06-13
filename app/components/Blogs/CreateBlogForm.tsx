@@ -2,7 +2,7 @@
 import Input from "../shared/Input";
 import Button from "../shared/Button";
 import { useEffect, useRef, useState } from "react";
-import { handleBlogCreation, handleProductAddSubmit } from "../../actions";
+import { handleBlogCreation } from "../../actions";
 import FileUpload from "../shared/FileUpload";
 function CreateBlogForm() {
   const [fileWrongSize, setFileWrongSize] = useState(false);
@@ -14,7 +14,7 @@ function CreateBlogForm() {
   const [adding, setAdding] = useState(false);
 
   useEffect(() => {
-    if (message !== null) {
+  if (message !== null) {
       let timer: NodeJS.Timeout;
       if (message) {
         timer = setTimeout(() => {
