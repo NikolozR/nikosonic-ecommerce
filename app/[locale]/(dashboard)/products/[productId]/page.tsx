@@ -1,5 +1,4 @@
 import {
-  getProductIds,
   getReviews,
   getSingleProduct,
   getUserBySub,
@@ -7,9 +6,13 @@ import {
 import Details from "../../../../components/ProductsDetails/Details";
 import Reviews from "../../../../components/ProductsDetails/Reviews";
 import { getAuth0User } from "../../../../actions";
+import { QueryResultRow, sql } from "@vercel/postgres";
 
 export async function generateStaticParams() {
-  const idsRes: { product_id: number }[] = await getProductIds();
+  const result = await sql`
+      SELECT product_id FROM products;
+    `;
+  const idsRes: { product_id: number }[] = result.rows.map((d: QueryResultRow) => d as {product_id: number});
 
   const ids: string[] = idsRes?.map((el) => el.product_id + '');
 

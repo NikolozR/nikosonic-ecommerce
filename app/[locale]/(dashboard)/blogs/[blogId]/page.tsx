@@ -1,12 +1,18 @@
-import { getAllBlogs, getBlogByID } from "../../../../api/api";
+import { getBlogByID } from "../../../../api/api";
+import { QueryResultRow, sql } from "@vercel/postgres";
 import BlogDetails from "../../../../components/Blogs/BlogDetails";
 
 export async function generateStaticParams() {
-  const idsRes: Blog[] = await getAllBlogs();
+  const res = await sql`
+      SELECT blogs.*, users.*
+      FROM blogs
+      JOIN users ON blogs.author_id = users.id;
+      `;
+  const idsRes: Blog[] = res.rows.map((d: QueryResultRow) => d as Blog);
   const ids: string[] = idsRes?.map((blog) => blog.blog_id + '');
   return ids?.map((id) => ({
     blogId: id,
-  })) ?? [];
+  }));
 }
 
 async function page({ params: { blogId } }: { params: { blogId: string } }) {
