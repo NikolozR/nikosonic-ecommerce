@@ -3,9 +3,10 @@ import BlogDetails from "../../../../components/Blogs/BlogDetails";
 
 export async function generateStaticParams() {
   const idsRes: Blog[] = await getAllBlogs();
-  return idsRes?.map((blog) => ({
-    blogId: (blog.blog_id + ''),
-  }));
+  const ids: string[] = idsRes?.map((blog) => blog.blog_id + '');
+  return ids?.map((id) => ({
+    blogId: id,
+  })) ?? [];
 }
 
 async function page({ params: { blogId } }: { params: { blogId: string } }) {
