@@ -13,6 +13,9 @@ module.exports = {
         poppins: ['var(--font-poppins)'],
 
       },
+      gridTemplateColumns: {
+        cartTemplate: '40% 20% 20% 20%'
+      },
       colors: {
         lightSwitch: '#87ceeb',  // Light blue color
         darkSwitch: '#1e293b',   // Dark blue/black color

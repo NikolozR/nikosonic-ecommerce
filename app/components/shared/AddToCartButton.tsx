@@ -18,16 +18,19 @@ function AddToCartButton({ product, user }: { product: Product; user: User }) {
     }
   }, [cartContext, product]);
 
-  const addToCart = async () => {
+  const addToCart = () => {
     if (!disabled) {
       const cartItem: CartItem = {
         ...product,
-        userId: user.id,
+        user_id: user.id,
         quantity: 1,
+        id: Math.random(),
+        created_at: '',
+        updated_at: '',
       };
       cartContext?.updateCartItems(cartItem);
       try {
-        const res = await addCartItem(product.product_id, user.id, 1);
+        const res = addCartItem(product.product_id, user.id, 1);
         console.log(res);
       } catch (err) {
         console.log(err);

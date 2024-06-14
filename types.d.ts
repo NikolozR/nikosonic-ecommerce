@@ -3,7 +3,7 @@ type childrenProps<P = unknown> = P & {
 };
 type keyValuyPair = {
   [key: string]: any;
-}
+};
 type ButtonProps = {
   type: "button" | "submit" | "reset";
   fontSize: string;
@@ -25,7 +25,7 @@ type InputProps = {
   disabled?: boolean;
   additionalInfo?: string;
   handleChange?: ChangeEventHandler<HTMLInputElement>;
-  type?: "text" | "file" | 'number';
+  type?: "text" | "file" | "number";
   required?: boolean;
   multiple?: boolean;
 };
@@ -36,8 +36,8 @@ type FileUploadProps = {
   fileWrongSize?: boolean;
   placeholder?: string;
   ref: RefObject<HTMLInputElement>;
-  handleFileChange: () => void
-}
+  handleFileChange: () => void;
+};
 interface CreateProduct extends keyValuyPair {
   name: string;
   brand: string;
@@ -46,12 +46,28 @@ interface CreateProduct extends keyValuyPair {
   thumbnail_url: string;
   gallery_urls: string[];
   description: string;
-  category: 'headband' | 'earbud' |  'earphone'
+  category: "headband" | "earbud" | "earphone";
 }
 interface CartItem extends Product {
-  userId: number;
+  user_id: number;
   quantity: number;
+  id: number;
+  created_at: string;
+  updated_at: string;
 }
+type CartItemProps = {
+  cartItem: CartItem;
+  addOptimisticCartItems: (action: {
+    type: string;
+    payload?: CartItem | undefined;
+  }) => void;
+};
+type StripeProduct = {
+  id: string;
+  active: boolean;
+  default_price: string;
+  name: string;
+};
 type paramsLang = {
   params: { locale: string };
 };
@@ -76,7 +92,7 @@ interface Product {
   created_at: string;
   views: number;
   review_count: number;
-  category: 'headband' | 'earbud' |  'earphone'
+  category: "headband" | "earbud" | "earphone";
 }
 interface Review {
   review_id: number;
@@ -129,19 +145,6 @@ type CustomMiddleware = (
   response: NextResponse
 ) => NextMiddlewareResult | Promise<NextMiddlewareResult>;
 type MiddlewareFactory = (middleware: NextMiddleware) => NextMiddleware;
-// type CreateUser = {
-//   role: string[],
-//   nickname: string,
-//   name: string,
-//   picture: string,
-//   updated_at: string,
-//   email: string,
-//   email_verified: boolean,
-//   sub: string,
-//   sid: string,
-//   given_name?: string,
-//   family_name?: string,
-// } | undefined;
 type User = {
   id: number;
   name: string;
