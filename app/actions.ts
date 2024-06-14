@@ -1,7 +1,8 @@
 "use server";
-import { createBlog, createProduct, getUserBySub, updateUser } from "./api/api";
+import { createBlog, createProduct, getUserBySub, sendCheckoutRequest, updateUser } from "./api/api";
 import { getSession } from "@auth0/nextjs-auth0";
 import { put } from "@vercel/blob";
+import { redirect } from "next/navigation";
 
 export async function getAuth0User() {
   const session = await getSession();
@@ -128,4 +129,9 @@ export async function setSearchParams(
   });
 
   return params;
+}
+
+export async function handleCheckout(cartItems: CartItem[]) {
+  const {url} = await sendCheckoutRequest(cartItems);
+  redirect(url)
 }

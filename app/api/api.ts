@@ -238,7 +238,7 @@ export async function getProductIds() {
 
 
 export async function addCartItem(productId: number, userId: number, quantity: number) {
-  const res = await fetch(baseUrl + "/api/cart/add", {
+  fetch(baseUrl + "/api/cart/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -248,7 +248,6 @@ export async function addCartItem(productId: number, userId: number, quantity: n
     }),
   });
   revalidateTag('cart')
-  return (await res.json());
 }
 
 export async function getCartItems(userId: number) {
@@ -262,8 +261,43 @@ export async function getCartItems(userId: number) {
   return (await res.json()).rows;
 }
 
+export async function removeCartItem(userId: number, productId: number) {
+  const body = {
+    userId,
+    productId,
+  }
+  await fetch(baseUrl + "/api/cart/remove/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  revalidateTag('cart')
+}
+
+export async function decrementCartItem(userId: number, productId: number, quantity: number) {
+  await fetch(baseUrl + "/api/cart/decrement/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userId,
+      productId,
+      quantity
+    }),
+  })
+}
+
 export async function getUser() {
   const sub = (await getAuth0User())?.sub;
   const user = await getUserBySub(sub);
   return user;
+}
+
+
+export async function sendCheckoutRequest(cartItems: CartItem[]) {
+  const res = await fetch(baseUrl + "/api/cart/checkout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(cartItems),
+  });
+  return (await res.json());
 }

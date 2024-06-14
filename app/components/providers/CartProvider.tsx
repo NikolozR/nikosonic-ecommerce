@@ -12,25 +12,26 @@ const CartContext = createContext<{
 
 export const useCartContext = () => useContext(CartContext);
 
-export const CartProvider = ({ children }: childrenProps) => {
+export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [count, setCount] = useState(cartItems.length);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
+    const storedCount = localStorage.getItem("count");
+    if (storedCount) {
+      setCount(Number(storedCount));
+      setLoading(false);
+    }
     async function fetchAndSetCartItems() {
       try {
-        const storedCount = localStorage.getItem("count");
-        if (storedCount) {
-          setCount(Number(storedCount))
-          setLoading(false);
-        }
-          const user = await getUser();
-          const data: CartItem[] = await getCartItems(user.id);
-          localStorage.setItem("count", data.length + '');
-          setCount(data.length)
-          setCartItems(data);
-          setLoading(false);
+        const user = await getUser();
+        const data: CartItem[] = await getCartItems(user.id);
+        const quantity = data.reduce((acc, curr) => acc + curr.quantity, 0);
+        localStorage.setItem("count", quantity.toString());
+        setCount(quantity);
+        setCartItems(data);
+        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch cart items:", error);
         setLoading(false);
@@ -41,20 +42,30 @@ export const CartProvider = ({ children }: childrenProps) => {
   }, []);
 
   const updateCartItems = (cartItem: CartItem) => {
-    localStorage.setItem("count", cartItems.length + 1 + '');
-    setCount((prev) => prev + 1)
-    setCartItems((prev: CartItem[]) => {
-      return [cartItem, ...prev];
+    setCartItems((prevCartItems) => {
+      const newCartItems = prevCartItems.map((item) =>
+        item.product_id === cartItem.product_id ? cartItem : item
+      );
+      if (!prevCartItems.find(item => item.product_id === cartItem.product_id)) {
+        newCartItems.push(cartItem);
+      }
+      const newQuantity = newCartItems.reduce((acc, curr) => acc + curr.quantity, 0);
+      setCount(newQuantity);
+      localStorage.setItem("count", newQuantity.toString());
+      return newCartItems;
     });
   };
 
   const removeCartItem = (cartItemToRemove: CartItem) => {
-    localStorage.setItem("count", cartItems.length - 1 + '');
-    setCartItems((prevCartItems) =>
-      prevCartItems.filter(
+    setCartItems((prevCartItems) => {
+      const newCartItems = prevCartItems.filter(
         (item) => item.product_id !== cartItemToRemove.product_id
-      )
-    );
+      );
+      const newQuantity = newCartItems.reduce((acc, curr) => acc + curr.quantity, 0);
+      setCount(newQuantity);
+      localStorage.setItem("count", newQuantity.toString());
+      return newCartItems;
+    });
   };
 
   return (
