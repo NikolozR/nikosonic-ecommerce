@@ -274,6 +274,15 @@ export async function removeCartItem(userId: number, productId: number) {
   revalidateTag('cart')
 }
 
+export async function clearCart() {
+  const user: User = await getUser();
+  await fetch(baseUrl + "/api/cart/empty/" + user.id, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+  revalidateTag('cart')
+}
+
 export async function decrementCartItem(userId: number, productId: number, quantity: number) {
   await fetch(baseUrl + "/api/cart/decrement/", {
     method: "POST",

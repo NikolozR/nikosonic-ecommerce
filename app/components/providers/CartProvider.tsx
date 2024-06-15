@@ -4,24 +4,22 @@ import { getCartItems, getUser } from "../../api/api";
 
 const CartContext = createContext<{
   cartItems: CartItem[];
-  loading: boolean;
   count: number;
   updateCartItems: (cartItem: CartItem) => void;
   removeCartItem: (cartItem: CartItem) => void;
+  clearItems: () => void;
 } | null>(null);
 
 export const useCartContext = () => useContext(CartContext);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [loading, setLoading] = useState(true);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     const storedCount = localStorage.getItem("count");
     if (storedCount) {
       setCount(Number(storedCount));
-      setLoading(false);
     }
     async function fetchAndSetCartItems() {
       try {
@@ -31,10 +29,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         localStorage.setItem("count", quantity.toString());
         setCount(quantity);
         setCartItems(data);
-        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch cart items:", error);
-        setLoading(false);
       }
     }
 
@@ -67,10 +63,15 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       return newCartItems;
     });
   };
+  const clearItems = () => {
+    setCartItems([])
+    setCount(0)
+    localStorage.setItem("count", '0');
+  }
 
   return (
     <CartContext.Provider
-      value={{ cartItems, count, loading, updateCartItems, removeCartItem }}
+      value={{ cartItems, count, updateCartItems, removeCartItem, clearItems }}
     >
       {children}
     </CartContext.Provider>

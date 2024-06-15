@@ -1,4 +1,5 @@
 import CartGridItem from "./CartGridItem";
+import Clear from "./Clear";
 
 function CartGrid({
   cartItems,
@@ -10,6 +11,7 @@ function CartGrid({
     payload?: CartItem | undefined;
   }) => void;
 }) {
+
   return (
     <div className="w-full">
       <div className="grid grid-cols-cartTemplate pb-[24px] border-b-[1px] border-solid border-[#6C7275]">
@@ -35,6 +37,9 @@ function CartGrid({
           />
         );
       })}
+      <div className="flex justify-end">
+          <Clear addOptimisticCartItems={addOptimisticCartItems}></Clear>
+      </div>
     </div>
   );
 }
