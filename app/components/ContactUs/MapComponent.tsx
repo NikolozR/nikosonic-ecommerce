@@ -7,9 +7,8 @@ const MapComponent = () => {
     width: "50%",
     height: "500px",
   };
-
   return (
-    <LoadScript googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY ?? ""}>
+    <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API ?? ""}>
       <GoogleMap mapContainerStyle={containerStyle} center={location} zoom={14}>
         <Marker position={location} />
       </GoogleMap>
