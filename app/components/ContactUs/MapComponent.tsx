@@ -9,7 +9,7 @@ const MapComponent = () => {
   };
 
   return (
-    <LoadScript googleMapsApiKey={"AIzaSyDTGYxO3d6b1dkw0UxEebWTO3UOXrClGN8"}>
+    <LoadScript googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY ?? ""}>
       <GoogleMap mapContainerStyle={containerStyle} center={location} zoom={14}>
         <Marker position={location} />
       </GoogleMap>
