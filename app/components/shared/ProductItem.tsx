@@ -3,6 +3,7 @@ import { FaStar } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import ClientSideWrapper from "./ClientSideProductWrapper";
 import AddToCartButton from "./AddToCartButton";
+import AuthorizeModal from "./AuthorizeModal";
 
 function ProductItem({
   product,
@@ -40,7 +41,7 @@ function ProductItem({
             alt={product.name}
           />
         </ClientSideWrapper>
-        <AddToCartButton user={user} product={product} />
+        {user ? <AddToCartButton user={user} product={product} /> : <AuthorizeModal></AuthorizeModal>}
       </div>
       <ClientSideWrapper productId={product.product_id}>
         <div className="bg-white px-3 text-[#141718] font-semibold flex flex-col gap-2">

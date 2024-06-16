@@ -13,15 +13,21 @@ export const authMiddleware: MiddlewareFactory = (next) => {
       if (
         pathname === "/" ||
         pathname === "/blogs" ||
-        pathname === "/products" ||
+        pathname.startsWith("/products") ||
         pathname === "/contacts"
       ) {
         return next(request, _next);
       }
 
-      if (pathname.startsWith("/profile") || pathname.startsWith("/admin") || pathname.startsWith("/cart") || pathname.startsWith("/checkout")) {
+      if (
+        pathname.startsWith("/profile") ||
+        pathname.startsWith("/admin") ||
+        pathname.startsWith("/cart") ||
+        pathname.startsWith("/checkout") ||
+        pathname.startsWith("/blogs/create")
+      ) {
         console.log("Redirecting to homepage due to no session");
-        const url = new URL('/', request.url);
+        const url = new URL("/", request.url);
         return NextResponse.redirect(url);
       }
     } else {
