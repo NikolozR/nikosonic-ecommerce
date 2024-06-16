@@ -1,27 +1,26 @@
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
-import SearchIcon from "../../../public/search.svg";
-import Image from "next/image";
 import ProfileDropDown from "./ProfileDropDown";
 import { getAuth0User } from "../../actions";
 import ThemeSwitcher from "./ThemeSwitcher";
-import CartIcon from "./CartIcon";
+import CartIcon from "./CartIcon";  
+import { CiSearch } from "react-icons/ci";
 
 async function NavBar() {
   const headerT = await getTranslations("Header");
   const user = await getAuth0User();
   return (
     <nav
-      style={{
-        background:
-          "linear-gradient(0deg, rgba(255, 171, 0, 0.64), rgba(255, 171, 0, 0.64))",
-      }}
-      className="py-[18px]"
+      // style={{
+      //   background:
+      //     "linear-gradient(0deg, , )",
+      // }}
+      className="py-[18px] dark:!bg-black bg-gradient-to-b from-[#ffab00a3] to-[#ffab00a3] dark:from-black dark:to-black"
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <p className="font-bold text-[1.5rem] text-black tracking-[3px] cursor-pointer">
-            <Link href={"/"} className="text-black">
+            <Link href={"/"} className="text-black dark:text-white">
               <i>3Legant</i>
             </Link>
           </p>
@@ -29,7 +28,7 @@ async function NavBar() {
             <li>
               <Link
                 href={"/"}
-                className="text-[1rem] font-grotesk text-black font-medium"
+                className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
               >
                 {headerT("home")}
               </Link>
@@ -37,7 +36,7 @@ async function NavBar() {
             <li>
               <Link
                 href={"/products"}
-                className="text-[1rem] font-grotesk text-black font-medium"
+                className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
               >
                 {headerT("products")}
               </Link>
@@ -46,7 +45,7 @@ async function NavBar() {
               <li>
                 <Link
                   href={"/profile"}
-                  className="text-[1rem] font-grotesk text-black font-medium"
+                  className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
                 >
                   {headerT("profile")}
                 </Link>
@@ -56,7 +55,7 @@ async function NavBar() {
             <li>
               <Link
                 href={"/blogs"}
-                className="text-[1rem] font-grotesk text-black font-medium"
+                className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
               >
                 {headerT("blogs")}
               </Link>
@@ -64,7 +63,7 @@ async function NavBar() {
             <li>
               <Link
                 href={"/contacts"}
-                className="text-[1rem] font-grotesk text-black font-medium"
+                className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
               >
                 {headerT("contacts")}
               </Link>
@@ -74,7 +73,7 @@ async function NavBar() {
                 <li>
                   <Link
                     href={"/admin/users"}
-                    className="text-[1rem] font-grotesk text-black font-medium"
+                    className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
                   >
                     {"Users"}
                   </Link>
@@ -82,7 +81,7 @@ async function NavBar() {
                 <li>
                   <Link
                     href={"/admin/products"}
-                    className="text-[1rem] font-grotesk text-black font-medium"
+                    className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
                   >
                     {"Add Products"}
                   </Link>
@@ -92,23 +91,18 @@ async function NavBar() {
           </ul>
           <div>
             <div className="flex gap-[15px] items-center">
-              <Image
-                src={SearchIcon}
-                width={24}
-                height={24}
-                alt="Search Icon"
-              ></Image>
+            <CiSearch size={24} className="dark:text-white text-black" />
               {!user ? (
                 <>
                   <a
                     href="/api/auth/login"
-                    className="text-[1rem] text-black border-solid font-grotesk border-black border-[1px] rounded-md flex items-center justify-center py-1 px-3"
+                    className="text-[1rem] text-black dark:text-white border-solid font-grotesk border-black dark:border-white border-[1px] rounded-md flex items-center justify-center py-1 px-3"
                   >
                     Log In
                   </a>
                   <a
                     href="/api/auth/signup"
-                    className="text-[1rem] text-black border-solid font-grotesk border-black border-[1px] rounded-md flex items-center justify-center py-1 px-3"
+                    className="text-[1rem] text-black border-solid font-grotesk border-black dark:border-white dark:text-white border-[1px] rounded-md flex items-center justify-center py-1 px-3"
                   >
                     Register
                   </a>

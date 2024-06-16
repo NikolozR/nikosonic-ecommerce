@@ -4,7 +4,7 @@ import FilterCheckbox from "../shared/FilterCheckbox";
 import { redirect } from "next/navigation";
 import { IoFilterSharp } from "react-icons/io5";
 import { FaRegTrashAlt } from "react-icons/fa";
-import PriceSlider from "./PriceSlider";
+// import PriceSlider from "./PriceSlider";
 
 const handleCheckboxChange = async (
   filterKey: string,
@@ -21,26 +21,26 @@ const handleCheckboxChange = async (
   );
   redirect(`/products?${params}`);
 };
-const handlePriceChange = async (
-  minValue: number,
-  maxValue: number,
-  currentSearchParams: { [key: string]: string }[]
-) => {
-  'use server'
-  const updatedMinParams = await setSearchParams(
-    "min_price",
-    minValue.toString(),
-    currentSearchParams,
-    false
-  );
-  const updatedMaxParams = await setSearchParams(
-    "max_price",
-    maxValue.toString(),
-    Array.from(updatedMinParams.entries()).map(([key, value]) => ({ [key]: value })),
-    false
-  );
-  redirect(`/products?${updatedMaxParams}`);
-};
+// const handlePriceChange = async (
+//   minValue: number,
+//   maxValue: number,
+//   currentSearchParams: { [key: string]: string }[]
+// ) => {
+//   'use server'
+//   const updatedMinParams = await setSearchParams(
+//     "min_price",
+//     minValue.toString(),
+//     currentSearchParams,
+//     false
+//   );
+//   const updatedMaxParams = await setSearchParams(
+//     "max_price",
+//     maxValue.toString(),
+//     Array.from(updatedMinParams.entries()).map(([key, value]) => ({ [key]: value })),
+//     false
+//   );
+//   redirect(`/products?${updatedMaxParams}`);
+// };
 
 const handleReset = async () => {
   "use server";
