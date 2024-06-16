@@ -1,13 +1,13 @@
 import Image from "next/image";
-import Contact from "../../../components/ContactUs/ContactForm";
+import ContactForm from "../../../components/ContactUs/ContactForm";
 import Placeholder from "../../../../public/AboutUsPLaceholder.jpg";
 import { FaLocationCrosshairs } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
-function page() {
+function Contact() {
   return (
-    <main>
+    <>
       <div className="container">
         <h3 className="text-[#141718] mt-[80px] font-poppins font-medium text-[3.375rem] leading-[58px] w-[30ch]">
           Stay Connected with Exceptional Sound. We&apos;re Here to Help!
@@ -65,10 +65,10 @@ function page() {
             </p>
           </div>
         </div>
-        <Contact></Contact>
+        <ContactForm></ContactForm>
       </div>
-    </main>
+    </>
   );
 }
 
-export default page;
+export default Contact;

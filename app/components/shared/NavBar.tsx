@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
-import SearchIcon from '../../../public/search.svg';
+import SearchIcon from "../../../public/search.svg";
 import Image from "next/image";
 import ProfileDropDown from "./ProfileDropDown";
 import { getAuth0User } from "../../actions";
@@ -27,18 +27,32 @@ async function NavBar() {
           </p>
           <ul className="flex justify-between items-center gap-[40px]">
             <li>
-              <Link href={"/"} className="text-[1rem] font-grotesk text-black font-medium">
+              <Link
+                href={"/"}
+                className="text-[1rem] font-grotesk text-black font-medium"
+              >
                 {headerT("home")}
               </Link>
             </li>
             <li>
               <Link
-                href={"/profile"}
+                href={"/products"}
                 className="text-[1rem] font-grotesk text-black font-medium"
               >
-                {headerT("profile")}
+                {headerT("products")}
               </Link>
             </li>
+            {user && (
+              <li>
+                <Link
+                  href={"/profile"}
+                  className="text-[1rem] font-grotesk text-black font-medium"
+                >
+                  {headerT("profile")}
+                </Link>
+              </li>
+            )}
+
             <li>
               <Link
                 href={"/blogs"}
@@ -57,28 +71,33 @@ async function NavBar() {
             </li>
             {user?.role[0] === "Admin" ? (
               <>
-              <li>
-                <Link
-                  href={"/admin/users"}
-                  className="text-[1rem] font-grotesk text-black font-medium"
-                >
-                  {"Users"}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/admin/products"}
-                  className="text-[1rem] font-grotesk text-black font-medium"
-                >
-                  {"Add Products"}
-                </Link>
-              </li>
+                <li>
+                  <Link
+                    href={"/admin/users"}
+                    className="text-[1rem] font-grotesk text-black font-medium"
+                  >
+                    {"Users"}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"/admin/products"}
+                    className="text-[1rem] font-grotesk text-black font-medium"
+                  >
+                    {"Add Products"}
+                  </Link>
+                </li>
               </>
             ) : null}
           </ul>
           <div>
             <div className="flex gap-[15px] items-center">
-              <Image src={SearchIcon} width={24} height={24} alt="Search Icon"></Image>
+              <Image
+                src={SearchIcon}
+                width={24}
+                height={24}
+                alt="Search Icon"
+              ></Image>
               {!user ? (
                 <>
                   <a

@@ -4,6 +4,7 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { locales } from "../../navigation";
 import { ThemeProvider } from "next-themes";
 import { unstable_setRequestLocale } from "next-intl/server";
+import { NextUIProvider } from "@nextui-org/react";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -41,7 +42,7 @@ export default function RootLayout({
           }
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
+            <NextUIProvider>{children}</NextUIProvider>
           </ThemeProvider>
         </body>
       </UserProvider>
