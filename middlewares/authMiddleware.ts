@@ -36,6 +36,9 @@ export const authMiddleware: MiddlewareFactory = (next) => {
         console.log("Redirecting to homepage due to existing session");
         const url = new URL(pathname, request.url);
         return NextResponse.redirect(url);
+      } else {
+        console.log("Proceeding to next middleware/handler");
+        return next(request, _next);
       }
     }
     console.log("Proceeding to next middleware/handler");
