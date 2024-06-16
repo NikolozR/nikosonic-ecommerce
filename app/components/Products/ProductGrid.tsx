@@ -1,12 +1,10 @@
 import ProductItem from "../shared/ProductItem";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import { IoGrid } from "react-icons/io5";
-import { getAuth0User } from "../../actions";
-import { getUserBySub } from "../../api/api";
+import { getUser } from "../../api/api";
 
 async function ProductGrid({ products }: { products: Product[] }) {
-  const sub = (await getAuth0User())?.sub;
-  const user = await getUserBySub(sub);
+  const user = await getUser()
   return (
     <div className="pb-[100px]">
       <div className="flex justify-between">

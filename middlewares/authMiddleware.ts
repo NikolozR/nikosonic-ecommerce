@@ -16,6 +16,7 @@ export const authMiddleware: MiddlewareFactory = (next) => {
         pathname.startsWith("/products") ||
         pathname === "/contacts"
       ) {
+        console.log("Ddddddddddddddddddddd")
         return next(request, _next);
       }
 
