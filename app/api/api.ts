@@ -88,7 +88,7 @@ export async function getAllBlogs() {
     });
     return (await res.json()).rows;
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 }
 
@@ -104,12 +104,12 @@ export async function getBlogByID(id: number) {
 }
 
 export async function createBlog(body: CreateBlog) {
- const res =  await fetch(baseUrl + "/api/blogs/create", {
+  const res = await fetch(baseUrl + "/api/blogs/create", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
-  revalidateTag('blogs')
+  revalidateTag("blogs");
   return res;
 }
 
@@ -211,18 +211,14 @@ export async function getReviews(productId: string) {
 }
 
 export async function createReview(body: CreateReview) {
-  try {
-    await fetch(baseUrl + "/api/reviews/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    revalidateTag("reviews");
-    revalidateTag("product");
-    revalidatePath("/products/[productId]");
-  } catch (e) {
-    console.log(e);
-  }
+  await fetch(baseUrl + "/api/reviews/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  revalidateTag("reviews");
+  revalidateTag("products");
+  revalidatePath("/products/[productId]", "page");
 }
 
 export async function getProductIds() {
@@ -236,18 +232,21 @@ export async function getProductIds() {
   return (await res.json()).rows;
 }
 
-
-export async function addCartItem(userId: number, productId: number, quantity: number) {
+export async function addCartItem(
+  userId: number,
+  productId: number,
+  quantity: number
+) {
   fetch(baseUrl + "/api/cart/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       userId,
       productId,
-      quantity
+      quantity,
     }),
   });
-  revalidateTag('cart')
+  revalidateTag("cart");
 }
 
 export async function getCartItems(userId: number) {
@@ -265,13 +264,13 @@ export async function removeCartItem(userId: number, productId: number) {
   const body = {
     userId,
     productId,
-  }
+  };
   await fetch(baseUrl + "/api/cart/remove/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
-  revalidateTag('cart')
+  revalidateTag("cart");
 }
 
 export async function clearCart() {
@@ -280,20 +279,24 @@ export async function clearCart() {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   });
-  revalidateTag('cart')
+  revalidateTag("cart");
 }
 
-export async function decrementCartItem(userId: number, productId: number, quantity: number) {
+export async function decrementCartItem(
+  userId: number,
+  productId: number,
+  quantity: number
+) {
   await fetch(baseUrl + "/api/cart/decrement/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       userId,
       productId,
-      quantity
+      quantity,
     }),
-  })
-  revalidateTag('cart')
+  });
+  revalidateTag("cart");
 }
 
 export async function getUser() {
@@ -302,12 +305,11 @@ export async function getUser() {
   return user;
 }
 
-
 export async function sendCheckoutRequest(cartItems: CartItem[]) {
   const res = await fetch(baseUrl + "/api/cart/checkout", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(cartItems),
   });
-  return (await res.json());
+  return await res.json();
 }

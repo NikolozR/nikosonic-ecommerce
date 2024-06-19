@@ -30,7 +30,7 @@ function SideDetails({ product }: { product: Product }) {
         <div className="grid grid-cols-2 gap-[20px]">
           <span className="flex items-center gap-[10px] font-bold">
             <span className="text-[#6C7275] text-[1.1rem] font-normal">Category:</span>
-            {product.category}
+            {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
           </span>
           <span className="flex items-center gap-[10px] font-bold">
             <span className="text-[#6C7275] text-[1.1rem] font-normal">Brand:</span>

@@ -1,11 +1,9 @@
 import {
   getReviews,
   getSingleProduct,
-  getUserBySub,
+  getUser,
 } from "../../../../api/api";
-import Details from "../../../../components/ProductsDetails/Details";
-import Reviews from "../../../../components/ProductsDetails/Reviews";
-import { getAuth0User } from "../../../../actions";
+import OptimisticComponent from "../../../../components/ProductsDetails/OptimisticComponent";
 import { QueryResultRow, sql } from "@vercel/postgres";
 
 export async function generateStaticParams() {
@@ -26,8 +24,7 @@ async function ProductDetailsPage({
 }: {
   params: { productId: string };
 }) {
-  const auth0user = await getAuth0User();
-  const userPromise = getUserBySub(auth0user?.sub);
+  const userPromise = getUser();
   const productPromise = getSingleProduct(productId);
   const reviewsPromise = getReviews(productId);
 
@@ -39,12 +36,7 @@ async function ProductDetailsPage({
   return (
     <main>
       <div className="container">
-        <Details product={product} />
-        <Reviews
-          reviews={reviews}
-          productId={product.product_id}
-          user={user}
-        />
+        <OptimisticComponent user={user} reviews={reviews} product={product} />
       </div>
     </main>
   );

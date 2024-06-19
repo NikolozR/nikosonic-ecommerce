@@ -15,6 +15,19 @@ type ButtonProps = {
   handleClick?: () => void;
   stopPropagation?: boolean;
 };
+type ReviewsProps = {
+  user: User;
+  product: Product;
+  reviews: Review[];
+  addOptimisticProduct: (action: Product) => void;
+}
+type ReviewFormProps = {
+  user: User;
+  product: Product;
+  addOptimisticReview: (action: Review) => void;
+  addOptimisticProduct: (action: Product) => void;
+  showStars?: boolean;
+}
 type InputProps = {
   name: string;
   label?: string;
