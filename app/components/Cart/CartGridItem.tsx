@@ -3,6 +3,7 @@ import QuantityInput from "./QuantityInput";
 import Remove from "./Remove";
 
 function CartGridItem({ cartItem, addOptimisticCartItems }: CartItemProps) {
+  console.log(cartItem.quantity)
   return (
     <div className="grid w-full grid-cols-cartTemplate py-[24px] border-b-[1px] border-solid border-[#E8ECEF]">
       <div className="w-full flex items-center gap-[16px]">

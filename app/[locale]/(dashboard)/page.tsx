@@ -16,7 +16,7 @@ async function Landing() {
   return (
     <>
       <Hero />
-      <main>
+      <main className="dark:bg-[#241b33]">
         <div className="container">
           <div className="grid grid-cols-5 gap-[50px] py-[40px]">
             <div className="w-full h-[100px] relative">

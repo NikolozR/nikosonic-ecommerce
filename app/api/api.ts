@@ -237,13 +237,13 @@ export async function getProductIds() {
 }
 
 
-export async function addCartItem(productId: number, userId: number, quantity: number) {
+export async function addCartItem(userId: number, productId: number, quantity: number) {
   fetch(baseUrl + "/api/cart/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      productId,
       userId,
+      productId,
       quantity
     }),
   });
@@ -293,6 +293,7 @@ export async function decrementCartItem(userId: number, productId: number, quant
       quantity
     }),
   })
+  revalidateTag('cart')
 }
 
 export async function getUser() {

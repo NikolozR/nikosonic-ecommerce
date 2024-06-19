@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LandingPlaceholder from "../../../public/blogPlaceholder.jpg";
+// import LandingPlaceholderDark from '../../../public/LandingPlaceholderDark.png'
 import Button from "../shared/Button";
 import { getSession } from "@auth0/nextjs-auth0";
 import AuthorizeModal from "./AuthorizeModal";

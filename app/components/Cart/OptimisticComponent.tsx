@@ -4,9 +4,12 @@ import CartSummary from "./CartSummary";
 import CartGrid from "./CartGrid";
 
 function OptimisticComponent({ cartItems }: { cartItems: CartItem[] }) {
+  console.log(cartItems, "FROM SERVER")
+  
   const [optimisticCartItems, addOptimisticCartItems] = useOptimistic(
     cartItems,
     (state: CartItem[], action: { type: string; payload?: CartItem }) => {
+      console.log("SIU")
       switch (action.type) {
         case "remove":
           return state.filter(
@@ -17,8 +20,8 @@ function OptimisticComponent({ cartItems }: { cartItems: CartItem[] }) {
         case "updateQuantity":
           if (action.payload) {
             return state.map((item) =>
-              item.product_id === action.payload!.product_id
-                ? { ...item, quantity: action.payload!.quantity }
+              item.product_id === action.payload?.product_id
+                ? { ...item, quantity: action.payload?.quantity }
                 : item
             );
           }
@@ -29,6 +32,9 @@ function OptimisticComponent({ cartItems }: { cartItems: CartItem[] }) {
       return state;
     }
   );
+
+
+  console.log(optimisticCartItems, "FROM OPTIMISTIC")
   if (optimisticCartItems.length > 0) {
       return (
         <div className="flex gap-[64px]">

@@ -15,7 +15,7 @@ async function NavBar() {
       //   background:
       //     "linear-gradient(0deg, , )",
       // }}
-      className="py-[18px] dark:!bg-black bg-gradient-to-b from-[#ffab00a3] to-[#ffab00a3] dark:from-black dark:to-black"
+      className="py-[18px] dark:!bg-black bg-gradient-to-b from-[#ffab00a3] to-[#ffab00a3] dark:from-[#241b33] dark:to-[#241b33]"
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between">

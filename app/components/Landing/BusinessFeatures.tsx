@@ -5,7 +5,7 @@ import { FiPhone } from "react-icons/fi";
 
 function BusinessFeatures() {
   return (
-    <section>
+    <section className="dark:bg-[#241b33]">
         <div className="container">
             <div className="grid py-[40px] grid-cols-4 gap-[24px]">
                 <div className="bg-[#F3F5F7] py-[48px] pl-[32px]">
