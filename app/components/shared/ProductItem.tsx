@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { FaStar } from "react-icons/fa6";
-import { CiHeart } from "react-icons/ci";
 import ClientSideWrapper from "./ClientSideProductWrapper";
 import AddToCartButton from "./AddToCartButton";
 import AuthorizeModal from "./AuthorizeModal";
