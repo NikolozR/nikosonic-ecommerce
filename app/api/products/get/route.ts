@@ -35,6 +35,8 @@ export async function GET(req: NextRequest) {
     if (colors.length > 0) {
       query = `${query} AND color IN (${queryColors})`;
     }
+
+    query = `${query} ORDER BY createdat DESC`
   try {
     const result = await sql.query(query)
     const rows = result.rows;
