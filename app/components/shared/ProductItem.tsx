@@ -29,9 +29,9 @@ function ProductItem({
             </span>
           )}
         </ClientSideWrapper>
-        <span className="w-[32px] opacity-0 flex items-center cursor-pointer z-30 group-hover:opacity-100 transition-all ease-in-out duration-[0.3s] group-hover:top-[16px] justify-center absolute right-[16px] top-[0] h-[32px] rounded-[50%] bg-[#F3F5F7]">
+        {/* <span className="w-[32px] opacity-0 flex items-center cursor-pointer z-30 group-hover:opacity-100 transition-all ease-in-out duration-[0.3s] group-hover:top-[16px] justify-center absolute right-[16px] top-[0] h-[32px] rounded-[50%] bg-[#F3F5F7]">
           <CiHeart size={20}></CiHeart>
-        </span>
+        </span> */}
         <ClientSideWrapper productId={product.product_id}>
           <Image
             src={product.thumbnail_url}
