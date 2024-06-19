@@ -9,18 +9,20 @@ function ProductItem({
   isNew = false,
   isHot = false,
   user,
+  grid
 }: {
   product: Product;
   user: User;
   isNew?: boolean;
   isHot?: boolean;
+  grid?: number;
 }) {
   return (
     <div
       className="w-full cursor-pointer group bg-white pb-[20px] rounded-[15px]"
       style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
     >
-      <div className="p-4 relative w-full h-[350px]">
+      <div className={"p-4 relative w-full " + (grid === 3 ? 'h-[350px]' : 'h-[400px]')}>
         <ClientSideWrapper productId={product.product_id}>
           {(isNew || isHot) && (
             <span className="w-fit z-50 absolute px-[14px] py-[4px] font-bold text-[1rem] bg-[#FFAB00A3] text-[#26355D] rounded-[4px]">
