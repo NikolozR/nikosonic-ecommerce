@@ -4,10 +4,7 @@ import { getSession } from "@auth0/nextjs-auth0/edge";
 export const authMiddleware: MiddlewareFactory = (next) => {
   return async (request: NextRequest, _next: NextFetchEvent) => {
     const pathname = request.nextUrl.pathname;
-    const session = await getSession(); // Ensure to pass the request object
-
-    console.log(`Pathname: ${pathname}`);
-    console.log(`Session: ${session ? "Exists" : "None"}`);
+    const session = await getSession();
 
     if (!session) {
       if (
@@ -16,7 +13,6 @@ export const authMiddleware: MiddlewareFactory = (next) => {
         pathname.startsWith("/products") ||
         pathname === "/contacts"
       ) {
-        console.log("Ddddddddddddddddddddd")
         return next(request, _next);
       }
 
@@ -27,21 +23,17 @@ export const authMiddleware: MiddlewareFactory = (next) => {
         pathname.startsWith("/checkout") ||
         pathname.startsWith("/blogs/create")
       ) {
-        console.log("Redirecting to homepage due to no session");
         const url = new URL("/", request.url);
         return NextResponse.redirect(url);
       }
     } else {
       if (pathname === "/login" || pathname === "/register") {
-        console.log("Redirecting to homepage due to existing session");
         const url = new URL(pathname, request.url);
         return NextResponse.redirect(url);
       } else {
-        console.log("Proceeding to next middleware/handler");
         return next(request, _next);
       }
     }
-    console.log("Proceeding to next middleware/handler");
     return NextResponse.next();
   };
 };

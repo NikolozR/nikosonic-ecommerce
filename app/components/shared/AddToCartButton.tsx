@@ -30,7 +30,7 @@ function AddToCartButton({ product, user }: { product: Product; user: User }) {
       };
       cartContext?.updateCartItems(cartItem);
       try {
-        const res = addCartItem(product.product_id, user.id, 1);
+        const res = addCartItem(user.id, product.product_id, 1);
         console.log(res);
       } catch (err) {
         console.log(err);

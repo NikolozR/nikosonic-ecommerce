@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const body: { userId: number; productId: number, quantity: number } = await request.json();
   const { userId, productId, quantity} = body;
-
   try {
     const existingCartItem = await sql`
             SELECT * FROM cart
@@ -15,7 +14,7 @@ export async function POST(request: Request) {
         await sql`
                     UPDATE cart
                     SET quantity = quantity - ${quantity}
-                    WHERE user_id = ${userId} AND product_id = ${productId};
+                    WHERE user_id = ${Number(userId)} AND product_id = ${Number(productId)};
                 `;
       
       return NextResponse.json({ message: "Item removed from cart" }, { status: 200 });

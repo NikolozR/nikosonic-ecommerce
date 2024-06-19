@@ -8,9 +8,9 @@ async function NewArrivals() {
   const sub = (await getAuth0User())?.sub;
   const user = await getUserBySub(sub);
   return (
-    <section className="bg-[#F3F5F7] pb-[40px]">
+    <section className="bg-[#F3F5F7] dark:bg-[#201424] pb-[40px]">
       <div className="container">
-        <h2 className="font-poppins text-[#121212] font-medium py-[40px] text-[2.5rem]">
+        <h2 className="font-poppins text-[#121212] dark:text-white font-medium py-[40px] text-[2.5rem]">
           New Arrivals
         </h2>
         <div className="grid grid-cols-4 gap-[50px] pb-[40px]">
