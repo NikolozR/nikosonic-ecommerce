@@ -9,7 +9,7 @@ export const authMiddleware: MiddlewareFactory = (next) => {
     if (!session) {
       if (
         pathname === "/" ||
-        pathname === "/blogs" ||
+        (pathname.startsWith('/blogs') && !pathname.includes("create")) ||
         pathname.startsWith("/products") ||
         pathname === "/contacts"
       ) {
