@@ -313,3 +313,24 @@ export async function sendCheckoutRequest(cartItems: CartItem[]) {
   });
   return await res.json();
 }
+
+export async function getUserBlogs(userId: number) {
+  const res = await fetch(baseUrl + '/api/blogs/user/get/' + userId, {
+    next: {
+      tags: ['blogs']
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  console.log(res)
+  return (await res.json()).rows;
+}
+
+
+export async function deleteBlog(blogId: number) {
+  await fetch(baseUrl + '/api/blogs/delete/' + blogId, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  })
+  revalidateTag('blogs')
+}

@@ -9,7 +9,7 @@ function Remove({ cartItem, addOptimisticCartItems }: CartItemProps) {
   const cartContext = useCartContext();
 
   const handleRemove = async () => {
-    cartContext?.removeCartItem(cartItem);
+    if (cartContext?.removeCartItem) cartContext?.removeCartItem(cartItem);
     startTransition(() => {
       addOptimisticCartItems({ type: "remove", payload: cartItem });
     });

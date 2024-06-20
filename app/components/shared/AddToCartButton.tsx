@@ -28,13 +28,13 @@ function AddToCartButton({ product, user }: { product: Product; user: User }) {
         created_at: '',
         updated_at: '',
       };
-      cartContext?.updateCartItems(cartItem);
+      if (cartContext?.updateCartItems) cartContext?.updateCartItems(cartItem);
       try {
         const res = addCartItem(user.id, product.product_id, 1);
         console.log(res);
       } catch (err) {
         console.log(err);
-        cartContext?.removeCartItem(cartItem);
+        if (cartContext?.removeCartItem) cartContext?.removeCartItem(cartItem);
       }
     }
   };

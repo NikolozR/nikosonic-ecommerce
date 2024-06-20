@@ -16,7 +16,7 @@ function Clear({
   const cartContext = useCartContext();
 
   const handleClearCart = async () => {
-    cartContext?.clearItems();
+    if (cartContext?.clearItems) cartContext?.clearItems();
     startTransition(() => {
       addOptimisticCartItems({ type: "clear" });
     });

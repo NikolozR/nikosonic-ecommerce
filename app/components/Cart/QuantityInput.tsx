@@ -16,7 +16,7 @@ function QuantityInput({cartItem, addOptimisticCartItems}: {cartItem: CartItem, 
     const handleDecrement = async () => {
         const newQuantity = quantity - 1;
         if (newQuantity < 1) {
-            cartContext?.removeCartItem(cartItem);
+            if (cartContext?.removeCartItem) cartContext?.removeCartItem(cartItem)
             startTransition(() => {
                 addOptimisticCartItems({type: 'remove', payload: cartItem});
             });
@@ -24,7 +24,7 @@ function QuantityInput({cartItem, addOptimisticCartItems}: {cartItem: CartItem, 
         } else {
             setQuantity(newQuantity);
             const updatedCartItem = { ...cartItem, quantity: newQuantity };
-            cartContext?.updateCartItems(updatedCartItem);
+            if (cartContext?.updateCartItems) cartContext?.updateCartItems(updatedCartItem);
             startTransition(() => {
                 addOptimisticCartItems({type: 'updateQuantity', payload: updatedCartItem});
             });
@@ -36,7 +36,7 @@ function QuantityInput({cartItem, addOptimisticCartItems}: {cartItem: CartItem, 
         const newQuantity = quantity + 1;
         setQuantity(newQuantity);
         const updatedCartItem = { ...cartItem, quantity: newQuantity };
-        cartContext?.updateCartItems(updatedCartItem);
+        if (cartContext?.updateCartItems) cartContext?.updateCartItems(updatedCartItem)
         startTransition(() => {
             addOptimisticCartItems({type: 'updateQuantity', payload: updatedCartItem});
         });

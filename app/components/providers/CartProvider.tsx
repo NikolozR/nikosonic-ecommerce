@@ -5,10 +5,10 @@ import { getCartItems, getUser } from "../../api/api";
 const CartContext = createContext<{
   cartItems: CartItem[];
   count: number;
-  updateCartItems: (cartItem: CartItem) => void;
-  removeCartItem: (cartItem: CartItem) => void;
-  clearItems: () => void;
-} | null>(null);
+  updateCartItems?: (cartItem: CartItem) => void;
+  removeCartItem?: (cartItem: CartItem) => void;
+  clearItems?: () => void;
+}>({cartItems: [], count: 0});
 
 export const useCartContext = () => useContext(CartContext);
 

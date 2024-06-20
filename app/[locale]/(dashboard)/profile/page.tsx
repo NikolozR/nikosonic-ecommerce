@@ -1,14 +1,12 @@
-import { getAuth0User, handleProfileChange } from "../../../actions";
-import { getUserBySub } from "../../../api/api";
-import NewPassword from "../../../components/Profile/NewPassword";
+import { handleProfileChange } from "../../../actions";
+import { getUser } from "../../../api/api";
+// import NewPassword from "../../../components/Profile/NewPassword";
 import ProfileDetails from "../../../components/Profile/ProfileDetails";
 import ProfileSidebar from "../../../components/Profile/ProfileSidebar";
 import Button from "../../../components/shared/Button";
 
 async function Profile() {
-  const auth0User = await getAuth0User();
-  const sub: string = auth0User?.sub;
-  const user: User = await getUserBySub(auth0User?.sub);
+  const user: User = await getUser();
   return (
     <section className="mb-[80px]">
       <div className="container">
@@ -16,12 +14,11 @@ async function Profile() {
           My Profile
         </h1>
         <div className="flex gap-[80px]">
-          <ProfileSidebar user={user} />
+          <ProfileSidebar user={user} active="profile" />
           <form className="w-[60%] flex flex-col" action={handleProfileChange}>
             <ProfileDetails user={user} />
-            {sub?.split("|")[0] === "auth0" && <NewPassword />}
+            {/* {user.sub.split("|")[0] === "auth0" && <NewPassword />} */}
             <div className="mt-[24px]">
-
             <Button
               type="submit"
               fontSize="1rem"

@@ -3,7 +3,7 @@ import AvatarForm from "./AvatarForm";
 
 
 
-function ProfileSidebar({ user }: { user: User }) {
+function ProfileSidebar({ user, active }: { user: User, active: 'profile' | 'blogs' | 'orders' }) {
   return (
     <div className="bg-[#F3F5F7] rounded-[8px] h-fit w-fit flex flex-col px-[16px] py-[40px]">
       <div>
@@ -13,28 +13,28 @@ function ProfileSidebar({ user }: { user: User }) {
         </h2>
       </div>
       <ul className="w-[230px] max-w-full flex flex-col gap-[12px]">
-        <li className="h-[42px] flex items-center border-solid border-b-[1px] border-[#141718]">
+        <li className={"h-[42px] flex items-center " + (active === 'profile' ? 'border-solid border-b-[1px] border-[#141718]' : '')}>
           <Link
             href={"/profile"}
-            className="text-[#141718] font-semibold text-[1rem]"
+            className={"font-semibold text-[1rem] " + (active === 'profile' ? 'text-[#141718]' : 'text-[#605F5F] ')}
           >
             Profile
           </Link>
         </li>
-        <li className="h-[42px] flex items-center">
+        <li className={"h-[42px] flex items-center " + (active === 'orders' ? 'border-solid border-b-[1px] border-[#141718]' : '')}>
           <Link
             href={"/profile"}
-            className="text-[#605F5F] font-semibold text-[1rem]"
+            className={"font-semibold text-[1rem] " + (active === 'orders' ? 'text-[#141718]' : 'text-[#605F5F]')}
           >
             Orders
           </Link>
         </li>
-        <li className="h-[42px] flex items-center">
+        <li className={"h-[42px] flex items-center " + (active === 'blogs' ? 'border-solid border-b-[1px] border-[#141718]' : '')}>
           <Link
-            href={"/profile"}
-            className="text-[#605F5F] font-semibold text-[1rem]"
+            href={"/blogs/myBlogs"}
+            className={"font-semibold text-[1rem] " + (active === 'blogs' ? 'text-[#141718]' : 'text-[#605F5F] ')}
           >
-            Cart
+            My Blogs
           </Link>
         </li>
         <li className="h-[42px] flex items-center">
