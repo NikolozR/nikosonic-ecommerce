@@ -3,7 +3,8 @@ import Link from "next/link";
 import ProfileDropDown from "./ProfileDropDown";
 import { getAuth0User } from "../../actions";
 import CartIcon from "./CartIcon";
-import { CiSearch } from "react-icons/ci";
+import { RiSearchLine } from "react-icons/ri";
+import LocaleSwitcher from "./LocaleSwitcher";
 
 async function NavBar() {
   const headerT = await getTranslations("Header");
@@ -90,7 +91,7 @@ async function NavBar() {
           </ul>
           <div>
             <div className="flex gap-[15px] items-center">
-              <CiSearch size={24} className="dark:text-white text-black" />
+              <RiSearchLine size={24} className="dark:text-white cursor-pointer text-black" />
               {!user ? (
                 <>
                   <ProfileDropDown isAuthorized={false} />
@@ -101,6 +102,7 @@ async function NavBar() {
                   <ProfileDropDown isAuthorized={true} />
                 </div>
               )}
+              <LocaleSwitcher />
             </div>
           </div>
         </div>

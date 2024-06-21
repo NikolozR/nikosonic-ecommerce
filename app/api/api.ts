@@ -334,3 +334,25 @@ export async function deleteBlog(blogId: number) {
   })
   revalidateTag('blogs')
 }
+
+
+export async function subscribeNewsLetter(email: string) {
+  try {
+    const res = await fetch(baseUrl + '/api/newsletter/subscribe', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+    const result = await res.json();
+    if (res.status === 201) {
+      return { success: true, message: "Email subscribed successfully" };
+    } else if (res.status === 409) {
+      return { success: false, message: "Email is already subscribed" };
+    } else {
+      return { success: false, message: result.error || "Failed to subscribe email" };
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return { success: false, message: "An unexpected error occurred" };
+  }
+}
