@@ -83,7 +83,7 @@ function CreateBlogForm() {
             >
               Blog
               <textarea
-                className="border-[1px] text-gray-800 resize-none h-[350px] placeholder:font-normal font-bold border-solid text-[1rem] p-[10px] border-[#CBCBCB] outline-none rounded-xl"
+                className="border-[1px] leading-[24px] text-gray-800 resize-none h-[350px] placeholder:font-normal font-bold border-solid text-[1rem] p-[10px] border-[#CBCBCB] outline-none rounded-xl"
                 name="content"
                 id="content"
                 required

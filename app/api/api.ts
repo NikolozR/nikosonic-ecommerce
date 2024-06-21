@@ -315,33 +315,42 @@ export async function sendCheckoutRequest(cartItems: CartItem[]) {
 }
 
 export async function getUserBlogs(userId: number) {
-  const res = await fetch(baseUrl + '/api/blogs/user/get/' + userId, {
+  const res = await fetch(baseUrl + "/api/blogs/user/get/" + userId, {
     next: {
-      tags: ['blogs']
+      tags: ["blogs"],
     },
     method: "GET",
     headers: { "Content-Type": "application/json" },
-  })
-  console.log(res)
+  });
+  console.log(res);
   return (await res.json()).rows;
 }
 
-
 export async function deleteBlog(blogId: number) {
-  await fetch(baseUrl + '/api/blogs/delete/' + blogId, {
+  await fetch(baseUrl + "/api/blogs/delete/" + blogId, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
-  })
-  revalidateTag('blogs')
+  });
+  revalidateTag("blogs");
 }
 
+export async function updateBlog(body: UpdateBlog) {
+  const res = await fetch(baseUrl + "/api/blogs/update", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  revalidateTag("blogs");
+  revalidateTag("singleBlog");
+  return res;
+}
 
 export async function subscribeNewsLetter(email: string) {
   try {
-    const res = await fetch(baseUrl + '/api/newsletter/subscribe', {
+    const res = await fetch(baseUrl + "/api/newsletter/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email }),
     });
     const result = await res.json();
     if (res.status === 201) {
@@ -349,10 +358,13 @@ export async function subscribeNewsLetter(email: string) {
     } else if (res.status === 409) {
       return { success: false, message: "Email is already subscribed" };
     } else {
-      return { success: false, message: result.error || "Failed to subscribe email" };
+      return {
+        success: false,
+        message: result.error || "Failed to subscribe email",
+      };
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
     return { success: false, message: "An unexpected error occurred" };
   }
 }

@@ -22,7 +22,7 @@ function BlogCard({
   return (
     <div className="relative">
       <div className="relative aspect-square mb-[24px]">
-        <Image src={blog.thumbnail_url} alt="Blog Thumbnail" fill />
+        <Image src={blog.thumbnail_url} alt="Blog Thumbnail" fill className="object-cover" />
       </div>
       <h3 className="font-medium font-poppins text-black text-[1.25rem] leading-[28px] mb-[8px]">
         {blog.title}

@@ -1,10 +1,12 @@
 import React from "react";
 import Button from "./Button";
 import { deleteBlog } from "../../api/api";
+import Link from "next/link";
 
 function BlogEditDeleteButtons({blogs, updateOptimisticBlogs, blogId}: {blogs: Blog[],updateOptimisticBlogs: (a: Blog[]) => void, blogId: number}) {
   return (
     <div className="grid grid-cols-2 w-full gap-[10px]">
+      <Link href={'/blogs/edit/' + blogId}>
       <Button
         type="button"
         className="block w-full"
@@ -12,7 +14,7 @@ function BlogEditDeleteButtons({blogs, updateOptimisticBlogs, blogId}: {blogs: B
         padding="px-[0] py-[10px]"
       >
         Edit
-      </Button>
+      </Button></Link>
       <Button
         type="button"
         className="block w-full"

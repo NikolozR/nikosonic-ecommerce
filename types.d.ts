@@ -1,7 +1,7 @@
 type childrenProps<P = unknown> = P & {
   children: React.ReactNode;
 };
-type keyValuyPair = {
+type keyValuePair = {
   [key: string]: any;
 };
 type ButtonProps = {
@@ -51,7 +51,7 @@ type FileUploadProps = {
   ref: RefObject<HTMLInputElement>;
   handleFileChange: () => void;
 };
-interface CreateProduct extends keyValuyPair {
+interface CreateProduct extends keyValuePair {
   name: string;
   brand: string;
   color: string;
@@ -123,7 +123,13 @@ interface Review {
   surname: string;
   displayname: string;
 }
-interface CreateBlog extends keyValuyPair {
+interface UpdateBlog extends keyValuePair {
+  blog_id: number;
+  title: string;
+  content: string;
+  thumbnail_url: string;
+}
+interface CreateBlog extends keyValuePair {
   title: string;
   author_id: number;
   content: string;
