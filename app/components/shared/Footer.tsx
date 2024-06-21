@@ -2,10 +2,12 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { FaInstagram } from "react-icons/fa";
 import { FiFacebook } from "react-icons/fi";
-import { FaYoutube } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { getAuth0User } from "../../actions";
 
 async function Footer() {
   const headerT = await getTranslations("Header");
+  const user = await getAuth0User();
   return (
     <footer className="bg-[#141718]">
       <div className="container">
@@ -29,12 +31,22 @@ async function Footer() {
             </li>
             <li>
               <Link
-                href={"/profile"}
+                href={"/products"}
                 className="text-[0.875rem] text-white font-medium"
               >
-                {headerT("profile")}
+                {headerT("products")}
               </Link>
             </li>
+            {user && (
+              <li>
+                <Link
+                  href={"/profile"}
+                  className="text-[0.875rem] text-white font-medium"
+                >
+                  {headerT("profile")}
+                </Link>
+              </li>
+            )}
             <li>
               <Link
                 href={"/blogs"}
@@ -56,24 +68,24 @@ async function Footer() {
         <div className="pt-[16px] pb-[52px] flex justify-between">
           <div>
             <p className="text-[#FEFEFE] text-[0.875rem]">
-              Copyright © 2023 3legant. All rights reserved
+              Copyright © 2024 Nikoloz Rusishvili. All rights reserved
             </p>
           </div>
           <ul className="flex gap-[10px]">
             <li>
-                <a href="">
-                    <FaInstagram></FaInstagram>
-                </a>
+              <a href="https://www.instagram.com/nika_rusishvili/" target="_blank">
+                <FaInstagram></FaInstagram>
+              </a>
             </li>
             <li>
-                <a href="">
-                    <FiFacebook></FiFacebook>
-                </a>
+              <a href="https://www.facebook.com/profile.php?id=100011428154064" target="_blank">
+                <FiFacebook></FiFacebook>
+              </a>
             </li>
             <li>
-                <a href="">
-                    <FaYoutube></FaYoutube>
-                </a>
+              <a href="https://www.linkedin.com/in/nika-rusishvili-69a641228/" target="_blank">
+                <FaLinkedin></FaLinkedin>
+              </a>
             </li>
           </ul>
         </div>
