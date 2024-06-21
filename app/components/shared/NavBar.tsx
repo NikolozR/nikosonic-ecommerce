@@ -2,9 +2,9 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import ProfileDropDown from "./ProfileDropDown";
 import { getAuth0User } from "../../actions";
-import ThemeSwitcher from "./ThemeSwitcher";
-import CartIcon from "./CartIcon";  
-import { CiSearch } from "react-icons/ci";
+import CartIcon from "./CartIcon";
+import { RiSearchLine } from "react-icons/ri";
+import LocaleSwitcher from "./LocaleSwitcher";
 
 async function NavBar() {
   const headerT = await getTranslations("Header");
@@ -91,29 +91,18 @@ async function NavBar() {
           </ul>
           <div>
             <div className="flex gap-[15px] items-center">
-            <CiSearch size={24} className="dark:text-white text-black" />
+              <RiSearchLine size={24} className="dark:text-white cursor-pointer text-black" />
               {!user ? (
                 <>
-                  <a
-                    href="/api/auth/login"
-                    className="text-[1rem] text-black dark:text-white border-solid font-grotesk border-black dark:border-white border-[1px] rounded-md flex items-center justify-center py-1 px-3"
-                  >
-                    Log In
-                  </a>
-                  <a
-                    href="/api/auth/signup"
-                    className="text-[1rem] text-black border-solid font-grotesk border-black dark:border-white dark:text-white border-[1px] rounded-md flex items-center justify-center py-1 px-3"
-                  >
-                    Register
-                  </a>
-                  <ThemeSwitcher></ThemeSwitcher>
+                  <ProfileDropDown isAuthorized={false} />
                 </>
               ) : (
                 <div className="flex gap-[15px] items-center">
                   <CartIcon />
-                  <ProfileDropDown />
+                  <ProfileDropDown isAuthorized={true} />
                 </div>
               )}
+              <LocaleSwitcher />
             </div>
           </div>
         </div>

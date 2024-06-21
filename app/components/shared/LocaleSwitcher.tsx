@@ -1,24 +1,45 @@
 'use client'
-import { locales } from "../../../i18n";
-import {Link, usePathname} from "../../../navigation";
+import React, { ReactElement } from "react";
+import { GB, GE } from 'country-flag-icons/react/3x2'
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
+import { useLocale } from "next-intl";
+import { Link, usePathname } from "../../../navigation";
 
-
-
+const locales: {locale: 'en' | 'ka', name: string, icon: ReactElement}[] = [
+  { locale: "en", name: "EN", icon: <GB width={20} height={13} /> },
+  { locale: "ka", name: "KA", icon: <GE width={20} height={13} /> },
+];
 
 function LocaleSwitcher() {
   const pathname = usePathname();
-
+  const locale = useLocale()
+  console.log(locale)
   return (
-    <div className="flex gap-2">
-      {locales.map((locale: 'en' | 'ka') => {
-        return (
-          <Link key={locale} locale={locale} href={pathname}>
-            {locale.toLocaleUpperCase()}
-          </Link>
-
-        );
-      })}
-    </div>
+    <Dropdown classNames={{
+      content: 'w-fit min-w-fit'
+    }}>
+      <DropdownTrigger>
+        <Button variant="bordered" className="border-black border-1">
+          {locales.find((item) => item.locale === locale)?.icon}
+          {locale?.toUpperCase()}
+        </Button>
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Language Selector" className="w-fit">
+        {locales.map((item) => (
+          <DropdownItem className="w-fit" key={item.locale}>
+            <Link key={item.locale} locale={item.locale} href={pathname} className="flex items-center gap-[5px] text-black">
+              {item.icon} {item.name}
+            </Link>
+          </DropdownItem>
+        ))}
+      </DropdownMenu>
+    </Dropdown>
   );
 }
 
