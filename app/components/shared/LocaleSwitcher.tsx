@@ -19,7 +19,6 @@ const locales: {locale: 'en' | 'ka', name: string, icon: ReactElement}[] = [
 function LocaleSwitcher() {
   const pathname = usePathname();
   const locale = useLocale()
-  console.log(locale)
   return (
     <Dropdown classNames={{
       content: 'w-fit min-w-fit'

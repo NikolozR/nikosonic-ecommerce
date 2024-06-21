@@ -1,5 +1,12 @@
 "use server";
-import { createBlog, createProduct, getUserBySub, sendCheckoutRequest, updateUser } from "./api/api";
+import {
+  createBlog,
+  createProduct,
+  getUserBySub,
+  sendCheckoutRequest,
+  updateBlog,
+  updateUser,
+} from "./api/api";
 import { getSession } from "@auth0/nextjs-auth0";
 import { put } from "@vercel/blob";
 import { redirect } from "next/navigation";
@@ -80,6 +87,28 @@ export async function handleBlogCreation(formData: FormData) {
     return await res.json();
   }
 }
+export async function handleBlogUpdate(formData: FormData, blog_id: number) {
+  let body: UpdateBlog = {
+    title: "",
+    content: "",
+    blog_id: blog_id,
+    thumbnail_url: "",
+  };
+  formData.forEach((val, key) => {
+    if (val !== "" && key !== "thumbnail_url") {
+      body[key] = val;
+    }
+  });
+  const imageFile = formData.get("thumbnail_url") as File;
+  const thumbBlob = await put(imageFile.name, imageFile, {
+    access: "public",
+  });
+  body.thumbnail_url = thumbBlob.url;
+  const res = await updateBlog(body);
+  if (res.status === 200) {
+    return await res.json();
+  }
+}
 
 export async function setSearchParams(
   name: string,
@@ -132,6 +161,6 @@ export async function setSearchParams(
 }
 
 export async function handleCheckout(cartItems: CartItem[]) {
-  const {url} = await sendCheckoutRequest(cartItems);
-  redirect(url)
+  const { url } = await sendCheckoutRequest(cartItems);
+  redirect(url);
 }
