@@ -148,6 +148,7 @@ export async function getAllProducts() {
 export async function getProductsByFilter(searchParams: {
   [key: string]: string;
 }) {
+  console.log(searchParams)
   let stringBuilder = "?";
   for (let key in searchParams) {
     if (searchParams.hasOwnProperty(key)) {
@@ -163,7 +164,7 @@ export async function getProductsByFilter(searchParams: {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-
+  revalidatePath('/products')
   return (await res.json()).rows;
 }
 export async function getBrands() {

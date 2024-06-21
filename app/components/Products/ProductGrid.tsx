@@ -2,7 +2,7 @@
 import ProductItem from "../shared/ProductItem";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import { IoGrid } from "react-icons/io5";
-import { Key, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import {
   Dropdown,
@@ -19,24 +19,35 @@ function getDropdownBtnContent(val: string): string {
   else return "Sort By";
 }
 
+function sortProducts(products: Product[], selectedSortBy: string):Product[]  {
+  const sorted = [...products].sort((a, b) => {
+    if (selectedSortBy === 'price_asc') return a.price - b.price;
+    else if (selectedSortBy === 'price_desc') return b.price - a.price;
+    else if (selectedSortBy === 'name_asc') return (a.brand + " " + a.name).localeCompare(b.brand + " " + b.name);
+    else if (selectedSortBy === 'name_desc') return (b.brand + " " + b.name).localeCompare(a.brand + " " + a.name);
+    else return 0;
+  });
+  return sorted;
+}
+
 function ProductGrid({ products, user }: { products: Product[]; user: User }) {
-  const [grid, setGrid] = useState(3);
+  console.log("rerenderereer")
   const [sortedProducts, setSortedProducts] = useState<Product[]>(products)
   const [selectedSortBy, setSelectedSortBy] = useState<string>('')
+  const [grid, setGrid] = useState(3);
   const handleGridChange = (layout: number) => {
     setGrid(layout);
   };
 
+  useEffect(() => {
+    const sorted: Product[] = sortProducts(products, selectedSortBy)
+    setSortedProducts(sorted);
+  }, [products, selectedSortBy])
+
   const handleSortChange = (sortCriteria: Key) => {
     setSelectedSortBy(sortCriteria.toString());
     const key = sortCriteria.toString();
-    const sorted = [...products].sort((a, b) => {
-      if (key === 'price_asc') return a.price - b.price;
-      else if (key === 'price_desc') return b.price - a.price;
-      else if (key === 'name_asc') return (a.brand + " " + a.name).localeCompare(b.brand + " " + b.name);
-      else if (key === 'name_desc') return (b.brand + " " + b.name).localeCompare(a.brand + " " + a.name);
-      else return 0;
-    });
+    const sorted = sortProducts(products, key)
     setSortedProducts(sorted);
   };
 

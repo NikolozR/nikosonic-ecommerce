@@ -18,8 +18,7 @@ async function Products({
     Object.keys(searchParams).length === 0
       ? await getAllProducts()
       : await getProductsByFilter(searchParams);
-  const user = await getUser()
-
+  const user = await getUser();
   return (
     <main>
       <div className="container">
