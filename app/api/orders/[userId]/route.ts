@@ -9,6 +9,8 @@ export async function GET(_: NextRequest, { params }: { params: { userId: string
       SELECT 
         orders.order_id,
         orders.user_id,
+        orders.order_status,
+        orders.total_price,
         orders.created_at AS order_created_at,
         orders.updated_at AS order_updated_at,
         order_items.order_item_id,

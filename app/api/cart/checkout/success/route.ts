@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     const session = await stripe.checkout.sessions.retrieve(query);
     const shippingAddress = session.metadata.shippingAddress;
     const billingAddress = session.metadata.billingAddress;
-    const totalPrice = session.amount_total;
+    const totalPrice = session.amount_total / 100;
     const stripe_session_id = session.id;
     // Line items that were purchased, only connection we have is product name
     const checkoutItems: StripeCheckoutListItem[] = (

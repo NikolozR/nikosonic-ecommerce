@@ -18,7 +18,14 @@ const CartContext = createContext<CartContextType>({
   clearItems: () => {}
 });
 
-export const useCartContext = () => useContext(CartContext ?? {});
+export const useCartContext = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCartContext must be used within a CartProvider');
+  }
+  return context;
+};
+
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);

@@ -16,15 +16,17 @@ module.exports = {
 
       },
       gridTemplateColumns: {
-        cartTemplate: '40% 20% 20% 20%'
+        cartTemplate: '40% 20% 20% 20%',
+        ordersTemplate: '25% 18% 18% 19% 20%'
       },
       colors: {
-        lightSwitch: '#87ceeb',  // Light blue color
-        darkSwitch: '#1e293b',   // Dark blue/black color
+        lightSwitch: '#87ceeb',  
+        darkSwitch: '#1e293b', 
       },
       boxShadow: {
         'custom': '0 2px 5px rgba(0, 0, 0, 0.1)',
       }
+      
     },
   },
   plugins: [nextui()],

@@ -232,6 +232,8 @@ interface OrderItem {
   order_id: number;
   user_id: number;
   order_created_at: string;
+  total_price: number;
+  order_status: string;
   order_updated_at: string;
   order_item_id: number;
   product_id: number;
@@ -243,4 +245,17 @@ interface OrderItem {
   shipping_address: string;
   billing_address: string;
   brand: string;
+}
+
+interface TransformedOrder {
+  order_id: number;
+  user_id: number;
+  date: string;
+  total_price: number;
+  order_status: string;
+  order_created_at: string;
+  shipping_address: string;
+  billing_address: string;
+  total_amount: number;
+  items: OrderItem[];
 }

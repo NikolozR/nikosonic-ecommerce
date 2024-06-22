@@ -5,7 +5,7 @@ import OrderConfirmation from "../../../../../components/Checkout/OrderConfirmat
 
 async function Complete({params}: {params: {orderId: string}}) {
   const order: OrderItem[] = await getOrder(params.orderId);
-
+  console.log(order)
   return (
     <main className="my-[80px]">
       <div className="container">

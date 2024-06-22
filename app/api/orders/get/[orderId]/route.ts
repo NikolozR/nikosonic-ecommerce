@@ -5,10 +5,12 @@ export const revalidate = 0;
 
 export async function GET(_: NextRequest, { params }: { params: { orderId: string } }) {
   try {
+    console.log(params.orderId)
     const result = await sql`
       SELECT 
         orders.order_id,
         orders.user_id,
+        orders.total_price,
         orders.created_at AS order_created_at,
         orders.updated_at AS order_updated_at,
         order_items.order_item_id,
@@ -25,6 +27,7 @@ export async function GET(_: NextRequest, { params }: { params: { orderId: strin
       WHERE orders.order_id = ${Number(params.orderId)}
       ORDER BY orders.created_at;
     `;
+    console.log(result)
     const rows = result.rows;
 
     return NextResponse.json({ rows }, { status: 200 });
