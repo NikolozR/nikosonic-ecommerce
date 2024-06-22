@@ -31,7 +31,7 @@ function ProfileSidebar({ user, active }: { user: User, active: 'profile' | 'blo
         </li>
         <li className={"h-[42px] flex items-center " + (active === 'orders' ? 'border-solid border-b-[1px] border-[#141718]' : '')}>
           <Link
-            href={"/profile"}
+            href={"/orders"}
             className={"font-semibold text-[1rem] " + (active === 'orders' ? 'text-[#141718]' : 'text-[#605F5F]')}
           >
             Orders

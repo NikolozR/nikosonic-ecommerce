@@ -4,6 +4,14 @@ import Button from "../shared/Button";
 import React, { useEffect, useRef, useState } from "react";
 import { handleProductAddSubmit } from "../../actions";
 import FileUpload from "../shared/FileUpload";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/react";
 function AddProductForm() {
   const [multipleFileWrongSize, setMultipleFileWrongSize] = useState(false);
   const [fileWrongSize, setFileWrongSize] = useState(false);
@@ -17,18 +25,19 @@ function AddProductForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [adding, setAdding] = useState(false);
 
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+
   useEffect(() => {
     if (message !== null) {
-      let timer: NodeJS.Timeout;
-      if (message) {
-        timer = setTimeout(() => {
-          setMessage(null);
-        }, 3000);
-      }
+      onOpen();
+      const timer = setTimeout(() => {
+        onClose();
+        setMessage(null);
+      }, 3000);
       return () => clearTimeout(timer);
     }
     return;
-  }, [message]);
+  }, [message, onOpen, onClose]);
 
   const handleFileChangeMultiple = () => {
     const imageFiles =
@@ -68,7 +77,7 @@ function AddProductForm() {
       }
       setSelectedFile(null);
       setSelectedFile(null);
-      setSelectValue(""); // Reset select value
+      setSelectValue("");
       window.history.replaceState({}, document.title, window.location.pathname);
     } catch (error) {
       console.error("Failed to add product", error);
@@ -111,6 +120,7 @@ function AddProductForm() {
                 className="border-[1px] text-gray-800 resize-none h-full placeholder:font-normal font-bold border-solid text-[1rem] p-[10px] border-[#CBCBCB] outline-none rounded-xl"
                 name="description"
                 id="description"
+                required
               />
             </label>
           </div>
@@ -146,13 +156,31 @@ function AddProductForm() {
         >
           {adding ? "Submitting..." : "Submit"}
         </Button>
-        {message &&
-          (message.split(" ")[0] === "Failed" ? (
-            <p className="text-red-600 mt-4">{message}</p>
-          ) : (
-            <p className="text-green-600 mt-4">{message}</p>
-          ))}
       </form>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Submission Status
+              </ModalHeader>
+              <ModalBody>
+                <p>{message}</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  fontSize="1rem"
+                  padding="px-[12px] py-[6px]"
+                  type="button"
+                  handleClick={onClose}
+                >
+                  Close
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 }

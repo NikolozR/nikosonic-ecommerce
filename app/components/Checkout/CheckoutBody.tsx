@@ -15,6 +15,7 @@ const CheckoutBody = ({
   addresses: MyAddress[];
   cartItems: CartItem[];
 }) => {
+  const cart = useCartContext();
   const [selectedAddress, setSelectedAddress] =
     useState<SelectedAddress | null>(null);
   const [selectedBillingAddress, setSelectedBillingAddress] =
@@ -31,7 +32,6 @@ const CheckoutBody = ({
     country: "",
     city: "",
   });
-  const cart = useCartContext();
   const addressesOptionsBilling = addresses
     .filter((el) => el.type === "billing")
     .map((el) => ({

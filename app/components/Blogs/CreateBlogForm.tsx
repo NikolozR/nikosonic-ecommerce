@@ -4,6 +4,7 @@ import Button from "../shared/Button";
 import { useEffect, useRef, useState } from "react";
 import { handleBlogCreation } from "../../actions";
 import FileUpload from "../shared/FileUpload";
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure, Button as NextUIButton } from "@nextui-org/react";
 function CreateBlogForm() {
   const [fileWrongSize, setFileWrongSize] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -13,18 +14,21 @@ function CreateBlogForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [adding, setAdding] = useState(false);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   useEffect(() => {
-  if (message !== null) {
+    if (message !== null) {
       let timer: NodeJS.Timeout;
       if (message) {
         timer = setTimeout(() => {
           setMessage(null);
+          onClose(); // Close the modal after the timeout
         }, 3000);
       }
       return () => clearTimeout(timer);
     }
     return;
-  }, [message]);
+  }, [message, onClose]);
 
   const handleFileChange = () => {
     const imageFiles =
@@ -44,6 +48,7 @@ function CreateBlogForm() {
     try {
       await handleBlogCreation(formData);
       setMessage("Blog Created Successfully!");
+      onOpen()
       if (formRef.current) {
         formRef.current.reset();
       }
@@ -101,12 +106,20 @@ function CreateBlogForm() {
         >
           {adding ? "Creating Blog..." : "Create Blog"}
         </Button>
-        {message &&
-          (message.split(" ")[0] === "Failed" ? (
-            <p className="text-red-600 mt-4">{message}</p>
-          ) : (
-            <p className="text-green-600 mt-4">{message}</p>
-          ))}
+         {/* Modal for displaying message */}
+         <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalContent>
+            <ModalHeader className="flex flex-col gap-1">Blog Creation Status</ModalHeader>
+            <ModalBody>
+              <p>{message}</p>
+            </ModalBody>
+            <ModalFooter>
+              <NextUIButton color="primary" variant="light" onPress={onClose}>
+                Close
+              </NextUIButton>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </form>
     </div>
   );

@@ -423,3 +423,20 @@ export async function getOrder(order_id: string) {
   })
   return (await res.json()).rows;
 }
+export async function getOrdersByUser(user_id: number) {
+  const res = await fetch(baseUrl + '/api/orders/' + user_id, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    next: {
+      tags: ['orders']
+    }
+  })
+  return (await res.json()).rows;
+}
+
+export async function cancelOrder(order_id: number) {
+  await fetch(baseUrl + '/api/orders/cancel/' + order_id, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+  })
+}
