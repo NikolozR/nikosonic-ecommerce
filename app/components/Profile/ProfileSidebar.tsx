@@ -3,7 +3,7 @@ import AvatarForm from "./AvatarForm";
 
 
 
-function ProfileSidebar({ user, active }: { user: User, active: 'profile' | 'blogs' | 'orders' }) {
+function ProfileSidebar({ user, active }: { user: User, active: 'profile' | 'blogs' | 'orders' | 'addresses' }) {
   return (
     <div className="bg-[#F3F5F7] rounded-[8px] h-fit w-fit flex flex-col px-[16px] py-[40px]">
       <div>
@@ -19,6 +19,14 @@ function ProfileSidebar({ user, active }: { user: User, active: 'profile' | 'blo
             className={"font-semibold text-[1rem] " + (active === 'profile' ? 'text-[#141718]' : 'text-[#605F5F] ')}
           >
             Profile
+          </Link>
+        </li>
+        <li className={"h-[42px] flex items-center " + (active === 'addresses' ? 'border-solid border-b-[1px] border-[#141718]' : '')}>
+          <Link
+            href={"/addresses"}
+            className={"font-semibold text-[1rem] " + (active === 'addresses' ? 'text-[#141718]' : 'text-[#605F5F]')}
+          >
+            Addresses
           </Link>
         </li>
         <li className={"h-[42px] flex items-center " + (active === 'orders' ? 'border-solid border-b-[1px] border-[#141718]' : '')}>

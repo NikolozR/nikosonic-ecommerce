@@ -1,7 +1,9 @@
 "use server";
 import {
+  createAddress,
   createBlog,
   createProduct,
+  getUser,
   getUserBySub,
   sendCheckoutRequest,
   updateBlog,
@@ -160,7 +162,27 @@ export async function setSearchParams(
   return params;
 }
 
-export async function handleCheckout(cartItems: CartItem[]) {
-  const { url } = await sendCheckoutRequest(cartItems);
-  redirect(url);
+export async function handleCheckout(cartItems: CartItem[], shippingAddress: MyAddress | AddressInput, billingAddress: MyAddress | AddressInput) {
+  const { url } = await sendCheckoutRequest(cartItems, shippingAddress, billingAddress);
+  redirect(url)
+}
+
+
+export async function handleAddressCreation(formData: FormData) {
+  const user: User = await getUser();
+  let body: CreateAddress = {
+    userId: user.id,
+    city: '',
+    country: '',
+    address: '',
+    addressName: '',
+    type: 'shipping',
+    phone: ''
+  };
+  formData.forEach((val, key) => {
+    if (val !== "") {
+      body[key] = val;
+    }
+  });
+  await createAddress(body);
 }

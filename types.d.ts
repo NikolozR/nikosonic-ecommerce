@@ -20,14 +20,14 @@ type ReviewsProps = {
   product: Product;
   reviews: Review[];
   addOptimisticProduct: (action: Product) => void;
-}
+};
 type ReviewFormProps = {
   user: User;
   product: Product;
   addOptimisticReview: (action: Review) => void;
   addOptimisticProduct: (action: Product) => void;
   showStars?: boolean;
-}
+};
 type InputProps = {
   name: string;
   label?: string;
@@ -80,6 +80,13 @@ type StripeProduct = {
   active: boolean;
   default_price: string;
   name: string;
+  quantity?: number;
+};
+type StripeCheckoutListItem = {
+  id: string;
+  amount_total: number;
+  description: string;
+  quantity: number;
 };
 type paramsLang = {
   params: { locale: string };
@@ -193,3 +200,47 @@ type AdminFormUser = {
   type: "add" | "edit";
   handleSubmit: (formData: FormData) => Promise<void>;
 };
+type AddressType = "shipping" | "billing";
+
+interface MyAddress {
+  address_id: number;
+  user_id: number;
+  type: AddressType;
+  phone: string;
+  address: string;
+  city: string;
+  address_name: string;
+  country: string;
+}
+type AddressInput = {
+  street: string;
+  country: string;
+  city: string;
+};
+
+interface CreateAddress extends keyValuePair {
+  type: "billing" | "shipping";
+  userId: number;
+  phone: string;
+  addressName: string;
+  address: string;
+  city: string;
+  country: string;
+}
+
+interface OrderItem {
+  order_id: number;
+  user_id: number;
+  order_created_at: string;
+  order_updated_at: string;
+  order_item_id: number;
+  product_id: number;
+  order_item_quantity: number;
+  name: string;
+  price: string;
+  description: string;
+  thumbnail_url: string;
+  shipping_address: string;
+  billing_address: string;
+  brand: string;
+}

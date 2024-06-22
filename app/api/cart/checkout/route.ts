@@ -5,14 +5,18 @@ const stripe = require("stripe")(
 );
 
 const getActiveProducts = async () => {
-  const checkProducts = await stripe.products.list();
+  const checkProducts = await stripe.products.list({
+    limit: 10000
+  });
   const availableProducts = checkProducts.data.filter(
     (product: any) => product.active === true
   );
   return availableProducts;
 };
 export async function POST(request: Request) {
-  const cartItems: CartItem[] = await request.json();
+  const {cartItems, shippingAddress, billingAddress}: {cartItems: CartItem[], shippingAddress: MyAddress | AddressInput, billingAddress: MyAddress | AddressInput} = await request.json();
+  let shippingFinalAddress = ''
+  let billingFinalAddress = ''
   let activeProducts = await getActiveProducts();
   try {
     let stripeItems: any = [];
@@ -28,16 +32,31 @@ export async function POST(request: Request) {
       }
     }
 
+    if ('address' in shippingAddress) {
+      shippingFinalAddress = `${shippingAddress.address}, ${shippingAddress.city}, ${shippingAddress.country}`
+    } else {
+      shippingFinalAddress = `${shippingAddress.street}, ${shippingAddress.city}, ${shippingAddress.country}`
+    }
+
+    if ('address' in billingAddress) {
+      billingFinalAddress = `${billingAddress.address}, ${billingAddress.city}, ${billingAddress.country}`
+    } else {
+      billingFinalAddress = `${billingAddress.street}, ${billingAddress.city}, ${billingAddress.country}`
+    }
+
     const session = await stripe.checkout.sessions.create({
         line_items: stripeItems,
         mode: "payment",
-        success_url: BASE_URL + "/cart",
+        success_url: BASE_URL + "/api/cart/checkout/success?session_id={CHECKOUT_SESSION_ID}",
         cancel_url: BASE_URL + "/cart",
+        metadata: {
+          billingAddress: billingFinalAddress,
+          shippingAddress: shippingFinalAddress
+        }
       });
 
-
     return NextResponse.json(
-      { url: session.url },
+      { url: session.url, id: session.id },
       { status: 200 }
     );
   } catch (error) {

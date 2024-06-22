@@ -31,7 +31,6 @@ function sortProducts(products: Product[], selectedSortBy: string):Product[]  {
 }
 
 function ProductGrid({ products, user }: { products: Product[]; user: User }) {
-  console.log("rerenderereer")
   const [sortedProducts, setSortedProducts] = useState<Product[]>(products)
   const [selectedSortBy, setSelectedSortBy] = useState<string>('')
   const [grid, setGrid] = useState(3);

@@ -1,11 +1,11 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 import { getSession } from "@auth0/nextjs-auth0/edge";
+import { cookies } from "next/headers";
 
 export const authMiddleware: MiddlewareFactory = (next) => {
   return async (request: NextRequest, _next: NextFetchEvent) => {
     const pathname = request.nextUrl.pathname;
     const session = await getSession();
-    console.log(session?.user.role[0]);
     if (!session) {
       if (
         pathname === "/" ||
@@ -23,7 +23,8 @@ export const authMiddleware: MiddlewareFactory = (next) => {
         pathname.startsWith("/cart") ||
         pathname.startsWith("/checkout") ||
         pathname.startsWith("/blogs/create") ||
-        pathname.startsWith("/blogs/edit")
+        pathname.startsWith("/blogs/edit") ||
+        pathname.startsWith("/checkout")
       ) {
         const url = new URL("/", request.url);
         return NextResponse.redirect(url);
@@ -31,6 +32,14 @@ export const authMiddleware: MiddlewareFactory = (next) => {
     } else {
       if (pathname.includes("admin")) {
         if (session?.user.role[0] === "Admin") {
+          return next(request, _next);
+        } else {
+          const url = new URL("/", request.url);
+          return NextResponse.redirect(url);
+        }
+      } else if (pathname.startsWith("/checkout/complete")) {
+        const accessComplete = cookies().get("access_complete")?.value;
+        if (accessComplete) {
           return next(request, _next);
         } else {
           const url = new URL("/", request.url);
