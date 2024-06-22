@@ -1,4 +1,4 @@
-import { handleCheckout } from "../../actions";
+import Link from "next/link";
 import Button from "../shared/Button";
 
 function CartSummary({ cartItems }: { cartItems: CartItem[] }) {
@@ -16,17 +16,16 @@ function CartSummary({ cartItems }: { cartItems: CartItem[] }) {
             .toFixed(2)}
         </span>
       </div>
-      <Button
-        type="button"
-        padding="px-[140px] py-[10px]"
-        fontSize="1.125rem"
-        className="font-medium block mx-auto"
-        handleClick={async () => {
-            await handleCheckout(cartItems)
-        }}
-      >
-        Checkout
-      </Button>
+      <Link href={"/checkout"} prefetch={true}>
+        <Button
+          type="button"
+          padding="px-[140px] py-[10px]"
+          fontSize="1.125rem"
+          className="font-medium block mx-auto"
+        >
+          Checkout
+        </Button>
+      </Link>
     </div>
   );
 }

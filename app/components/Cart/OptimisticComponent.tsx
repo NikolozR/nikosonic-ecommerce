@@ -4,12 +4,10 @@ import CartSummary from "./CartSummary";
 import CartGrid from "./CartGrid";
 
 function OptimisticComponent({ cartItems }: { cartItems: CartItem[] }) {
-  console.log(cartItems, "FROM SERVER")
   
   const [optimisticCartItems, addOptimisticCartItems] = useOptimistic(
     cartItems,
     (state: CartItem[], action: { type: string; payload?: CartItem }) => {
-      console.log("SIU")
       switch (action.type) {
         case "remove":
           return state.filter(
@@ -34,7 +32,6 @@ function OptimisticComponent({ cartItems }: { cartItems: CartItem[] }) {
   );
 
 
-  console.log(optimisticCartItems, "FROM OPTIMISTIC")
   if (optimisticCartItems.length > 0) {
       return (
         <div className="flex gap-[64px]">

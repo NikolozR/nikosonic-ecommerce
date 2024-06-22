@@ -5,7 +5,6 @@ import ProfileSidebar from "../../../../components/Profile/ProfileSidebar";
 async function MyBlogs() {
   const user: User = await getUser();
   const blogs: Blog[] = await getUserBlogs(user.id);
-  console.log(blogs)
   return (
     <section className="mb-[80px]">
       <div className="container">

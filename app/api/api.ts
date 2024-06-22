@@ -148,7 +148,6 @@ export async function getAllProducts() {
 export async function getProductsByFilter(searchParams: {
   [key: string]: string;
 }) {
-  console.log(searchParams)
   let stringBuilder = "?";
   for (let key in searchParams) {
     if (searchParams.hasOwnProperty(key)) {
@@ -306,11 +305,15 @@ export async function getUser() {
   return user;
 }
 
-export async function sendCheckoutRequest(cartItems: CartItem[]) {
+export async function sendCheckoutRequest(cartItems: CartItem[], shippingAddress: MyAddress | AddressInput, billingAddress: MyAddress | AddressInput) {
   const res = await fetch(baseUrl + "/api/cart/checkout", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(cartItems),
+    body: JSON.stringify({
+      cartItems: cartItems,
+      shippingAddress: shippingAddress,
+      billingAddress: billingAddress
+    }),
   });
   return await res.json();
 }
@@ -323,7 +326,6 @@ export async function getUserBlogs(userId: number) {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-  console.log(res);
   return (await res.json()).rows;
 }
 
@@ -368,4 +370,56 @@ export async function subscribeNewsLetter(email: string) {
     console.error("Error:", error);
     return { success: false, message: "An unexpected error occurred" };
   }
+}
+
+
+export async function getAddressesByUser(userId: number) {
+  const res = await fetch(baseUrl + "/api/addresses/get/" + userId, {
+    next: {
+      tags: ["address"],
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  return (await res.json()).rows;
+}
+
+export async function getAddress(addressId: number) {
+  const res = await fetch(baseUrl + "/api/addresses/getSingle/" + addressId, {
+    next: {
+      tags: ["address"],
+    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  return (await res.json()).rows[0];
+}
+
+export async function createAddress(body: CreateAddress) {
+  const res = await fetch(baseUrl + "/api/addresses/create", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  revalidateTag("address");
+  return res;
+}
+
+export async function deleteAddress(addressId: number) {
+  await fetch(baseUrl + "/api/addresses/deleteSingle/" + addressId, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+  revalidateTag("address");
+}
+
+export async function getOrder(order_id: string) {
+  const res = await fetch(baseUrl + '/api/orders/get/' + order_id, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    next: {
+      tags: ['singleOrder', 'orders']
+    }
+  })
+  return (await res.json()).rows;
 }
