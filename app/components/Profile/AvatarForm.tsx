@@ -1,16 +1,23 @@
 "use client";
 import { CiCamera } from "react-icons/ci";
 import type { PutBlobResult } from "@vercel/blob";
-import { useState, useRef } from "react";
+import { useState, useRef, useOptimistic, startTransition } from "react";
 import { uploadAvatar } from "../../api/api";
 import Image from "next/image";
 import { TailSpin } from "react-loader-spinner";
 
 function AvatarForm({ url }: { url: string }) {
+  const [optimisticUrl, uploadOptimisticUrl] = useOptimistic(
+    url,
+    (_: string, action: string) => {
+      return action;
+    }
+  );
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
 
   const handleChange = async () => {
+    console.log("oeeeee");
     setIsUploading(true);
     if (!inputFileRef.current?.files) {
       throw new Error("No file selected");
@@ -21,6 +28,9 @@ function AvatarForm({ url }: { url: string }) {
       body: file,
     });
     const newBlob = (await response.json()) as PutBlobResult;
+    startTransition(() => {
+      uploadOptimisticUrl(newBlob.url);
+    });
     await uploadAvatar(newBlob.url);
     setIsUploading(false);
   };
@@ -29,7 +39,7 @@ function AvatarForm({ url }: { url: string }) {
     <div className="w-fit h-fit relative mx-auto">
       {!isUploading ? (
         <Image
-          src={url}
+          src={optimisticUrl}
           width={90}
           height={90}
           className="rounded-[50%] !h-[90px] object-cover"

@@ -1,9 +1,6 @@
-import { handleProfileChange } from "../../../actions";
 import { getUser } from "../../../api/api";
-// import NewPassword from "../../../components/Profile/NewPassword";
-import ProfileDetails from "../../../components/Profile/ProfileDetails";
+import ProfileForm from "../../../components/Profile/ProfileForm";
 import ProfileSidebar from "../../../components/Profile/ProfileSidebar";
-import Button from "../../../components/shared/Button";
 
 async function Profile() {
   const user: User = await getUser();
@@ -15,20 +12,7 @@ async function Profile() {
         </h1>
         <div className="flex gap-[80px]">
           <ProfileSidebar user={user} active="profile" />
-          <form className="w-[60%] flex flex-col" action={handleProfileChange}>
-            <ProfileDetails user={user} />
-            {/* {user.sub.split("|")[0] === "auth0" && <NewPassword />} */}
-            <div className="mt-[24px]">
-            <Button
-              type="submit"
-              fontSize="1rem"
-              leading="28px"
-              padding="px-[40px] py-[12px]"
-            >
-              Save Changes
-            </Button>
-            </div>
-          </form>
+          <ProfileForm user={user} />
         </div>
       </div>
     </section>

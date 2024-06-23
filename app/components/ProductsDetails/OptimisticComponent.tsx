@@ -8,7 +8,7 @@ function OptimisticComponent({product, reviews, user}: {product: Product, review
     })
   return (
     <div>
-        <Details product={optimisticProduct} />
+        <Details product={optimisticProduct} user={user} />
         <Reviews
           reviews={reviews}
           product={optimisticProduct}
