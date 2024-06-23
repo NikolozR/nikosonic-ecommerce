@@ -25,6 +25,7 @@ module.exports = {
       },
       boxShadow: {
         'custom': '0 2px 5px rgba(0, 0, 0, 0.1)',
+        'custom-lg': '0px 3px 15px rgba(0, 0, 0, 0.15)',
       }
       
     },

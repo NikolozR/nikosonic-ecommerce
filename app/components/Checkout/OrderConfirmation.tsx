@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Button from "../shared/Button";
 import Link from "next/link";
+import { deleteConfirmationAccess } from "../../actions";
 
 interface OrderProps {
   order: OrderItem[];
@@ -26,13 +27,16 @@ const OrderConfirmation: React.FC<OrderProps> = ({ order }) => {
       )
       .toFixed(2);
 
+    // Calculate the number of columns dynamically based on the number of items
+    const numCols = Math.min(order.length, 3); // Maximum of 3 columns
+
     return (
-      <div className="text-center w-[40%] mx-auto p-6 shadow-lg">
+      <div className="text-center w-[60%] mx-auto p-6 shadow-custom-lg rounded-xl mb-[80px]">
         <h1 className="text-2xl font-bold mb-4">Thank you! 🎉</h1>
         <p className="text-lg mb-6">Your order has been received</p>
-        <div className="grid grid-cols-3 mb-6">
+        <div className={`grid grid-cols-${numCols} my-[20px] gap-4 mx-auto mb-6`}>
           {order.map((item, index) => (
-            <div key={index} className="mx-4">
+            <div key={index} className="flex flex-col items-center">
               <Image
                 src={item.thumbnail_url}
                 alt={item.name}
@@ -46,16 +50,17 @@ const OrderConfirmation: React.FC<OrderProps> = ({ order }) => {
             </div>
           ))}
         </div>
-        <div className="mb-2">Order ID: #{order[0].order_id}</div>
-        <div className="mb-2">Date: {orderDate}</div>
-        <div className="mb-2">Total: ${totalAmount}</div>
-        <div className="mb-2">Payment method: Credit Card</div>
+        <div className="mb-3">Order ID: #{order[0].order_id}</div>
+        <div className="mb-3">Date: {orderDate}</div>
+        <div className="mb-3">Total: ${totalAmount}</div>
+        <div className="mb-3">Payment method: Credit Card</div>
         <Link href={"/orders"}>
           <Button
             padding="py-5 px-10"
             fontSize="1rem"
             type="submit"
             className="mt-[24px]"
+            handleClick={deleteConfirmationAccess}
           >
             Order History
           </Button>

@@ -11,6 +11,7 @@ import {
 } from "./api/api";
 import { getSession } from "@auth0/nextjs-auth0";
 import { put } from "@vercel/blob";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function getAuth0User() {
@@ -185,4 +186,8 @@ export async function handleAddressCreation(formData: FormData) {
     }
   });
   await createAddress(body);
+}
+
+export async function deleteConfirmationAccess() {
+  cookies().delete('access_complete')
 }
