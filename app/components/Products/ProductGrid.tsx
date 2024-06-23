@@ -12,7 +12,7 @@ import {
   Input,
 } from "@nextui-org/react";
 import { CiSearch } from "react-icons/ci";
-import Fuse from "fuse.js"; 
+import Fuse from "fuse.js";
 
 function getDropdownBtnContent(val: string): string {
   if (val === "price_asc") return "Price: Ascending";
@@ -35,9 +35,13 @@ function sortProducts(products: Product[], selectedSortBy: string): Product[] {
   return sorted;
 }
 
-function filterProducts(products: Product[], query: string, fuse: Fuse<Product>): Product[] {
+function filterProducts(
+  products: Product[],
+  query: string,
+  fuse: Fuse<Product>
+): Product[] {
   if (!query) return products;
-  return fuse.search(query).map(result => result.item);
+  return fuse.search(query).map((result) => result.item);
 }
 
 function ProductGrid({ products, user }: { products: Product[]; user: User }) {
@@ -46,10 +50,14 @@ function ProductGrid({ products, user }: { products: Product[]; user: User }) {
   const [grid, setGrid] = useState(3);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const fuse = useMemo(() => new Fuse(products, {
-    keys: ['name', 'brand'],
-    threshold: 0.4,
-  }), [products]);
+  const fuse = useMemo(
+    () =>
+      new Fuse(products, {
+        keys: ["name", "brand"],
+        threshold: 0.4,
+      }),
+    [products]
+  );
 
   const handleGridChange = (layout: number) => {
     setGrid(layout);

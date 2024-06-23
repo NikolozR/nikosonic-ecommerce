@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import BlogCard from "../shared/BlogCard";
 import { Link } from "../../../navigation";
 import {
@@ -6,13 +6,41 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  Input,
 } from "@nextui-org/react";
-import { Key, useState } from "react";
+import { Key, useEffect, useMemo, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
+import Fuse from "fuse.js";
+import { CiSearch } from "react-icons/ci";
 
 function BlogsGrid({ blogs }: { blogs: Blog[] }) {
   const [currentBlogs, setCurrentBlogs] = useState(blogs);
   const [selectedSortBy, setSelectedSortBy] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const fuse = useMemo(
+    () =>
+      new Fuse(blogs, {
+        keys: ["title", "content"],
+        includeScore: true,
+        threshold: 0.4,
+      }),
+    [blogs]
+  );
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  useEffect(() => {
+    if (!searchQuery) {
+      setCurrentBlogs(blogs);
+      return;
+    }
+
+    const results = fuse.search(searchQuery);
+    const filteredBlogs = results.map((result) => result.item);
+    setCurrentBlogs(filteredBlogs);
+  }, [searchQuery, blogs, fuse]);
 
   const handleSortChange = (sortCriteria: Key) => {
     setSelectedSortBy(sortCriteria.toString());
@@ -58,6 +86,15 @@ function BlogsGrid({ blogs }: { blogs: Blog[] }) {
                   <DropdownItem key="date_desc">Oldest to Newest</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
+              <Input
+                type="search"
+                aria-label="Search Blogs"
+                placeholder="Search Blogs..."
+                className="[&::-webkit-search-cancel-button]:hidden w-[300px] ml-[30px]"
+                endContent={<CiSearch />}
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
             </div>
           </div>
           <div className="grid grid-cols-3 gap-[40px] mt-[40px]">
