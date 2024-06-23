@@ -91,7 +91,6 @@ async function NavBar() {
           </ul>
           <div>
             <div className="flex gap-[15px] items-center">
-              <RiSearchLine size={24} className="dark:text-white cursor-pointer text-black" />
               {!user ? (
                 <>
                   <ProfileDropDown isAuthorized={false} />

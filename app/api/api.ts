@@ -439,4 +439,5 @@ export async function cancelOrder(order_id: number) {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
   })
+  revalidateTag('orders')
 }
