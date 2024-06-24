@@ -4,6 +4,7 @@ import FilterCheckbox from "../shared/FilterCheckbox";
 import { redirect } from "next/navigation";
 import { IoFilterSharp } from "react-icons/io5";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { getTranslations } from "next-intl/server";
 // import PriceSlider from "./PriceSlider";
 
 const handleCheckboxChange = async (
@@ -48,12 +49,13 @@ const handleReset = async () => {
   redirect(`/products?${params.toString()}`);
 };
 
-function FilterSidebar({ brands }: { brands: string[] }) {
+async function FilterSidebar({ brands }: { brands: string[] }) {
+  const t = await getTranslations("Products");
   return (
     <div className="w-[20%] mb-[100px]">
       <div className="mb-[32px] w-full flex justify-between items-center">
         <h2 className="text-[#121212] font-bold flex items-center gap-[8px] leading-[32px] text-[1.25rem]">
-          <IoFilterSharp /> Filter
+          <IoFilterSharp /> {t('filter')}
         </h2>
         <Button
           handleClick={handleReset}
@@ -63,13 +65,13 @@ function FilterSidebar({ brands }: { brands: string[] }) {
           className="flex items-center gap-[4px] !text-[#003285] justify-between bg-[#FFAB00A3]"
         >
           <FaRegTrashAlt />
-          Clear
+          {t("clear")}
         </Button>
       </div>
       <div>
         <div>
           <h3 className="text-[#121212] font-bold text-[1rem] leading-[26px] mb-[12px]">
-            CATEGORIES
+            {t("categories")}
           </h3>
           <div className="flex flex-col gap-[8px]">
             <FilterCheckbox
@@ -115,7 +117,7 @@ function FilterSidebar({ brands }: { brands: string[] }) {
         </div>
         <div>
           <h3 className="text-[#121212] font-bold text-[1rem] leading-[26px] mt-[32px] mb-[12px]">
-            BRANDS
+            {t("brands")}
           </h3>
           <div className="flex flex-col gap-[8px]">
             {brands.map((brand, i) => {

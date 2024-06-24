@@ -2,7 +2,7 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { getAuth0User } from "../actions";
-const baseUrl = process.env.BASE_URL;
+  const baseUrl = process.env.BASE_URL;
 
 export async function uploadAvatar(url: string) {
   const session = await getSession();
@@ -76,6 +76,15 @@ export async function createProduct(body: CreateProduct) {
   });
   revalidateTag("products");
   return res;
+}
+
+export async function deleteProduct(id: number) {
+  await fetch(baseUrl + "/api/products/delete/" + id, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+  revalidateTag("products");
+  revalidateTag('cart')
 }
 export async function getAllBlogs() {
   try {

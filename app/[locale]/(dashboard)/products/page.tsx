@@ -1,3 +1,5 @@
+import { Claims } from "@auth0/nextjs-auth0";
+import { getAuth0User } from "../../../actions";
 import {
   getAllProducts,
   getBrands,
@@ -19,13 +21,14 @@ async function Products({
       ? await getAllProducts()
       : await getProductsByFilter(searchParams);
   const user = await getUser();
+  const authUser: Claims | undefined = await getAuth0User();
   return (
     <main>
       <div className="container">
         <div className="flex w-full gap-[80px] mt-[40px]">
           <FilterSidebar brands={brandsMapped} />
           <div className="flex-1">
-              <ProductGrid products={products} user={user}></ProductGrid>
+            <ProductGrid products={products} user={user} auth0User={authUser} ></ProductGrid>
           </div>
         </div>
       </div>

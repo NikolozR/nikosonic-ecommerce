@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { handleBlogCreation } from "../../actions";
 import FileUpload from "../shared/FileUpload";
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure, Button as NextUIButton } from "@nextui-org/react";
+import { useTranslations } from "next-intl";
 function CreateBlogForm() {
   const [fileWrongSize, setFileWrongSize] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -14,6 +15,8 @@ function CreateBlogForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [adding, setAdding] = useState(false);
 
+  const t = useTranslations("Blogs")
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
@@ -22,7 +25,7 @@ function CreateBlogForm() {
       if (message) {
         timer = setTimeout(() => {
           setMessage(null);
-          onClose(); // Close the modal after the timeout
+          onClose();
         }, 3000);
       }
       return () => clearTimeout(timer);
@@ -59,7 +62,7 @@ function CreateBlogForm() {
       window.history.replaceState({}, document.title, window.location.pathname);
     } catch (error) {
       console.error("Failed to create blog", error);
-      setMessage("Failed to create blog");
+      setMessage("Blog Created Successfully!");
     } finally {
       setAdding(false);
     }
@@ -74,19 +77,19 @@ function CreateBlogForm() {
       >
         <div className="flex w-full justify-between gap-[150px]">
           <div className="w-[42%] flex mx-auto flex-col gap-5">
-            <Input name="title" required placeHolder="Blog Title..." label="Blog Title" labelClassName="text-[#6C7275] text-[0.75rem] font-bold "></Input>
+            <Input name="title" required placeHolder={t('title')} label={t('title')} labelClassName="text-[#6C7275] text-[0.75rem] font-bold "></Input>
             <FileUpload
               handleFileChange={handleFileChange}
               ref={thumbnailFileInputRef}
               selectedFile={selectedFile}
               fileWrongSize={fileWrongSize}
-              placeholder="Browse Blog Post Thumbnail"
+              placeholder={t('imageInput')}
             ></FileUpload>
             <label
               htmlFor="content"
               className="font-bold flex-1 text-[#6C7275] text-[0.75rem] flex flex-col gap-[12px]"
             >
-              Blog
+              {t('blog')}
               <textarea
                 className="border-[1px] leading-[24px] text-gray-800 resize-none h-[350px] placeholder:font-normal font-bold border-solid text-[1rem] p-[10px] border-[#CBCBCB] outline-none rounded-xl"
                 name="content"
@@ -104,18 +107,17 @@ function CreateBlogForm() {
           className="mx-auto"
           disabled={fileWrongSize || adding}
         >
-          {adding ? "Creating Blog..." : "Create Blog"}
+          {adding ? t('submiting') : t('submit')}
         </Button>
-         {/* Modal for displaying message */}
          <Modal isOpen={isOpen} onClose={onClose}>
           <ModalContent>
-            <ModalHeader className="flex flex-col gap-1">Blog Creation Status</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">{t('status')}</ModalHeader>
             <ModalBody>
-              <p>{message}</p>
+              <p>{message?.includes('Failed') ? t('failed') : t('success')}</p>
             </ModalBody>
             <ModalFooter>
               <NextUIButton color="primary" variant="light" onPress={onClose}>
-                Close
+                {t('close')}
               </NextUIButton>
             </ModalFooter>
           </ModalContent>

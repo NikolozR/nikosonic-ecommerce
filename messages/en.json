@@ -6,10 +6,113 @@
         "blogs": "Blogs",
         "contacts": "Contact Us",
         "admin": "Admin",
-        "logOut": "Log Out"
+        "logOut": "Log Out",
+        "addProducts": "Add Products",
+        "headphonesShop": "Headphones Shop",
+        "copyright": "Copyright © 2024 Nikoloz Rusishvili. All rights reserved"
     },
-    "Search": {
-        "product": "Search Product",
-        "sort": "Sort By Price"
+    "LandingHero": {
+        "head1": "Listen to",
+        "head2": "the",
+        "head3": "Amazing",
+        "head4": "music sound",
+        "sub": "Experience music like never before",
+        "btn": "Shop Now"
+    },
+    "NewArrivals": {
+        "head": "New Arrivals",
+        "btn": "Shop Now"
+    },
+    "NewsLetter": {
+        "newsletter": "Join Our Newsletter",
+        "newsletterSubText": "Sign up for deals, new products and promotions",
+        "inputPlaceholder": "Email address",
+        "button": "Sign up",
+        "buttonProgress": "Submitting...",
+        "close": "Close",
+        "status": "Subscription Status",
+        "success": "Email subscribed successfully",
+        "already": "Email is already subscribed"
+    },
+    "ShopCollection": {
+        "head": "Shop Collection",
+        "sub": "Collection"
+    },
+    "MostViewed": {
+        "head": "Most Viewed",
+        "btn": "Shop Now"
+    },
+    "DrDre": {
+        "head": "Explore Headphones for Every Lifestyle!",
+        "quote": "Music is life. That is why our hearts have beats.",
+        "text": "Explore our diverse headphone collection, designed to elevate your listening experience. Whether you are chasing beats or immersing yourself in your favorite tunes, we have the perfect headphones to complement your lifestyle. Discover yours today!",
+        "btn": "Shop Now"
+    },
+    "Features": {
+        "ship": "Free Shipping",
+        "shipText": "Free Shipping",
+        "money": "Money-back",
+        "moneyText": "30 days guarantee",
+        "payment": "Secure Payments",
+        "paymentText": "Secured by Stripe",
+        "support": "24/7 Support",
+        "supportText": "Phone and Email support"
+    },
+    "Newsfeed": {
+        "head": "NEWSFEED",
+        "ig": "Instagram",
+        "sub": "Follow us on social media for more discount & promotions"
+    },
+    "Products": {
+        "clear": "Clear",
+        "filter": "Filter",
+        "categories": "CATEGORIES",
+        "brands": "BRANDS",
+        "products": "Products",
+        "priceAsc": "Price: Ascending",
+        "priceDesc": "Price: Descending",
+        "nameAsc": "Product Name: A-Z",
+        "nameDesc": "Product Name: Z-A",
+        "placeholder": "Search Products...",
+        "sort": "Sort By"
+    },
+    "Profile": {
+        "name": "First Name",
+        "title": "My Profile",
+        "email": "Email",
+        "save": "Save Changes",
+        "saving": "Saving Changes...",
+        "profile": "Profile",
+        "addresses": "Addresses",
+        "orders": "Orders",
+        "logout": "Log Out",
+        "blogs": "My Blogs",
+        "status": "Profile Update Status",
+        "close": "Close",
+        "fail": "Failed to update profile.",
+        "success":"Profile updated successfully!",
+        "account": "Account Details",
+        "display": "Display Name",
+        "lastName": "Last Name",
+        "explanation": "This will be how your name will be displayed in the account section and in reviews"
+    },
+    "Blogs": {
+        "head": "Our Blogs",
+        "sub": "Soundscapes and Stories: Explore the World of Headphones with OurBlogs",
+        "btn": "Create Your Blog",
+        "blogs": "Blogs",
+        "sort": "Sort By",
+        "oldToNew": "Oldest To Newest",
+        "newToOld": "Newest To Oldest",
+        "placeholder":"Search Blogs...",
+        "title": "Blog Title",
+        "imageInput": "Browse Blog Post Thumbnail",
+        "blog": "Blog",
+        "submit": "Create Blog",
+        "submiting": "Creating Blog...",
+        "success": "Blog Created Successfully!",
+        "fail": "Blog Created Successfully!",
+        "status": "Blog Creation Status",
+        "close": "Close"
     }
 }

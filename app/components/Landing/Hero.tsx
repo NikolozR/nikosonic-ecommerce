@@ -1,8 +1,10 @@
 import Link from "next/link";
 import LandingPlaceholder from "../../../public/LandingPlaceholder.png";
 import Button from "../shared/Button";
+import { getTranslations } from "next-intl/server";
 
-function Hero() {
+async function Hero() {
+  const heroT = await getTranslations("LandingHero")
   return (
     <section className="font-poppins">
       <div
@@ -17,21 +19,21 @@ function Hero() {
           <div className="flex flex-col items-end">
             <div>
               <h1 className="text-[5rem] leading-[84px] w-fit">
-                Listen to <br /> the{" "}
-                <span className="text-[#377DFF]">Amazing</span>
-                <br /> music sound.
+                {heroT('head1')} <br /> {heroT('head2')}{" "}
+                <span className="text-[#377DFF]">{heroT('head3')}</span>
+                <br /> {heroT('head4')}.
               </h1>
               <p
-                className={"text-[#121212] text-[1.125rem] pt-[8px] pb-[28px] "}
+                className={"text-[#121212] text-[1.125rem] pt-[8px] pb-[28px] mt-[10px]"}
               >
-                Experience music like never before
+                {heroT('sub')}
               </p>
               <Button
                 type="button"
                 fontSize="1.125rem"
                 padding="px-[56px] py-[12px]"
               >
-                <Link href={"/products"}>Shop Now</Link>
+                <Link href={"/products"}>{heroT("btn")}</Link>
               </Button>
             </div>
           </div>

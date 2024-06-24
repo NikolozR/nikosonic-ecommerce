@@ -1,8 +1,8 @@
 "use client";
+import React, { Key, useEffect, useState, useMemo } from "react";
 import ProductItem from "../shared/ProductItem";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import { IoGrid } from "react-icons/io5";
-import { Key, useEffect, useState, useMemo } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import {
   Dropdown,
@@ -10,16 +10,21 @@ import {
   DropdownMenu,
   DropdownTrigger,
   Input,
+  Pagination,
 } from "@nextui-org/react";
 import { CiSearch } from "react-icons/ci";
 import Fuse from "fuse.js";
+import { useTranslations } from "next-intl";
+import { Claims } from "@auth0/nextjs-auth0";
+
+const ITEMS_PER_PAGE = 9;
 
 function getDropdownBtnContent(val: string): string {
-  if (val === "price_asc") return "Price: Ascending";
-  else if (val === "price_desc") return "Price: Descending";
-  else if (val === "name_asc") return "Product Name: A-Z";
-  else if (val === "name_desc") return "Product Name: Z-A";
-  else return "Sort By";
+  if (val === "price_asc") return "priceAsc";
+  else if (val === "price_desc") return "priceDesc";
+  else if (val === "name_asc") return "nameAsc";
+  else if (val === "name_desc") return "nameDesc";
+  else return "sort";
 }
 
 function sortProducts(products: Product[], selectedSortBy: string): Product[] {
@@ -44,11 +49,13 @@ function filterProducts(
   return fuse.search(query).map((result) => result.item);
 }
 
-function ProductGrid({ products, user }: { products: Product[]; user: User }) {
+function ProductGrid({ products, user, auth0User }: { products: Product[]; user: User, auth0User: Claims | undefined }) {
   const [sortedProducts, setSortedProducts] = useState<Product[]>(products);
   const [selectedSortBy, setSelectedSortBy] = useState<string>("");
   const [grid, setGrid] = useState(3);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const t = useTranslations("Products");
 
   const fuse = useMemo(
     () =>
@@ -81,14 +88,23 @@ function ProductGrid({ products, user }: { products: Product[]; user: User }) {
     setSearchQuery(event.target.value);
   };
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
+
   return (
     <div className="pb-[100px]">
       <div className="flex justify-between mb-[32px] items-center">
-        <h2 className="font-bold text-[1.25rem]">All Products</h2>
+        <h2 className="font-bold text-[1.25rem]">{t("products")}</h2>
         <Input
           type="search"
           aria-label="Search Products"
-          placeholder="Search Products..."
+          placeholder={t("placeholder")}
           className="w-[300px]"
           endContent={<CiSearch />}
           value={searchQuery}
@@ -98,15 +114,15 @@ function ProductGrid({ products, user }: { products: Product[]; user: User }) {
           <Dropdown>
             <DropdownTrigger>
               <div className="cursor-pointer flex items-center gap-[5px] font-semibold">
-                {getDropdownBtnContent(selectedSortBy)}{" "}
+                {t(getDropdownBtnContent(selectedSortBy))}{" "}
                 <RiArrowDownSLine size={20} />
               </div>
             </DropdownTrigger>
             <DropdownMenu className="" onAction={handleSortChange}>
-              <DropdownItem key="price_asc">Price: Ascending</DropdownItem>
-              <DropdownItem key="price_desc">Price: Descending</DropdownItem>
-              <DropdownItem key="name_asc">Product Name: A-Z</DropdownItem>
-              <DropdownItem key="name_desc">Product Name: Z-A</DropdownItem>
+              <DropdownItem key="price_asc">{t("priceAsc")}</DropdownItem>
+              <DropdownItem key="price_desc">{t("priceDesc")}</DropdownItem>
+              <DropdownItem key="name_asc">{t("nameAsc")}</DropdownItem>
+              <DropdownItem key="name_desc">{t("nameDesc")}</DropdownItem>
             </DropdownMenu>
           </Dropdown>
           <div className="flex gap-0">
@@ -130,9 +146,10 @@ function ProductGrid({ products, user }: { products: Product[]; user: User }) {
         </div>
       </div>
       <div className={`grid grid-cols-${grid} gap-[24px]`}>
-        {sortedProducts.map((product) => {
+        {paginatedProducts.map((product) => {
           return (
             <ProductItem
+            auth0User={auth0User}
               key={product.product_id}
               product={product}
               user={user}
@@ -140,6 +157,16 @@ function ProductGrid({ products, user }: { products: Product[]; user: User }) {
             ></ProductItem>
           );
         })}
+      </div>
+      <div className="flex justify-center mt-4">
+        <Pagination
+          total={Math.ceil(sortedProducts.length / ITEMS_PER_PAGE)}
+          classNames={{
+            cursor: "bg-[#ffab00a3] text-black",
+          }}
+          initialPage={1}
+          onChange={handlePageChange}
+        />
       </div>
     </div>
   );

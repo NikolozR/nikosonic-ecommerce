@@ -1,20 +1,23 @@
 import React from "react";
 import Input from "../shared/Input";
+import {  } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 function ProfileDetails({user}: {user: User}) {
+  const t = useTranslations("Profile")
   return (
     <div className="flex flex-col gap-[24px]">
-      <h2 className="text-[1.25rem] font-semibold">Account Details</h2>
-      <Input name="FirstName" defaultValue={user.name} label="First Name" placeHolder="First Name" />
-      <Input name="LastName" label="Last Name" defaultValue={user.surname} placeHolder="Last Name" />
+      <h2 className="text-[1.25rem] font-semibold">{t('account')}</h2>
+      <Input name="FirstName" defaultValue={user.name} label={t('name')} placeHolder={t('name')} />
+      <Input name="LastName" label={t('lastName')} defaultValue={user.surname} placeHolder={t('lastName')} />
       <Input
         name="DisplayName"
-        label="Display Name"
-        additionalInfo="This will be how your name will be displayed in the account section and in reviews"
-        placeHolder="Display Name"
+        label={t('display')}
+        additionalInfo={t('explanation')}
+        placeHolder={t('display')}
         defaultValue={user.displayname ?? ''}
       />
-      <Input name="FirstName" label="Email" placeHolder="Email" defaultValue={user.email} disabled />
+      <Input name="email" label={t('email')} placeHolder={t('email')} defaultValue={user.email} disabled />
     </div>
   );
 }

@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { getNewest, getUserBySub } from "../../api/api";
+import { getNewest, getUser } from "../../api/api";
 import Button from "../shared/Button";
 import ProductItem from "../shared/ProductItem";
-import { getAuth0User } from "../../actions";
+import { getTranslations } from "next-intl/server";
 async function NewArrivals() {
   const products: Product[] = await getNewest(4);
-  const sub = (await getAuth0User())?.sub;
-  const user = await getUserBySub(sub);
+  const user = await getUser();
+  const translate = await getTranslations('NewArrivals')
   return (
     <section className="bg-[#F3F5F7] dark:bg-[#201424] pb-[40px]">
       <div className="container">
         <h2 className="font-poppins text-[#121212] dark:text-white font-medium py-[40px] text-[2.5rem]">
-          New Arrivals
+          {translate('head')}
         </h2>
         <div className="grid grid-cols-4 gap-[50px] pb-[40px]">
           {products?.map((product) => (
@@ -29,7 +29,7 @@ async function NewArrivals() {
           padding="px-[40px] py-[10px]"
           fontSize="1rem"
         >
-          <Link href={"/products"}>Shop Now</Link>
+          <Link href={"/products"}>{translate('btn')}</Link>
         </Button>
       </div>
     </section>

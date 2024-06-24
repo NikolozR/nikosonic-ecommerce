@@ -13,8 +13,8 @@ function loading() {
         <div className="flex gap-[80px]">
           <Card className="bg-[#F3F5F7] rounded-[8px] h-fit w-fit flex flex-col px-[16px] py-[40px]">
             <div>
-              <Skeleton className="rounded-lg">
-                <div className="h-[60px] w-[60px] rounded-full bg-default-300"></div>
+              <Skeleton className="rounded-[100%] w-fit h-fit mx-auto">
+                <div className="h-[100px] w-[100px] rounded-[50%] bg-default-300"></div>
               </Skeleton>
               <Skeleton className="rounded-lg mt-[6px]">
                 <h2 className="text-[1.25rem] font-semibold text-center mb-[40px]">

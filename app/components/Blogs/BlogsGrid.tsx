@@ -12,11 +12,13 @@ import { Key, useEffect, useMemo, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import Fuse from "fuse.js";
 import { CiSearch } from "react-icons/ci";
+import { useTranslations } from "next-intl";
 
 function BlogsGrid({ blogs }: { blogs: Blog[] }) {
   const [currentBlogs, setCurrentBlogs] = useState(blogs);
   const [selectedSortBy, setSelectedSortBy] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const t = useTranslations('Blogs')
 
   const fuse = useMemo(
     () =>
@@ -60,9 +62,9 @@ function BlogsGrid({ blogs }: { blogs: Blog[] }) {
   };
 
   function getDropdownBtnContent(val: string): string {
-    if (val === "date_asc") return "Newest to Oldest";
-    else if (val === "date_desc") return "Oldest to Newest";
-    else return "Sort By";
+    if (val === "date_asc") return "newToOld";
+    else if (val === "date_desc") return "oldToNew";
+    else return "sort";
   }
 
   return (
@@ -71,25 +73,25 @@ function BlogsGrid({ blogs }: { blogs: Blog[] }) {
         <div className="mt-[40px] mb-[80px]">
           <div className="flex gap-[32px] items-center">
             <h3 className="text-[#121212] items-center font-bold text-[1.125rem]">
-              All Blogs
+              {t('blogs')}
             </h3>
             <div className="flex items-center mt-[1px]">
               <Dropdown>
                 <DropdownTrigger>
                   <div className="cursor-pointer flex items-center gap-[5px] font-semibold">
-                    {getDropdownBtnContent(selectedSortBy)}{" "}
+                    {t(getDropdownBtnContent(selectedSortBy))}{" "}
                     <RiArrowDownSLine size={20} />
                   </div>
                 </DropdownTrigger>
                 <DropdownMenu className="" onAction={handleSortChange}>
-                  <DropdownItem key="date_asc">Newest to Oldest</DropdownItem>
-                  <DropdownItem key="date_desc">Oldest to Newest</DropdownItem>
+                  <DropdownItem key="date_asc">{t('newToOld')}</DropdownItem>
+                  <DropdownItem key="date_desc">{t('oldToNew')}</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
               <Input
                 type="search"
                 aria-label="Search Blogs"
-                placeholder="Search Blogs..."
+                placeholder={t('placeholder')}
                 className="[&::-webkit-search-cancel-button]:hidden w-[300px] ml-[30px]"
                 endContent={<CiSearch />}
                 value={searchQuery}

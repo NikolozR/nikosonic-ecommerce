@@ -3,8 +3,9 @@ import { Inter, Poppins, Space_Grotesk } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { locales } from "../../navigation";
 import { ThemeProvider } from "next-themes";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getMessages, unstable_setRequestLocale } from "next-intl/server";
 import { NextUIProvider } from "@nextui-org/react";
+import { NextIntlClientProvider } from "next-intl";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -27,12 +28,12 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params: { locale },
 }: childrenProps<paramsLang>) {
   unstable_setRequestLocale(locale);
-
+  const messages = await getMessages();
   return (
     <html lang={locale} suppressHydrationWarning>
       <UserProvider>
@@ -42,7 +43,11 @@ export default function RootLayout({
           }
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <NextUIProvider>{children}</NextUIProvider>
+            <NextUIProvider>
+              <NextIntlClientProvider messages={messages}>
+                {children}
+              </NextIntlClientProvider>
+            </NextUIProvider>
           </ThemeProvider>
         </body>
       </UserProvider>

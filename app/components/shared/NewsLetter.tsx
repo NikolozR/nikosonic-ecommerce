@@ -6,12 +6,14 @@ import Image from "next/image";
 import NewsLetterp1 from "../../../public/newsletterp1.png";
 import NewsLetterp2 from "../../../public/newletterp2.jpg";
 import { subscribeNewsLetter } from "../../api/api";
+import { useTranslations } from "next-intl";
 
 function NewsLetter() {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const newsLetterT = useTranslations('NewsLetter')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,10 +48,10 @@ function NewsLetter() {
       </div>
       <div className="flex flex-col items-center justify-center h-full">
         <h4 className="font-medium font-poppins text-[2.5rem]">
-          Join Our Newsletter
+          {newsLetterT('newsletter')}
         </h4>
         <p className="text-[1.125rem] pt-[20px] text-[#121212]">
-          Sign up for deals, new products and promotions
+          {newsLetterT('newsletterSubText')}
         </p>
         <form
           onSubmit={handleSubmit}
@@ -64,14 +66,14 @@ function NewsLetter() {
             onChange={(e) => setEmail(e.target.value)}
             className="w-full font-medium text-[1rem] bg-transparent placeholder:text-[#6C7275] text-[#6C7275] focus:outline-none"
             required
-            placeholder="Email address"
+            placeholder={newsLetterT('inputPlaceholder')}
           />
           <button
             type="submit"
-            className="bg-transparent text-[#6C7275] font-medium hover:bg-gray-300 focus:outline-none"
+            className="bg-transparent text-[#6C7275] text-nowrap font-medium hover:bg-gray-300 focus:outline-none"
             disabled={loading}
           >
-            {loading ? "Submitting..." : "Signup"}
+            {loading ? newsLetterT('buttonProgress') : newsLetterT('button')}
           </button>
         </form>
       </div>
@@ -79,13 +81,13 @@ function NewsLetter() {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Subscription Status</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">{newsLetterT('status')}</ModalHeader>
               <ModalBody>
-                <p>{message}</p>
+                <p>{message.includes('successfully') ? newsLetterT('success') : newsLetterT('already')}</p>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
-                  Close
+                  {newsLetterT('close')}
                 </Button>
               </ModalFooter>
             </>
