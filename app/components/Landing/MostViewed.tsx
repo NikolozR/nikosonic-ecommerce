@@ -7,7 +7,7 @@ import { getTranslations } from "next-intl/server";
 async function MostViewed() {
   const products: Product[] = await getMostVieweds(4);
   const user = await getUser();
-  const translate = await getTranslations('MostViewed')
+  const translate = await getTranslations("MostViewed");
   return (
     <section className="bg-[#F3F5F7] pb-[40px]">
       <div className="container">
@@ -24,14 +24,16 @@ async function MostViewed() {
             ></ProductItem>
           ))}
         </div>
-        <Button
-          type="button"
-          className="mx-auto block"
-          padding="px-[40px] py-[10px]"
-          fontSize="1rem"
-        >
-          <Link href={"/products"}>{translate('btn')}</Link>
-        </Button>
+        <Link href={"/products"} className="block mx-auto w-fit">
+          <Button
+            type="button"
+            className="mx-auto block"
+            padding="px-[40px] py-[10px]"
+            fontSize="1rem"
+          >
+            {translate("btn")}
+          </Button>
+        </Link>
       </div>
     </section>
   );
