@@ -177,7 +177,7 @@ function ProductGrid({
           <Pagination
             total={Math.ceil(sortedProducts.length / ITEMS_PER_PAGE)}
             classNames={{
-              cursor: "bg-[#ffab00a3] text-black",
+              cursor: "bg-black text-white",
             }}
             initialPage={1}
             onChange={handlePageChange}

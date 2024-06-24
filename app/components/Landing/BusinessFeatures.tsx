@@ -7,7 +7,7 @@ import { getTranslations } from "next-intl/server";
 async function BusinessFeatures() {
     const t = await getTranslations('Features')
   return (
-    <section className="dark:bg-[#241b33]">
+    <section className="dark:bg-[#241b33] bg-white">
         <div className="container">
             <div className="grid py-[40px] grid-cols-4 gap-[24px]">
                 <div className="bg-[#F3F5F7] dark:bg-[#201424] py-[48px] pl-[32px]">

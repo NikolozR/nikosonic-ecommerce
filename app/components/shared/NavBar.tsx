@@ -14,7 +14,7 @@ async function NavBar() {
   return (
     <nav
     // from-[#FFAB00A3] to-[#FFAB00A3]
-      className="py-[10px] dark:!bg-black bg-gradient-to-b bg-white dark:from-[#241b33] dark:to-[#241b33]"
+      className="py-[10px] dark:!bg-black bg-gradient-to-b bg-white dark:from-[#241b33] dark:to-[#241b33] border-b-1 border-solid border-[#F3F5F7] dark:border-0"
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
@@ -83,7 +83,7 @@ async function NavBar() {
                 <li>
                   <Link
                     href={"/admin/products"}
-                    className="text-[1rem] font-grotesk text-white font-medium dark:text-[#FBBA42]"
+                    className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
                   >
                     {headerT("addProducts")}
                   </Link>

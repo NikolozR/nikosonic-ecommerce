@@ -54,15 +54,15 @@ async function FilterSidebar({ brands }: { brands: string[] }) {
   return (
     <div className="w-[20%] mb-[100px]">
       <div className="mb-[32px] w-full flex justify-between items-center">
-        <h2 className="text-[#121212] font-bold flex items-center gap-[8px] leading-[32px] text-[1.25rem]">
-          <IoFilterSharp /> {t('filter')}
+        <h2 className="text-[#121212] dark:text-[#F3F5F7] font-bold flex items-center gap-[8px] leading-[32px] text-[1.25rem]">
+          <IoFilterSharp className="dark:hidden" /> <IoFilterSharp color="#F3F5F7" className="hidden dark:block" /> {t('filter')}
         </h2>
         <Button
           handleClick={handleReset}
           type="button"
           fontSize="0.8rem"
           padding="px-2 py-2"
-          className="flex items-center gap-[4px] !text-[#003285] justify-between bg-[#FFAB00A3]"
+          className="flex items-center gap-[4px] text-white dark:text-black dark:bg-white justify-between bg-black"
         >
           <FaRegTrashAlt />
           {t("clear")}
@@ -70,7 +70,7 @@ async function FilterSidebar({ brands }: { brands: string[] }) {
       </div>
       <div>
         <div>
-          <h3 className="text-[#121212] font-bold text-[1rem] leading-[26px] mb-[12px]">
+          <h3 className="text-[#121212] dark:text-[#F3F5F7] font-bold text-[1rem] leading-[26px] mb-[12px]">
             {t("categories")}
           </h3>
           <div className="flex flex-col gap-[8px]">
@@ -116,7 +116,7 @@ async function FilterSidebar({ brands }: { brands: string[] }) {
           </div>
         </div>
         <div>
-          <h3 className="text-[#121212] font-bold text-[1rem] leading-[26px] mt-[32px] mb-[12px]">
+          <h3 className="text-[#121212] dark:text-[#F3F5F7] font-bold text-[1rem] leading-[26px] mt-[32px] mb-[12px]">
             {t("brands")}
           </h3>
           <div className="flex flex-col gap-[8px]">
