@@ -23,19 +23,21 @@ async function Hero() {
           <div className="flex justify-center">
             <div className="flex flex-col items-center gap-[24px]">
               <h1 className="text-[3.375rem] leading-[58px] font-poppins font-medium text-center">
-                {t('head')}
+                {t("head")}
               </h1>
               <p className={"text-[#121212] text-[1.25rem] text-center "}>
-                {t('sub')}
+                {t("sub")}
               </p>
               {session ? (
-                <Button
-                  type="button"
-                  fontSize="1.125rem"
-                  padding="px-[56px] py-[12px]"
-                >
-                  <Link href={"/blogs/create"}>{t('btn')}</Link>
-                </Button>
+                <Link href={"/blogs/create"}>
+                  <Button
+                    type="button"
+                    fontSize="1.125rem"
+                    padding="px-[56px] py-[12px]"
+                  >
+                    {t("btn")}
+                  </Button>
+                </Link>
               ) : (
                 <AuthorizeModal />
               )}

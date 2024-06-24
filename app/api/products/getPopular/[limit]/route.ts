@@ -10,9 +10,10 @@ export async function GET(
   try {
     const result = await sql`
       SELECT *
-FROM products
-ORDER BY views DESC
-LIMIT ${Number(params.limit)};
+      FROM products
+      WHERE isActive = TRUE
+      ORDER BY views DESC
+      LIMIT ${Number(params.limit)};
     `;
     const rows = result.rows;
     return NextResponse.json({ rows }, { status: 200 });

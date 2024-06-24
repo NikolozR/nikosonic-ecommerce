@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import { FaTrashAlt, FaEdit } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import ClientSideWrapper from "./ClientSideProductWrapper";
 import AddToCartButton from "./AddToCartButton";
 import AuthorizeModal from "./AuthorizeModal";
@@ -70,7 +70,7 @@ function ProductItem({
 
   return (
     <div
-      className="w-full cursor-pointer group bg-white pb-[20px] rounded-[15px] relative"
+      className="w-full dark:bg-[#241b33] cursor-pointer group bg-white pb-[20px] rounded-[15px] relative"
       style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
     >
       <div
@@ -87,14 +87,13 @@ function ProductItem({
         </ClientSideWrapper>
         {isAdmin && (
           <div className="opacity-0 flex items-center cursor-pointer z-[100] group-hover:opacity-100 transition-all ease-in-out duration-[0.3s] group-hover:top-[16px] justify-center absolute right-[16px] top-[0]">
-            <FaTrashAlt size={20} className="mr-2" onClick={() => handleDeleteClick(product.product_id)} />
-            <FaEdit size={20} />
+            <FaTrashAlt size={20} color="black" className="mr-2 opacity-100" onClick={() => handleDeleteClick(product.product_id)} />
           </div>
         )}
         <ClientSideWrapper productId={product.product_id}>
           <Image
             src={product.thumbnail_url}
-            className="rounded-[15px]"
+            className="rounded-[15px] rounded-b-none"
             style={{ objectFit: "cover", objectPosition: "center" }}
             fill
             alt={product.name}
@@ -107,7 +106,7 @@ function ProductItem({
         )}
       </div>
       <ClientSideWrapper productId={product.product_id}>
-        <div className="bg-white px-3 text-[#141718] font-semibold flex flex-col gap-2">
+        <div className="bg-white dark:bg-[#241b33] px-3 text-[#141718] font-semibold flex flex-col gap-[15px]">
           <div className="flex mt-[10px]">
             {[...Array(5)].map((_, index) => (
               <FaStar
@@ -116,8 +115,8 @@ function ProductItem({
               />
             ))}
           </div>
-          <h2>{product.brand + " " + product.name}</h2>
-          <span>${product.price}</span>
+          <h2 className="dark:text-[#ECEDEE]">{product.brand + " " + product.name}</h2>
+          <span className="dark:text-[#ECEDEE]">${product.price}</span>
         </div>
       </ClientSideWrapper>
       

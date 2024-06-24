@@ -10,10 +10,10 @@ export async function GET(
   try {
     const result = await sql`
       SELECT *
-FROM products
-WHERE createdat >= CURRENT_TIMESTAMP - INTERVAL '30 days'
-ORDER BY createdat DESC
-LIMIT ${Number(params.limit)};
+      FROM products
+      WHERE isActive = TRUE AND createdat >= CURRENT_TIMESTAMP - INTERVAL '30 days'
+      ORDER BY createdat DESC
+      LIMIT ${Number(params.limit)};
     `;
     const rows = result.rows;
     return NextResponse.json({ rows }, { status: 200 });

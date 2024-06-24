@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 import {nextui} from "@nextui-org/react";
 module.exports = {
-  darkMode: 'class',
+  darkMode: ['variant', [
+    '@media (prefers-color-scheme: dark) { &:not(.light *) }',
+    '&:is(.dark *)',
+  ]],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",

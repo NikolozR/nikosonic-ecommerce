@@ -23,9 +23,9 @@ async function Products({
   const user = await getUser();
   const authUser: Claims | undefined = await getAuth0User();
   return (
-    <main>
+    <main className="dark:bg-[#201424]">
       <div className="container">
-        <div className="flex w-full gap-[80px] mt-[40px]">
+        <div className="flex w-full gap-[80px] pt-[40px]">
           <FilterSidebar brands={brandsMapped} />
           <div className="flex-1">
             <ProductGrid products={products} user={user} auth0User={authUser} ></ProductGrid>

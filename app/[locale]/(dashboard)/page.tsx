@@ -16,9 +16,9 @@ async function Landing() {
   return (
     <>
       <Hero />
-      <main className="dark:bg-[#241b33]">
+      <main className="dark:bg-[#201424] bg-[#F3F5F7]">
         <div className="container">
-          <div className="grid grid-cols-5 gap-[50px] py-[40px]">
+          <div className="grid grid-cols-5 gap-[50px] py-[40px] dark:bg-[#]">
             <div className="w-full h-[100px] relative">
               <Image
                 src={JBL}
