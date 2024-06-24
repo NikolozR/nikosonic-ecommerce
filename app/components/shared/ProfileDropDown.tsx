@@ -33,8 +33,10 @@ function ProfileDropDown({ isAuthorized, theme }: { isAuthorized: boolean, theme
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <CgProfile className="cursor-pointer dark:hidden" color="black" onClick={toggleDropDown} size={24}  />
-      <CgProfile className="cursor-pointer dark:block hidden" color="white" onClick={toggleDropDown} size={24}  />
+      <CgProfile className="cursor-pointer dark:hidden hidden lg:block" color="black" onClick={toggleDropDown} size={24}  />
+      <CgProfile className="cursor-pointer dark:hidden lg:hidden" color="black" onClick={toggleDropDown} size={16}  />
+      <CgProfile className="cursor-pointer hidden dark:lg:block" color="white" onClick={toggleDropDown} size={24}  />
+      <CgProfile className="cursor-pointer hidden dark:block dark:lg:hidden" color="white" onClick={toggleDropDown} size={20}  />
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 z-50 bg-white rounded-md shadow-lg">
           <div className="py-1">

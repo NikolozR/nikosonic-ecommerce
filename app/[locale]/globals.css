@@ -133,7 +133,7 @@ table {
 }
 .container {
   width: 1500px;
-  max-width: 90%;
+  max-width: 95%;
   margin: auto;
 }
 @media (prefers-color-scheme: dark) {

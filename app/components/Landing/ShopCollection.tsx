@@ -11,7 +11,7 @@ async function ShopCollection() {
   return (
     <section className="pb-[50px] bg-white dark:bg-[#22172B]">
       <div className="container">
-        <h2 className="font-poppins font-medium text-[2.5rem] py-[48px]">{translate('head')}</h2>
+        <h2 className="font-poppins font-medium text-[2.5rem] dark:text-[#ECEDEE] py-[48px]">{translate('head')}</h2>
         <div className="grid grid-cols-2 grid-rows-2 gap-[24px] w-full h-[664px]">
             <div className="bg-[#F3F5F7] relative row-span-2">
                 <Image src={Headbands} alt="Headband Collection" fill style={{objectFit: 'cover'}}></Image>

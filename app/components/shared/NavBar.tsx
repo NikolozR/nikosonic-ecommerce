@@ -6,84 +6,82 @@ import CartIcon from "./CartIcon";
 import Logo from "./Logo";
 import LocaleSwitcher from "./LocaleSwitcher";
 import { cookies } from "next/headers";
+import BurgerMenu from "../Landing/BurgerMenu";// Import the MobileMenu component
 
 async function NavBar() {
   const headerT = await getTranslations("Header");
-  const user = await getAuth0User();
-  const theme: string = cookies().get("theme")?.value ?? '';
+  // const user = await getAuth0User();
+  const theme = cookies().get("theme")?.value ?? '';
+
   return (
-    <nav
-    // from-[#FFAB00A3] to-[#FFAB00A3]
-      className="py-[10px] dark:!bg-black bg-gradient-to-b bg-white dark:from-[#241b33] dark:to-[#241b33] border-b-1 border-solid border-[#F3F5F7] dark:border-0"
-    >
+    <nav className="py-[10px] dark:!bg-black bg-gradient-to-b bg-white dark:from-[#241b33] dark:to-[#241b33] border-b-1 border-solid border-[#F3F5F7] dark:border-0">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-          <p className="font-bold text-[1.5rem] text-black tracking-[3px] cursor-pointer">
-            <Link href={"/"} className="dark:hidden">
-              <Logo color="" width={182} height={70} />
+          <div className="cursor-pointer flex gap-[20px]">
+          <BurgerMenu /> {/* Add the MobileMenu component here */}
+          <Link href={"/"} className="hidden xl:block dark:hidden">
+              <Logo color="black" width={182} height={70} />
             </Link>
-            <Link href={"/"} className="hidden dark:block">
+            {/* Dark mode LG - White */}
+            <Link href={"/"} className="hidden dark:xl:block">
               <Logo color="white" width={182} height={70} />
             </Link>
-          </p>
-          <ul className="flex justify-between items-center gap-[40px]">
-            <li>
+            {/* Light mode MD-XL - Black */}
+            <Link href={"/"} className="hidden sm:block xl:hidden dark:hidden">
+              <Logo color="" width={130} height={50} />
+            </Link>
+            {/* Dark mode MD-XL - White */}
+            <Link href={"/"} className="hidden sm:dark:block dark:xl:hidden">
+              <Logo color="white" width={130} height={50} />
+            </Link> 
+            {/* Dark mode XS-MD - White */}
+            <Link href={"/"} className="hidden dark:block dark:sm:hidden">
+              <Logo color="white" width={104} height={40} />
+            </Link>
+            {/* Light mode XS-MD - Black */}
+            <Link href={"/"} className="block sm:hidden dark:hidden">
+              <Logo color="" width={104} height={40} />
+            </Link>
+          </div>
+          <ul className="hidden md:flex justify-between items-center gap-[20px] lg:gap-[40px]">
+            <li className="flex items-center">
               <Link
                 href={"/"}
-                className="text-[1rem] font-grotesk dark:text-white font-medium text-black"
+                className="text-[0.75rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
               >
                 {headerT("home")}
               </Link>
             </li>
-            <li>
+            <li className="flex items-center">
               <Link
                 href={"/products"}
-                className="text-[1rem] font-grotesk dark:text-white font-medium text-black"
+                className="text-[0.75rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
               >
                 {headerT("products")}
               </Link>
             </li>
-            {user && (
-              <li>
-                <Link
-                  href={"/profile"}
-                  className="text-[1rem] font-grotesk dark:text-white font-medium text-black"
-                >
-                  {headerT("profile")}
-                </Link>
-              </li>
-            )}
-
-            <li>
+            <li className="flex items-center">
               <Link
                 href={"/blogs"}
-                className="text-[1rem] font-grotesk dark:text-white font-medium text-black"
+                className="text-[0.75rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
               >
                 {headerT("blogs")}
               </Link>
             </li>
-            <li>
+            <li className="flex items-center">
               <Link
                 href={"/contacts"}
-                className="text-[1rem] font-grotesk dark:text-white font-medium text-black"
+                className="text-[0.75rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
               >
                 {headerT("contacts")}
               </Link>
             </li>
-            {user?.role[0] === "Admin" ? (
+            {"Admin" === "Admin" ? (
               <>
-                {/* <li>
-                  <Link
-                    href={"/admin/users"}
-                    className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
-                  >
-                    {"Users"}
-                  </Link>
-                </li> */}
-                <li>
+                <li className="flex items-center">
                   <Link
                     href={"/admin/products"}
-                    className="text-[1rem] font-grotesk text-black font-medium dark:text-white"
+                    className="text-[0.75rem] lg:text-[1rem] text-wrap text-center font-grotesk text-black font-medium dark:text-white"
                   >
                     {headerT("addProducts")}
                   </Link>
@@ -93,10 +91,8 @@ async function NavBar() {
           </ul>
           <div>
             <div className="flex gap-[15px] items-center">
-              {!user ? (
-                <>
-                  <ProfileDropDown isAuthorized={false} theme={theme} />
-                </>
+              {false ? (
+                <ProfileDropDown isAuthorized={false} theme={theme} />
               ) : (
                 <div className="flex gap-[15px] items-center">
                   <CartIcon />

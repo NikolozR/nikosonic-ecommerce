@@ -56,7 +56,7 @@ function Hero() {
         <div className="container">
           <div className="flex flex-col items-end">
             <div>
-              <h1 className="text-[5rem] leading-[84px] w-fit">
+              <h1 className="text-[5rem] dark:text-[#ECEDEE] leading-[84px] w-fit">
                 {heroT("head1")} <br /> {heroT("head2")}{" "}
                 <span className="text-[#377DFF]">{heroT("head3")}</span>
                 <br /> {heroT("head4")}.
