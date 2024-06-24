@@ -15,7 +15,8 @@ import NewsFeed from "../../components/Landing/NewsFeed";
 async function Landing() {
   return (
     <>
-      {/* <Hero />
+    <Hero />
+      
       <main className="dark:bg-[#201424] bg-[#F3F5F7]">
         <div className="container">
           <div className="grid grid-cols-5 gap-[50px] py-[40px] dark:bg-[#]">
@@ -67,7 +68,7 @@ async function Landing() {
         <DreQuote />
         <BusinessFeatures />
         <NewsFeed />
-      </main> */}
+      </main>
     </>
   );
 }

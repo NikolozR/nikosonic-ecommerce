@@ -40,7 +40,7 @@ export default async function RootLayout({
       <UserProvider>
         <body
           className={
-            inter.className + " " + grotesk.variable + " " + poppins.variable
+            inter.className + " " + grotesk.variable + " " + poppins.variable + ' dark:bg-[#241b33]'
           }
         >
           <NextIntlClientProvider messages={messages}>

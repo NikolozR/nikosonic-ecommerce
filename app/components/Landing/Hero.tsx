@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import LandingPlaceholder from "../../../public/LandingPlaceholder.png";
+import LandingPlaceholder from "../../../public/LandingPlaceholder.webp";
 import DarkLandingPlaceholder from '../../../public/LandingPlaceholderDark.png'
 import Button from "../shared/Button";
 import { useTranslations } from "next-intl";
@@ -13,14 +13,13 @@ function Hero() {
         style={{
           backgroundImage: `url(${LandingPlaceholder.src})`,
           backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
         }}
-        className="h-[820px] pt-[222px] dark:hidden"
+        className="pt-[50px] h-[692px] md:h-[820px] md:pt-[222px] dark:hidden !object-contain md:object-cover bg-[position:20%_-200%] sm:bg-[position:9%_-200%] md:bg-[position:40%_0%] lg:bg-[position:50%_0%] xl:bg-[0%_0%]"
       >
         <div className="container">
-          <div className="flex flex-col items-end">
+          <div className="flex justify-center md:flex-col md:items-end">
             <div>
-              <h1 className="text-[5rem] leading-[84px] w-fit">
+              <h1 className="md:pr-[50px] text-center md:text-left xl:pr-0 text-[3rem] lg:text-[4rem] xl:text-[5rem] leading-[50px] lg:leading-[84px] w-fit">
                 {heroT("head1")} <br /> {heroT("head2")}{" "}
                 <span className="text-[#377DFF]">{heroT("head3")}</span>
                 <br /> {heroT("head4")}.
@@ -32,11 +31,12 @@ function Hero() {
               >
                 {heroT("sub")}
               </p>
-              <Link href={"/products"}>
+              <Link href={"/products"} className="block mx-auto">
                 <Button
                   type="button"
                   fontSize="1.125rem"
                   padding="px-[56px] py-[12px]"
+                  className="mx-auto block"
                 >
                   {heroT("btn")}
                 </Button>
@@ -49,14 +49,13 @@ function Hero() {
         style={{
           backgroundImage: `url(${DarkLandingPlaceholder.src})`,
           backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
         }}
-        className="h-[820px] pt-[222px] hidden dark:block"
+        className="pt-[50px] h-[692px] md:h-[820px] md:pt-[222px] dark:block hidden !object-contain md:object-cover bg-[position:15%_-200%] sm:bg-[position:9%_-200%] md:bg-[position:40%_0%] lg:bg-[position:50%_0%] xl:bg-[0%_0%]"
       >
         <div className="container">
-          <div className="flex flex-col items-end">
+          <div className="flex justify-center md:flex-col md:items-end">
             <div>
-              <h1 className="text-[5rem] dark:text-[#ECEDEE] leading-[84px] w-fit">
+              <h1 className="md:pr-[50px] text-center md:text-left xl:pr-0 text-[3rem] dark:text-[#ECEDEE] lg:text-[4rem] xl:text-[5rem] leading-[50px] lg:leading-[84px] w-fit">
                 {heroT("head1")} <br /> {heroT("head2")}{" "}
                 <span className="text-[#377DFF]">{heroT("head3")}</span>
                 <br /> {heroT("head4")}.
@@ -68,11 +67,12 @@ function Hero() {
               >
                 {heroT("sub")}
               </p>
-              <Link href={"/products"}>
+              <Link href={"/products"} className="block mx-auto">
                 <Button
                   type="button"
                   fontSize="1.125rem"
                   padding="px-[56px] py-[12px]"
+                  className="block mx-auto"
                 >
                   {heroT("btn")}
                 </Button>

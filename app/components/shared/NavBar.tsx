@@ -6,7 +6,7 @@ import CartIcon from "./CartIcon";
 import Logo from "./Logo";
 import LocaleSwitcher from "./LocaleSwitcher";
 import { cookies } from "next/headers";
-import BurgerMenu from "../Landing/BurgerMenu";// Import the MobileMenu component
+import BurgerMenu from "../Landing/BurgerMenu";
 
 async function NavBar() {
   const headerT = await getTranslations("Header");
@@ -18,7 +18,7 @@ async function NavBar() {
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="cursor-pointer flex gap-[20px]">
-          <BurgerMenu /> {/* Add the MobileMenu component here */}
+          <BurgerMenu /> 
           <Link href={"/"} className="hidden xl:block dark:hidden">
               <Logo color="black" width={182} height={70} />
             </Link>
