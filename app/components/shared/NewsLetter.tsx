@@ -34,28 +34,27 @@ function NewsLetter() {
       style={{
         backgroundImage: `url(${NewsLetterp2.src})`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
       }}
-      className="relative w-full h-[360px]"
+      className="relative bg-[#E2E4E3] w-full h-[360px] bg-contain xl:bg-cover bg-[position:500%_0%] md:bg-[position:130%_0%] lg:bg-[position:100%_0%] xl:bg-[position:0%_0%]"
     >
-      <div className="absolute flex items-center justify-center h-full w-[300px]">
+      <div className="absolute flex items-center justify-center h-full w-[250px] lg:w-[300px]">
         <Image
           src={NewsLetterp1}
           alt="Headphone Newsletter"
           fill
-          className="object-contain absolute !left-[100px]"
+          className="object-contain absolute left-[35px] lg:left-[50px] xl:left-[100px]"
         />
       </div>
-      <div className="flex flex-col items-center justify-center h-full">
-        <h4 className="font-medium font-poppins text-[2.5rem]">
+      <div className="flex flex-col items-center justify-center h-full px-4">
+        <h4 className="font-medium font-poppins text-[1.5rem] lg:text-[2.5rem] text-center">
           {newsLetterT('newsletter')}
         </h4>
-        <p className="text-[1.125rem] pt-[20px] text-[#121212]">
+        <p className="text-[1rem] lg:text-[1.125rem] pt-[20px] text-[#121212] text-center">
           {newsLetterT('newsletterSubText')}
         </p>
         <form
           onSubmit={handleSubmit}
-          className="flex border-b-[1px] mt-[44px] w-[488px] max-w-full pb-[12px] border-solid border-[#6C727580]"
+          className="flex border-b-[1px] mt-[44px] w-full max-w-[488px] pb-[12px] border-solid border-[#6C727580]"
         >
           <div className="flex items-center pl-[3px] pr-[10px]">
             <CiMail size={20} color="black" />
@@ -70,7 +69,7 @@ function NewsLetter() {
           />
           <button
             type="submit"
-            className="bg-transparent text-[#6C7275] text-nowrap font-medium hover:bg-gray-300 focus:outline-none"
+            className="bg-transparent text-[#6C7275] whitespace-nowrap font-medium hover:bg-gray-300 focus:outline-none"
             disabled={loading}
           >
             {loading ? newsLetterT('buttonProgress') : newsLetterT('button')}
@@ -81,8 +80,8 @@ function NewsLetter() {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">{newsLetterT('status')}</ModalHeader>
-              <ModalBody>
+              <ModalHeader className="flex flex-col gap-1 text-center">{newsLetterT('status')}</ModalHeader>
+              <ModalBody className="text-center">
                 <p>{message.includes('successfully') ? newsLetterT('success') : newsLetterT('already')}</p>
               </ModalBody>
               <ModalFooter>

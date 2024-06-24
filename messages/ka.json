@@ -25,7 +25,7 @@
     },
     "NewsLetter": {
         "newsletter": "გამოგვიწერე",
-        "newsletterSubText": "შემოგვიერთდი შეთავაზებებისთვისა და ახალი პროდუქტებისთვის",
+        "newsletterSubText": "შემოგვიერთდი სიახლეებისთვის",
         "inputPlaceholder": "შეიყვანე მეილი",
         "button": "გაგზავნა",
         "buttonProgress": "იგზავნება...",

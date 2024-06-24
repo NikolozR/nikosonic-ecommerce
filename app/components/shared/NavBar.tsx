@@ -12,7 +12,7 @@ async function NavBar() {
   const headerT = await getTranslations("Header");
   // const user = await getAuth0User();
   const theme = cookies().get("theme")?.value ?? '';
-
+  // console.log(user)
   return (
     <nav className="py-[10px] dark:!bg-black bg-gradient-to-b bg-white dark:from-[#241b33] dark:to-[#241b33] border-b-1 border-solid border-[#F3F5F7] dark:border-0">
       <div className="container mx-auto">
@@ -43,7 +43,7 @@ async function NavBar() {
               <Logo color="" width={104} height={40} />
             </Link>
           </div>
-          <ul className="hidden md:flex justify-between items-center gap-[20px] lg:gap-[40px]">
+          <ul className="hidden md:flex justify-between items-center gap-[13px] lg:gap-[35px]">
             <li className="flex items-center">
               <Link
                 href={"/"}
