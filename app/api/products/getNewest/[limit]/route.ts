@@ -11,7 +11,7 @@ export async function GET(
     const result = await sql`
       SELECT *
 FROM products
-WHERE createdat >= CURRENT_TIMESTAMP - INTERVAL '10 days'
+WHERE createdat >= CURRENT_TIMESTAMP - INTERVAL '30 days'
 ORDER BY createdat DESC
 LIMIT ${Number(params.limit)};
     `;

@@ -19,7 +19,7 @@ function SideDetails({ product, user }: { product: Product; user: User }) {
           })}
         </div>
         <span className="text-[0.75rem] leading-[20px] text-[#141718]">
-          {product.review_count} reviews
+          {product.review_count} {product.review_count > 1 ? 'reviews' : 'review'}
         </span>
       </div>
       <h4 className="font-poppins font-extrabold text-[1.5rem] leading-[40px]">

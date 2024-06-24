@@ -36,10 +36,13 @@ function BlogDetails({ blog }: { blog: Blog }) {
           </span>
         </div>
       </div>
+      <div className="flex gap-[100px]">
+
       <div className="relative w-full h-[400px] mt-[40px]">
         <Image src={blog.thumbnail_url} alt="Blog Thumbnail" fill className="object-cover"></Image>
       </div>
       <p className="leading-[26px] text-[1rem] mt-[40px]">{blog.content}</p>
+      </div>
     </div>
   );
 }

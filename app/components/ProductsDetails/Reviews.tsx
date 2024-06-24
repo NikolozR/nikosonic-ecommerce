@@ -25,11 +25,6 @@ function Reviews({ reviews, user, product, addOptimisticProduct }: ReviewsProps)
 
   return (
     <div className="pt-[40px]">
-      <div className="pb-[42px]">
-        <h2 className="text-[#121212] font-medium text-[1.125rem]">
-          Reviews ({optimisticReviews.length})
-        </h2>
-      </div>
       <div>
         <h3 className="font-poppins font-medium text-[#23262F] text-[1.725rem] mb-[24px] leading-[34px]">
           Customer Reviews
@@ -67,7 +62,7 @@ function Reviews({ reviews, user, product, addOptimisticProduct }: ReviewsProps)
           )}
           <div>
             <h6 className="font-poppins font-medium text-[1.725rem] leading-[34px] mb-[40px]">
-              {optimisticReviews.length} Reviews
+              {optimisticReviews.length} {optimisticReviews.length > 1 ? "Reviews" : "Review"}
             </h6>
             <div>
               {optimisticReviews.map((review, i) => (

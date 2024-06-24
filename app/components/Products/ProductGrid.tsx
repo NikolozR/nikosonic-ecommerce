@@ -49,7 +49,15 @@ function filterProducts(
   return fuse.search(query).map((result) => result.item);
 }
 
-function ProductGrid({ products, user, auth0User }: { products: Product[]; user: User, auth0User: Claims | undefined }) {
+function ProductGrid({
+  products,
+  user,
+  auth0User,
+}: {
+  products: Product[];
+  user: User;
+  auth0User: Claims | undefined;
+}) {
   const [sortedProducts, setSortedProducts] = useState<Product[]>(products);
   const [selectedSortBy, setSelectedSortBy] = useState<string>("");
   const [grid, setGrid] = useState(3);
@@ -145,28 +153,36 @@ function ProductGrid({ products, user, auth0User }: { products: Product[]; user:
           </div>
         </div>
       </div>
-      <div className={`grid grid-cols-${grid} gap-[24px]`}>
-        {paginatedProducts.map((product) => {
-          return (
-            <ProductItem
-            auth0User={auth0User}
-              key={product.product_id}
-              product={product}
-              user={user}
-              grid={grid}
-            ></ProductItem>
-          );
-        })}
-      </div>
+      {paginatedProducts.length > 0 ? (
+        <div className={`grid grid-cols-${grid} gap-[24px]`}>
+          {paginatedProducts.map((product) => {
+            return (
+              <ProductItem
+                auth0User={auth0User}
+                key={product.product_id}
+                product={product}
+                user={user}
+                grid={grid}
+              ></ProductItem>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="flex justify-center items-center h-[400px]">
+          <h2 className="text-2xl font-bold">{"No Products Found"}</h2>
+        </div>
+      )}
       <div className="flex justify-center mt-4">
-        <Pagination
-          total={Math.ceil(sortedProducts.length / ITEMS_PER_PAGE)}
-          classNames={{
-            cursor: "bg-[#ffab00a3] text-black",
-          }}
-          initialPage={1}
-          onChange={handlePageChange}
-        />
+        {paginatedProducts.length > 0 ? (
+          <Pagination
+            total={Math.ceil(sortedProducts.length / ITEMS_PER_PAGE)}
+            classNames={{
+              cursor: "bg-[#ffab00a3] text-black",
+            }}
+            initialPage={1}
+            onChange={handlePageChange}
+          />
+        ) : null}
       </div>
     </div>
   );

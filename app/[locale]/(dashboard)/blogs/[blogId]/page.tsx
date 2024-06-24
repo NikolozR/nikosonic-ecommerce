@@ -9,7 +9,7 @@ export async function generateStaticParams() {
       JOIN users ON blogs.author_id = users.id;
       `;
   const idsRes: Blog[] = res.rows.map((d: QueryResultRow) => d as Blog);
-  const ids: string[] = idsRes?.map((blog) => blog.blog_id + '');
+  const ids: string[] = idsRes?.map((blog) => blog.blog_id + "");
   return ids?.map((id) => ({
     blogId: id,
   }));
@@ -21,7 +21,7 @@ async function page({ params: { blogId } }: { params: { blogId: string } }) {
   return (
     <section className="mt-[56px] mb-[80px]">
       <div className="container">
-            <BlogDetails blog={blog} />
+        <BlogDetails blog={blog} />
       </div>
     </section>
   );
