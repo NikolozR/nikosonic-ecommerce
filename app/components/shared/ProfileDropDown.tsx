@@ -1,14 +1,14 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import ProfileIcon from "../../../public/profile.svg";
+import { useState, useEffect, useRef, MouseEventHandler } from "react";
+import { CgProfile } from "react-icons/cg";
 import ThemeSwitcher from "./ThemeSwitcher";
 
-function ProfileDropDown({ isAuthorized }: { isAuthorized: boolean }) {
+function ProfileDropDown({ isAuthorized, theme }: { isAuthorized: boolean, theme: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const toggleDropDown = () => {
+  const toggleDropDown: MouseEventHandler<SVGElement> = (e) => {
+    e.stopPropagation();
     setIsOpen(!isOpen);
   };
 
@@ -33,20 +33,14 @@ function ProfileDropDown({ isAuthorized }: { isAuthorized: boolean }) {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <Image
-        src={ProfileIcon}
-        className="cursor-pointer"
-        width={24}
-        height={24}
-        alt="Profile Icon"
-        onClick={toggleDropDown}
-      />
+      <CgProfile className="cursor-pointer dark:hidden" color="black" onClick={toggleDropDown} size={24}  />
+      <CgProfile className="cursor-pointer dark:block hidden" color="white" onClick={toggleDropDown} size={24}  />
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 z-50 bg-white rounded-md shadow-lg">
           <div className="py-1">
             <div className="px-4 py-2 hover:bg-gray-100 flex justify-between items-center">
               <span className="text-sm text-gray-700">Theme</span>
-              <ThemeSwitcher></ThemeSwitcher>
+              <ThemeSwitcher theme={theme}></ThemeSwitcher>
             </div>
             {isAuthorized ? (
               <>

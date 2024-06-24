@@ -36,7 +36,7 @@ function NewsLetter() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="relative w-full h-[360px] justify-center"
+      className="relative w-full h-[360px]"
     >
       <div className="absolute flex items-center justify-center h-full w-[300px]">
         <Image

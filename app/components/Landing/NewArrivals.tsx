@@ -26,7 +26,7 @@ async function NewArrivals() {
         <Link href={"/products"} className="w-fit block mx-auto">
           <Button
             type="button"
-            className="mx-auto block"
+            className="mx-auto block dark:bg-white dark:text-black"
             padding="px-[40px] py-[10px]"
             fontSize="1rem"
           >

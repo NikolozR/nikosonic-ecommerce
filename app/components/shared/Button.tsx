@@ -21,7 +21,7 @@ function Button({
     <button
       disabled={disabled}
       title={title}
-      className={`w-fit bg-[#141718] text-white rounded-[8px] ${padding} leading-[${leading}] ${
+      className={`w-fit bg-[#141718]  text-white rounded-[8px] ${padding} leading-[${leading}] ${
         disabled ? "opacity-50 cursor-not-allowed" : ""
       } ${className} ${inter.className}`}
       type={type}

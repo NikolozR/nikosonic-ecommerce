@@ -191,3 +191,7 @@ export async function handleAddressCreation(formData: FormData) {
 export async function deleteConfirmationAccess() {
   cookies().delete('access_complete')
 }
+
+export async function setTheme(theme: string) {
+  cookies().set('theme', theme)
+}

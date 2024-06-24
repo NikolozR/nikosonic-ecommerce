@@ -24,7 +24,7 @@ function LocaleSwitcher() {
       content: 'w-fit min-w-fit'
     }}>
       <DropdownTrigger>
-        <Button variant="bordered" className="border-black border-1">
+        <Button variant="bordered" className="dark:border-[white] border-black border-1 text-black dark:text-[white]">
           {locales.find((item) => item.locale === locale)?.icon}
           {locale?.toUpperCase()}
         </Button>
