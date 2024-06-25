@@ -14,7 +14,7 @@ async function NewArrivals() {
           {translate("head")}
         </h2>
         <div className="w-full overflow-x-auto">
-          <div className="grid grid-cols-4 min-w-[1350px] gap-[50px] pb-[40px]">
+          <div className="grid grid-cols-4 min-w-[1350px] gap-[50px] pb-[10px]">
               {products?.map((product) => (
             <div key={product.product_id} className="min-w-[300px] max-w-full">
                 <ProductItem
@@ -29,7 +29,7 @@ async function NewArrivals() {
         <Link href={"/products"} className="w-fit block mx-auto">
           <Button
             type="button"
-            className="mx-auto block dark:bg-white dark:text-black"
+            className="mx-auto mt-[30px] block dark:bg-white dark:text-black"
             padding="px-[40px] py-[10px]"
             fontSize="1rem"
           >

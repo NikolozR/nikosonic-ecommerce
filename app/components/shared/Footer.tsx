@@ -21,7 +21,7 @@ async function Footer() {
               <Logo color="#ffffff" height={46} width={120} />
             </div>
           </div>
-          <ul className="flex gap-[15px] md:gap-[30px] items-center">
+          <ul className="flex gap-[15px] flex-wrap justify-center md:gap-[30px] items-center">
             <li>
               <Link
                 href={"/"}

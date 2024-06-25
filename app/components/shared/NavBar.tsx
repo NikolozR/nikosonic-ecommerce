@@ -43,11 +43,11 @@ async function NavBar() {
               <Logo color="" width={104} height={40} />
             </Link>
           </div>
-          <ul className="hidden md:flex justify-between items-center gap-[13px] lg:gap-[35px]">
+          <ul className="hidden md:flex justify-between items-center gap-[10px] lg:gap-[35px]">
             <li className="flex items-center">
               <Link
                 href={"/"}
-                className="text-[0.75rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
+                className="text-[0.7rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
               >
                 {headerT("home")}
               </Link>
@@ -55,7 +55,7 @@ async function NavBar() {
             <li className="flex items-center">
               <Link
                 href={"/products"}
-                className="text-[0.75rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
+                className="text-[0.7rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
               >
                 {headerT("products")}
               </Link>
@@ -63,7 +63,7 @@ async function NavBar() {
             <li className="flex items-center">
               <Link
                 href={"/blogs"}
-                className="text-[0.75rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
+                className="text-[0.7rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
               >
                 {headerT("blogs")}
               </Link>
@@ -71,7 +71,7 @@ async function NavBar() {
             <li className="flex items-center">
               <Link
                 href={"/contacts"}
-                className="text-[0.75rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
+                className="text-[0.7rem] lg:text-[1rem] font-grotesk dark:text-white font-medium text-black"
               >
                 {headerT("contacts")}
               </Link>
@@ -81,7 +81,7 @@ async function NavBar() {
                 <li className="flex items-center">
                   <Link
                     href={"/admin/products"}
-                    className="text-[0.75rem] lg:text-[1rem] text-wrap text-center font-grotesk text-black font-medium dark:text-white"
+                    className="text-[0.7rem] lg:text-[1rem] text-wrap text-center font-grotesk text-black font-medium dark:text-white"
                   >
                     {headerT("addProducts")}
                   </Link>

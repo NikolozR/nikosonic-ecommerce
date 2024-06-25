@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 import LandingPlaceholder from "../../../public/LandingPlaceholder.webp";
-import DarkLandingPlaceholder from '../../../public/LandingPlaceholderDark.png'
+import DarkLandingPlaceholder from '../../../public/LandingPlaceholderDark.webp'
 import Button from "../shared/Button";
 import { useTranslations } from "next-intl";
 
