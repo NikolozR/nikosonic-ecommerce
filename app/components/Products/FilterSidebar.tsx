@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { IoFilterSharp } from "react-icons/io5";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { getTranslations } from "next-intl/server";
+import SmallFilterTopbar from "./SmallFilterTopbar";
 // import PriceSlider from "./PriceSlider";
 
 const handleCheckboxChange = async (
@@ -18,6 +19,7 @@ const handleCheckboxChange = async (
     filterValue,
     currentSearchParams,
     true,
+    false,
     checked
   );
   redirect(`/products?${params}`);
@@ -52,9 +54,11 @@ const handleReset = async () => {
 async function FilterSidebar({ brands }: { brands: string[] }) {
   const t = await getTranslations("Products");
   return (
-    <div className="w-[20%] mb-[100px]">
+    <>
+    <SmallFilterTopbar brands={brands} categories={['headband', 'earbud', 'headphone']} />
+    <div className="hidden md:block w-[20%] mb-[100px]">
       <div className="mb-[32px] w-full flex justify-between items-center">
-        <h2 className="text-[#121212] dark:text-[#F3F5F7] font-bold flex items-center gap-[8px] leading-[32px] text-[1.25rem]">
+        <h2 className="text-[#121212] dark:text-[#F3F5F7] font-bold flex items-center gap-[8px] leading-[32px] text-[0.875rem] lg:text-[1.25rem]">
           <IoFilterSharp className="dark:hidden" /> <IoFilterSharp color="#F3F5F7" className="hidden dark:block" /> {t('filter')}
         </h2>
         <Button
@@ -143,6 +147,7 @@ async function FilterSidebar({ brands }: { brands: string[] }) {
         {/* <PriceSlider handlePriceChange={handlePriceChange}></PriceSlider> */}
       </div>
     </div>
+    </>
   );
 }
 

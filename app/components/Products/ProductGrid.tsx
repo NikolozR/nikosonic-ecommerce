@@ -107,35 +107,37 @@ function ProductGrid({
 
   return (
     <div className="pb-[100px]">
-      <div className="flex justify-between mb-[32px] items-center">
-        <h2 className="font-bold text-[1.25rem]">{t("products")}</h2>
+      <div className="flex flex-col xs:flex-row justify-between mb-[32px] items-center">
+        <h2 className="font-bold hidden sm:block text-[1rem] lg:text-[1.25rem] dark:text-[#ECEDEE]">
+          {t("products")}
+        </h2>
         <Input
           type="search"
           aria-label="Search Products"
           placeholder={t("placeholder")}
-          className="w-[300px]"
+          className="w-[200px] lg:w-[300px]"
           endContent={<CiSearch />}
           value={searchQuery}
           onChange={handleSearchChange}
         />
-        <div className="flex items-center gap-[32px]">
+        <div className="flex items-center ml-[50px] xs:ml-0 mt-[20px] xs:mt-0 gap-[32px]">
           <Dropdown>
             <DropdownTrigger>
-              <div className="cursor-pointer flex items-center gap-[5px] font-semibold">
+              <div className="cursor-pointer flex items-center gap-[5px] font-semibold text-[0.75rem] lg:text-[1rem] dark:text-[#ECEDEE]">
                 {t(getDropdownBtnContent(selectedSortBy))}{" "}
                 <RiArrowDownSLine size={20} />
               </div>
             </DropdownTrigger>
             <DropdownMenu className="" onAction={handleSortChange}>
-              <DropdownItem key="price_asc">{t("priceAsc")}</DropdownItem>
-              <DropdownItem key="price_desc">{t("priceDesc")}</DropdownItem>
-              <DropdownItem key="name_asc">{t("nameAsc")}</DropdownItem>
-              <DropdownItem key="name_desc">{t("nameDesc")}</DropdownItem>
+              <DropdownItem className="text-[0.75rem] lg:text-[1rem]" key="price_asc">{t("priceAsc")}</DropdownItem>
+              <DropdownItem className="text-[0.75rem] lg:text-[1rem]" key="price_desc">{t("priceDesc")}</DropdownItem>
+              <DropdownItem className="text-[0.75rem] lg:text-[1rem]" key="name_asc">{t("nameAsc")}</DropdownItem>
+              <DropdownItem className="text-[0.75rem] lg:text-[1rem]" key="name_desc">{t("nameDesc")}</DropdownItem>
             </DropdownMenu>
           </Dropdown>
           <div className="flex gap-0">
             <div
-              className={`cursor-pointer w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] border-r-0 ${
+              className={`cursor-pointer dark:hidden w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] border-r-0 ${
                 grid === 3 ? "bg-[#F3F5F7]" : ""
               }`}
               onClick={() => handleGridChange(3)}
@@ -143,18 +145,40 @@ function ProductGrid({
               <TfiLayoutGrid3Alt />
             </div>
             <div
-              className={`cursor-pointer w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] ${
+              className={`cursor-pointer hidden dark:lg:block w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] border-r-0 ${
+                grid === 3 ? "bg-[#F3F5F7] dark:bg-black" : ""
+              }`}
+              onClick={() => handleGridChange(3)}
+            >
+              <TfiLayoutGrid3Alt color="white" />
+            </div>
+            <div
+              className={`cursor-pointer dark:hidden w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] ${
                 grid === 2 ? "bg-[#F3F5F7]" : ""
               }`}
               onClick={() => handleGridChange(2)}
             >
               <IoGrid />
             </div>
+            <div
+              className={`cursor-pointer hidden dark:lg:block w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] ${
+                grid === 2 ? "bg-[#F3F5F7] dark:lg:bg-black" : ""
+              }`}
+              onClick={() => handleGridChange(2)}
+            >
+              <IoGrid color="white" />
+            </div>
           </div>
         </div>
       </div>
       {paginatedProducts.length > 0 ? (
-        <div className={`grid grid-cols-${grid} gap-[24px]`}>
+        <div
+          className={
+            grid === 3
+              ? `grid md:grid-cols-2 gap-[24px] lg:grid-cols-3`
+              : `grid md:grid-cols-2 gap-[24px] lg:grid-cols-2`
+          }
+        >
           {paginatedProducts.map((product) => {
             return (
               <ProductItem
@@ -169,7 +193,7 @@ function ProductGrid({
         </div>
       ) : (
         <div className="flex justify-center items-center h-[400px]">
-          <h2 className="text-2xl font-bold">{"No Products Found"}</h2>
+          <h2 className="text-2xl font-bold dark:text-[#ECEDEE]">{"No Products Found"}</h2>
         </div>
       )}
       <div className="flex justify-center mt-4">

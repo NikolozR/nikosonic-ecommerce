@@ -25,7 +25,7 @@ async function Products({
   return (
     <main className="dark:bg-[#201424]">
       <div className="container">
-        <div className="flex w-full gap-[80px] pt-[40px]">
+        <div className="flex flex-col md:flex-row w-full gap-[80px] pt-[40px]">
           <FilterSidebar brands={brandsMapped} />
           <div className="flex-1">
             <ProductGrid products={products} user={user} auth0User={authUser} ></ProductGrid>

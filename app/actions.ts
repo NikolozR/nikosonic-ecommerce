@@ -33,6 +33,27 @@ export async function handleProfileChange(formData: FormData) {
   }
 }
 
+export const handleSelectChange = async (
+  selected: string[],
+  currentSearchParams:{ [key: string]: string }[],
+  key: string
+) => {
+  const updatedParams = await setSearchParams(
+    key,
+    selected.join(","),
+    currentSearchParams,
+    false,
+    true,
+    false
+  );
+
+  console.log(updatedParams);
+
+  // Construct the URL with updated parameters
+  const params = updatedParams.toString(); // Convert URLSearchParams to string
+
+  redirect(`/products?${params}`);
+};
 export async function handleProductAddSubmit(formData: FormData) {
   let body: CreateProduct = {
     name: "",
@@ -118,11 +139,12 @@ export async function setSearchParams(
   value: string,
   currentSearchParams: { [key: string]: string }[],
   isCheckbox: boolean,
+  isSelect?: boolean,
   checked?: boolean
 ) {
   let updatedSearchParams = [...currentSearchParams];
   const index = updatedSearchParams.findIndex((param) => param[name]);
-
+  console.log(updatedSearchParams, index);
   if (isCheckbox) {
     if (checked) {
       if (index !== -1) {
@@ -143,14 +165,27 @@ export async function setSearchParams(
       }
     }
   } else {
-    if (index !== -1) {
+    if (isSelect) {
+      console.log(value);
       if (value === "") {
         updatedSearchParams.splice(index, 1);
       } else {
-        updatedSearchParams[index][name] = value;
+        if (updatedSearchParams.findIndex((param) => param[name]) === -1) {
+          updatedSearchParams.push({ [name]: value }); 
+        } else {
+          updatedSearchParams[index][name] = `${value}`;
+        }
       }
-    } else if (value !== "") {
-      updatedSearchParams.push({ [name]: value });
+    } else {
+      if (index !== -1) {
+        if (value === "") {
+          updatedSearchParams.splice(index, 1);
+        } else {
+          updatedSearchParams[index][name] = value;
+        }
+      } else if (value !== "") {
+        updatedSearchParams.push({ [name]: value });
+      }
     }
   }
 
@@ -163,22 +198,29 @@ export async function setSearchParams(
   return params;
 }
 
-export async function handleCheckout(cartItems: CartItem[], shippingAddress: MyAddress | AddressInput, billingAddress: MyAddress | AddressInput) {
-  const { url } = await sendCheckoutRequest(cartItems, shippingAddress, billingAddress);
-  redirect(url)
+export async function handleCheckout(
+  cartItems: CartItem[],
+  shippingAddress: MyAddress | AddressInput,
+  billingAddress: MyAddress | AddressInput
+) {
+  const { url } = await sendCheckoutRequest(
+    cartItems,
+    shippingAddress,
+    billingAddress
+  );
+  redirect(url);
 }
-
 
 export async function handleAddressCreation(formData: FormData) {
   const user: User = await getUser();
   let body: CreateAddress = {
     userId: user.id,
-    city: '',
-    country: '',
-    address: '',
-    addressName: '',
-    type: 'shipping',
-    phone: ''
+    city: "",
+    country: "",
+    address: "",
+    addressName: "",
+    type: "shipping",
+    phone: "",
   };
   formData.forEach((val, key) => {
     if (val !== "") {
@@ -189,9 +231,9 @@ export async function handleAddressCreation(formData: FormData) {
 }
 
 export async function deleteConfirmationAccess() {
-  cookies().delete('access_complete')
+  cookies().delete("access_complete");
 }
 
 export async function setTheme(theme: string) {
-  cookies().set('theme', theme)
+  cookies().set("theme", theme);
 }

@@ -51,11 +51,11 @@ function AddToCartButton({
       <button
         className={
           onHover
-            ? `w-fit px-[74px] transition-all z-50 ease-in-out duration-[0.3s] absolute bottom-[0px] left-[50%] text-nowrap translate-x-[-50%] opacity-0 py-[9px] text-[1rem] bg-[#141718] text-white rounded-[8px] group-hover:bottom-[25px] ` +
+            ? `w-fit px-[95px] md:px-[64px] transition-all z-50 ease-in-out duration-[0.3s] absolute bottom-[0px] left-[50%] text-nowrap translate-x-[-50%] opacity-0 py-[9px] text-[1rem] bg-[#141718] text-white rounded-[8px] group-hover:bottom-[25px] ` +
               (disabled
                 ? "group-hover:opacity-40 "
                 : "group-hover:opacity-100 ")
-            : `w-full mt-[2px] px-[74px] text-nowrap py-[9px] text-[1rem] bg-[#141718] text-white rounded-[8px] ` +
+            : `w-full mt-[2px] px-[95px] md:px-[64px] text-nowrap py-[9px] text-[1rem] bg-[#141718] text-white rounded-[8px] ` +
               (disabled ? "opacity-40 " : "opacity-100 ")
         }
         disabled={disabled}

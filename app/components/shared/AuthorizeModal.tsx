@@ -9,8 +9,8 @@ export default function AuthorizeModal({onHover = true}: {onHover?: boolean}) {
   return (
     <>
       <button
-        className={onHover ? `w-fit px-[74px] transition-all z-50 group-hover:opacity-100 ease-in-out duration-[0.3s] absolute bottom-[0px] left-[50%] text-nowrap translate-x-[-50%] opacity-0  py-[9px] text-[1rem] bg-[#141718] text-white rounded-[8px] group-hover:bottom-[25px]` : 
-          `w-full px-[74px] text-nowrap py-[9px] text-[1rem] bg-[#141718] text-white rounded-[8px]`
+        className={onHover ? `w-fit px-[95px] md:px-[64px] transition-all z-50 group-hover:opacity-100 ease-in-out duration-[0.3s] absolute bottom-[0px] left-[50%] text-nowrap translate-x-[-50%] opacity-0  py-[9px] text-[1rem] bg-[#141718] text-white rounded-[8px] group-hover:bottom-[25px]` : 
+          `w-full px-[95px] md:px-[64px] text-nowrap py-[9px] text-[1rem] bg-[#141718] text-white rounded-[8px]`
         }
         type="button"
         onClick={(e) => {

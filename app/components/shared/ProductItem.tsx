@@ -87,7 +87,7 @@ function ProductItem({
         </ClientSideWrapper>
         {isAdmin && (
           <div className="opacity-0 flex items-center cursor-pointer z-[100] group-hover:opacity-100 transition-all ease-in-out duration-[0.3s] group-hover:top-[16px] justify-center absolute right-[16px] top-[0]">
-            <FaTrashAlt size={20} color="black" className="mr-2 opacity-100" onClick={() => handleDeleteClick(product.product_id)} />
+            <FaTrashAlt size={20} color="red" className="mr-2 opacity-100" onClick={() => handleDeleteClick(product.product_id)} />
           </div>
         )}
         <ClientSideWrapper productId={product.product_id}>
