@@ -1,6 +1,6 @@
 import Image from "next/image";
 import ContactForm from "../../../components/ContactUs/ContactForm";
-import Placeholder from "../../../../public/AboutUsPLaceholder.jpg";
+import Placeholder from "../../../../public/AboutUsPLaceholder.webp";
 import { FaLocationCrosshairs } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";

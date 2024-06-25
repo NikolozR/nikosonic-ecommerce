@@ -1,6 +1,7 @@
 import { chain } from "./middlewares/chain";
 import { authMiddleware } from "./middlewares/authMiddleware";
 
+// export default chain([])
 export default chain([authMiddleware])
 
 export const config = {

@@ -12,20 +12,20 @@ async function Footer() {
   return (
     <footer className="bg-[#141718]">
       <div className="container">
-        <div className="py-[60px] flex justify-between border-b-[1px] border-solid border-[#6C7275]">
-          <div className="flex items-center">
-            <div className="border-r-[1px] pr-[32px] text-[1.5rem] border-solid border-[#6C7275] text-[#FFFFFF]">
+        <div className="py-[60px] flex flex-col gap-[40px] sm:gap-0 sm:flex-row items-center justify-between border-b-[1px] border-solid border-[#6C7275]">
+          <div className="flex items-center ">
+            <div className="border-r-[1px] hidden lg:block pr-[32px] text-[1.5rem] text-[#FFFFFF]">
               <Logo color="#ffffff" height={76} width={200} />
             </div>
-            <p className="text-[#FEFEFE] text-[0.875rem] pl-[32px]">
-              {headerT('headphonesShop')}
-            </p>
+            <div className="border-r-[1px] block lg:hidden pr-[10px] text-[1.5rem] text-[#FFFFFF]">
+              <Logo color="#ffffff" height={46} width={120} />
+            </div>
           </div>
-          <ul className="flex gap-[40px] items-center">
+          <ul className="flex gap-[15px] flex-wrap justify-center md:gap-[30px] items-center">
             <li>
               <Link
                 href={"/"}
-                className="text-[0.875rem] text-white font-medium"
+                className="text-[0.75rem] md:text-[0.875rem] text-white font-medium"
               >
                 {headerT("home")}
               </Link>
@@ -33,7 +33,7 @@ async function Footer() {
             <li>
               <Link
                 href={"/products"}
-                className="text-[0.875rem] text-white font-medium"
+                className="text-[0.75rem] md:text-[0.875rem] text-white font-medium"
               >
                 {headerT("products")}
               </Link>
@@ -42,7 +42,7 @@ async function Footer() {
               <li>
                 <Link
                   href={"/profile"}
-                  className="text-[0.875rem] text-white font-medium"
+                  className="text-[0.75rem] md:text-[0.875rem] text-white font-medium"
                 >
                   {headerT("profile")}
                 </Link>
@@ -51,7 +51,7 @@ async function Footer() {
             <li>
               <Link
                 href={"/blogs"}
-                className="text-[0.875rem] text-white font-medium"
+                className="text-[0.75rem] md:text-[0.875rem] text-white font-medium"
               >
                 {headerT("blogs")}
               </Link>
@@ -59,16 +59,16 @@ async function Footer() {
             <li>
               <Link
                 href={"/contacts"}
-                className="text-[0.875rem] text-white font-medium"
+                className="text-[0.75rem] md:text-[0.875rem] text-white font-medium"
               >
                 {headerT("contacts")}
               </Link>
             </li>
           </ul>
         </div>
-        <div className="pt-[16px] pb-[52px] flex justify-between">
+        <div className="pt-[16px] pb-[52px] flex gap-[30px] sm:gap-0 sm:flex-row items-center flex-col-reverse justify-between">
           <div>
-            <p className="text-[#FEFEFE] text-[0.875rem]">
+            <p className="text-[#FEFEFE] text-[0.75rem] text-center sm:text-[0.875rem]">
               {headerT('copyright')}
             </p>
           </div>

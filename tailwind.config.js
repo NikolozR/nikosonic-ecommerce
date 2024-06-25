@@ -12,6 +12,14 @@ module.exports = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'xs': '420px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       fontFamily: {
         grotesk: ['var(--font-grotesk)'],
@@ -29,8 +37,7 @@ module.exports = {
       boxShadow: {
         'custom': '0 2px 5px rgba(0, 0, 0, 0.1)',
         'custom-lg': '0px 3px 15px rgba(0, 0, 0, 0.15)',
-      }
-      
+      },
     },
   },
   plugins: [nextui()],
