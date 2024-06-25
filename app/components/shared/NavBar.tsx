@@ -10,16 +10,15 @@ import BurgerMenu from "../Landing/BurgerMenu";
 
 async function NavBar() {
   const headerT = await getTranslations("Header");
-  // const user = await getAuth0User();
-  const theme = cookies().get("theme")?.value ?? '';
-  // console.log(user)
+  const user = await getAuth0User();
+  const theme = cookies().get("theme")?.value ?? "";
   return (
     <nav className="py-[10px] dark:!bg-black bg-gradient-to-b bg-white dark:from-[#241b33] dark:to-[#241b33] border-b-1 border-solid border-[#F3F5F7] dark:border-0">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="cursor-pointer flex gap-[20px]">
-          <BurgerMenu /> 
-          <Link href={"/"} className="hidden xl:block dark:hidden">
+            <BurgerMenu user={user} />
+            <Link href={"/"} className="hidden xl:block dark:hidden">
               <Logo color="black" width={182} height={70} />
             </Link>
             {/* Dark mode LG - White */}
@@ -33,7 +32,7 @@ async function NavBar() {
             {/* Dark mode MD-XL - White */}
             <Link href={"/"} className="hidden sm:dark:block dark:xl:hidden">
               <Logo color="white" width={130} height={50} />
-            </Link> 
+            </Link>
             {/* Dark mode XS-MD - White */}
             <Link href={"/"} className="hidden dark:block dark:sm:hidden">
               <Logo color="white" width={104} height={40} />
@@ -76,7 +75,7 @@ async function NavBar() {
                 {headerT("contacts")}
               </Link>
             </li>
-            {"Admin" === "Admin" ? (
+            {user?.role[0] === "Admin" ? (
               <>
                 <li className="flex items-center">
                   <Link
@@ -91,7 +90,7 @@ async function NavBar() {
           </ul>
           <div>
             <div className="flex gap-[15px] items-center">
-              {false ? (
+              {!user ? (
                 <ProfileDropDown isAuthorized={false} theme={theme} />
               ) : (
                 <div className="flex gap-[15px] items-center">

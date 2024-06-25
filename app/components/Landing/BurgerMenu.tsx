@@ -3,20 +3,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { Claims } from '@auth0/nextjs-auth0';
 
-const BurgerMenu = () => {
+const BurgerMenu = ({user}: {user: Claims | undefined}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const headerT = useTranslations("Header");
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Function to handle outside click/touch to close menu
   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
     if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
       setIsMenuOpen(false);
     }
   };
 
-  // Effect to add/remove event listeners based on menu state
   useEffect(() => {
     if (isMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
@@ -33,7 +32,6 @@ const BurgerMenu = () => {
 
   return (
     <>
-      {/* Dark overlay */}
       {isMenuOpen && (
         <div
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50"
@@ -57,7 +55,6 @@ const BurgerMenu = () => {
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
         } transition-transform duration-300 md:hidden`}
       >
-        {/* Close button */}
         <div className="flex absolute right-0 p-4">
           <button
             className="text-black dark:text-white"
@@ -68,7 +65,6 @@ const BurgerMenu = () => {
           </button>
         </div>
 
-        {/* Menu items */}
         <ul className="flex flex-col gap-4 p-6 justify-center h-full">
           <li>
             <Link
@@ -106,7 +102,7 @@ const BurgerMenu = () => {
               {headerT('contacts')}
             </Link>
           </li>
-          {"Admin" === "Admin" && (
+          {user?.role[0] === "Admin" && (
             <li>
               <Link
                 href="/admin/products"
