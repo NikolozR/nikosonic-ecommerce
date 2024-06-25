@@ -26,11 +26,11 @@ function Reviews({ reviews, user, product, addOptimisticProduct }: ReviewsProps)
   return (
     <div className="pt-[40px]">
       <div>
-        <h3 className="font-poppins font-medium text-[#23262F] text-[1.725rem] mb-[24px] leading-[34px]">
+        <h3 className="font-poppins font-medium text-[#23262F] dark:text-[#ECEDEE] text-[1.725rem] mb-[24px] leading-[34px]">
           Customer Reviews
         </h3>
         {user && hasRated && (
-          <div className="flex gap-[10px] mb-[20px]">
+          <div className="flex gap-[5px] sm:gap-[10px] text-[0.75rem] sm:text-[1rem] mb-[20px]">
             <span>You have submitted a review with</span>
             <StarRating rating={currentRating} clickable={false} />
             stars

@@ -78,7 +78,7 @@ const ReviewForm = ({
         <input
           type="text"
           id="comment"
-          className="w-full border-[2px] py-[24px] pl-[16px] caret-[#909090] border-solid border-[#E8ECEF] rounded-[16px] text-[1rem] placeholder:text-[#353945] placeholder:font-medium font-bold outline-none"
+          className="w-full border-[2px] py-[24px] pl-[16px] caret-[#909090] dark:text-[#ECEDEE] border-solid border-[#E8ECEF] rounded-[16px] text-[1rem] placeholder:text-[#353945] placeholder:font-medium font-bold outline-none"
           name="comment"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
@@ -89,7 +89,7 @@ const ReviewForm = ({
           fontSize="1rem"
           padding="py-[6px] px-[40px]"
           className={
-            "absolute right-[16px] top-[50%] transform -translate-y-1/2 rounded-[80px] flex gap-[5px] text-white font-medium leading-[28px] " +
+            "absolute right-[16px] hidden sm:flex !text-[0.75rem] md:text-[1rem] top-[50%] transform -translate-y-1/2 rounded-[80px] gap-[5px] text-white font-medium leading-[28px] " +
             (selectedRating === 0 ? "opacity-35 cursor-default " : "") +
             (comment === "" ? "opacity-35 cursor-default" : "")
           }
@@ -97,6 +97,20 @@ const ReviewForm = ({
           disabled={selectedRating === 0 || comment === ""}
         >
           Submit Review
+          <MdRateReview size={25} color="white" />
+        </Button>
+        <Button
+          type="submit"
+          fontSize="1rem"
+          padding=""
+          className={
+            "absolute right-[16px] flex items-center justify-center sm:hidden top-[50%] translate-y-[-50%] w-[40px] h-[40px] rounded-[50%] " +
+            (selectedRating === 0 ? "opacity-35 cursor-default " : "") +
+            (comment === "" ? "opacity-35 cursor-default" : "")
+          }
+          title={selectedRating === 0 ? "Please Choose Rating Before Submission" : ""}
+          disabled={selectedRating === 0 || comment === ""}
+        >
           <MdRateReview size={25} color="white" />
         </Button>
       </label>

@@ -28,7 +28,7 @@ export default function AuthorizeModal({onHover = true}: {onHover?: boolean}) {
                 <h3 className="text-xl font-semibold mx-auto pt-[40px]">Authorization Required</h3>
               </ModalHeader>
               <ModalBody className="flex flex-col items-center justify-center p-[60px] pt-[20px]">
-                <p className="mb-6 text-center text-gray-600 leading-[27px]">You need to log in or sign up to add items to your cart.</p>
+                <p className="mb-6 text-center text-gray-600 leading-[27px] dark:text-[#ECEDEE]">You need to log in or sign up to add items to your cart.</p>
                 <Button
                   type="button"
                   fontSize="1.25rem"

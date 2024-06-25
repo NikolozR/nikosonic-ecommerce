@@ -14,7 +14,7 @@ function ReviewItem({ review }: { review: Review }) {
               className="object-cover rounded-[50%]"
             />
             <div className="flex flex-col gap-[16px]">
-              <h3 className="text-[#141718] font-bold text-[1.25rem] leading-[32px]">
+              <h3 className="text-[#141718] dark:text-[#ECEDEE] font-bold text-[1.25rem] leading-[32px]">
                 {review?.displayname}
               </h3>
               <div className="flex">
@@ -27,10 +27,9 @@ function ReviewItem({ review }: { review: Review }) {
               </div>
             </div>
           </div>
-          <p className="text-[#353945] leading-[26px] text-[1rem] pl-[112px] pt-[4px]">
+          <p className="text-[#353945] dark:text-[#ECEDEE] leading-[26px] text-[1rem] pl-[0px] sm:pl-[112px] pt-[20px] sm:pt-[4px] pb-[15px]">
             {review.comment}
           </p>
-          <div className="py-[24px]">votes</div>
         </div>
       </div>
     );

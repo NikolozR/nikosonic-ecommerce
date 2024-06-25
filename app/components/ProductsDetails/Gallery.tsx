@@ -32,7 +32,7 @@ function Gallery({
   };
 
   return (
-    <div className="w-[40%]">
+    <div className="w-full md:w-[60%] lg:w-[50%]">
       <div
         className="h-[500px] mb-[20px] relative w-full"
         style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
