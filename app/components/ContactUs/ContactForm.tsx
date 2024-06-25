@@ -21,12 +21,18 @@ export default function ContactForm() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const mailtoLink = `mailto:nika.rusishvili.95@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    })
     window.location.href = mailtoLink;
   };
 
   return (
-    <div className="flex w-full justify-between gap-[28px] items-center mb-[80px]">
-      <form onSubmit={handleSubmit} className="pl-6 pr-6 flex-1">
+    <div className="flex md:flex-row flex-col-reverse w-full justify-between gap-[28px] items-center mb-[80px]">
+      <form onSubmit={handleSubmit} className="pl-6 pr-6 flex-1 w-full">
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
           <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className="mt-1 p-2 border border-gray-300 rounded w-full" />
@@ -45,7 +51,10 @@ export default function ContactForm() {
         </div>
         <Button type="submit" fontSize='1rem' className='leading-[28px]' padding='px-[40px] py-[6px]'>Send Message</Button>
       </form>
+      <div className='w-full md:w-[50%]'>
+
       <MapComponent></MapComponent>
+      </div>
     </div>
   );
 }
