@@ -4,7 +4,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import React from "react";
-import { handleSelectChange } from "../../actions";
+import { handlePriceChange, handleSelectChange } from "../../actions";
+import PriceInput from "./PriceInput";
 
 function getUniqueValues(stringArray: string[]): string[] {
   let counts: { [key: string]: number } = {};
@@ -15,7 +16,13 @@ function getUniqueValues(stringArray: string[]): string[] {
   return uniqueItems;
 }
 
-function SmallFilterTopbar({ categories, brands }: { categories: string[], brands: string[] }) {
+function SmallFilterTopbar({
+  categories,
+  brands,
+}: {
+  categories: string[];
+  brands: string[];
+}) {
   const t = useTranslations("Products");
   const searchParams = useSearchParams();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -25,7 +32,9 @@ function SmallFilterTopbar({ categories, brands }: { categories: string[], brand
     const currentCategories = searchParams.get("categories");
     const currentBrands = searchParams.get("brands");
 
-    setSelectedCategories(currentCategories ? currentCategories.split(",") : []);
+    setSelectedCategories(
+      currentCategories ? currentCategories.split(",") : []
+    );
     setSelectedBrands(currentBrands ? currentBrands.split(",") : []);
   }, [searchParams]);
 
@@ -40,7 +49,7 @@ function SmallFilterTopbar({ categories, brands }: { categories: string[], brand
       currentSearchParams.push({ [key]: searchParams.get(key) ?? "" });
     }
 
-    handleSelectChange(unique, currentSearchParams, 'categories');
+    handleSelectChange(unique, currentSearchParams, "categories");
   };
 
   const handleBrandChange = (v: any) => {
@@ -54,7 +63,7 @@ function SmallFilterTopbar({ categories, brands }: { categories: string[], brand
       currentSearchParams.push({ [key]: searchParams.get(key) ?? "" });
     }
 
-    handleSelectChange(unique, currentSearchParams, 'brands');
+    handleSelectChange(unique, currentSearchParams, "brands");
   };
 
   return (
@@ -80,12 +89,32 @@ function SmallFilterTopbar({ categories, brands }: { categories: string[], brand
         selectedKeys={selectedBrands}
         onChange={handleBrandChange}
       >
-        {brands.map((brand) => (
+        {brands?.map((brand: string) => (
           <SelectItem key={brand} value={brand}>
             {brand}
           </SelectItem>
         ))}
       </Select>
+      <div className="flex mt-[30px] gap-[20px]">
+        <PriceInput
+          filterKey="min_price"
+          handleChange={async (
+            val: number,
+            currentSearchParams: { [key: string]: string }[]
+          ) => {
+            await handlePriceChange("min_price", val, currentSearchParams);
+          }}
+        ></PriceInput>
+        <PriceInput
+          filterKey="max_price"
+          handleChange={async (
+            val: number,
+            currentSearchParams: { [key: string]: string }[]
+          ) => {
+            await handlePriceChange("max_price", val, currentSearchParams);
+          }}
+        ></PriceInput>
+      </div>
     </div>
   );
 }

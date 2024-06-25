@@ -137,7 +137,7 @@ function ProductGrid({
           </Dropdown>
           <div className="flex gap-0">
             <div
-              className={`cursor-pointer dark:hidden w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] border-r-0 ${
+              className={`cursor-pointer hidden lg:block !dark:hidden w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] border-r-0 ${
                 grid === 3 ? "bg-[#F3F5F7]" : ""
               }`}
               onClick={() => handleGridChange(3)}
@@ -153,7 +153,7 @@ function ProductGrid({
               <TfiLayoutGrid3Alt color="white" />
             </div>
             <div
-              className={`cursor-pointer dark:hidden w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] ${
+              className={`cursor-pointer hidden lg:block !dark:hidden w-fit h-fit p-[9px] border-solid border-1 border-[#E8ECEF] ${
                 grid === 2 ? "bg-[#F3F5F7]" : ""
               }`}
               onClick={() => handleGridChange(2)}

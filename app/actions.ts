@@ -54,6 +54,21 @@ export const handleSelectChange = async (
 
   redirect(`/products?${params}`);
 };
+export const handlePriceChange = async (
+  key: "min_price" | "max_price",
+  val: number,
+  currentSearchParams: { [key: string]: string }[]
+) => {
+  const params = await setSearchParams(
+    key,
+    val + "",
+    currentSearchParams,
+    false,
+    false,
+    false
+  );
+  redirect(`/products?${params}`);
+};
 export async function handleProductAddSubmit(formData: FormData) {
   let body: CreateProduct = {
     name: "",

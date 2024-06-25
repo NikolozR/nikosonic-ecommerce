@@ -15,7 +15,7 @@ async function Products({
   searchParams: { [key: string]: string };
 }) {
   const brands: { brand_name: string }[] = await getBrands();
-  const brandsMapped = brands.map((brand) => brand.brand_name);
+  const brandsMapped = brands?.map((brand) => brand.brand_name);
   const products: Product[] =
     Object.keys(searchParams).length === 0
       ? await getAllProducts()
