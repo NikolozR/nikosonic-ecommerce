@@ -167,7 +167,7 @@ async function FilterSidebar({ brands }: { brands: string[] }) {
           </div>
           <div>
             <h3 className="text-[#121212] dark:text-[#F3F5F7] font-bold text-[1rem] leading-[26px] mt-[32px] mb-[12px]">PRICE</h3>
-            <div className="flex gap-[10px]">
+            <div className="flex flex-col gap-[20px]">
               <PriceInput
                 filterKey="min_price"
                 handleChange={async (

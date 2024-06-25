@@ -22,10 +22,10 @@ async function Hero() {
         >
           <div className="flex justify-center">
             <div className="flex flex-col items-center gap-[24px]">
-              <h1 className="text-[3.375rem] leading-[58px] font-poppins font-medium text-center">
+              <h1 className="text-[3.375rem] leading-[58px] dark:text-black font-poppins font-medium text-center">
                 {t("head")}
               </h1>
-              <p className={"text-[#121212] text-[1.25rem] text-center "}>
+              <p className={"text-[#121212] text-[0.9rem] lg:text-[1.25rem] text-center "}>
                 {t("sub")}
               </p>
               {session ? (

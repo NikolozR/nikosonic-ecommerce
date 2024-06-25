@@ -24,10 +24,10 @@ function BlogCard({
       <div className="relative aspect-square mb-[24px]">
         <Image src={blog.thumbnail_url} alt="Blog Thumbnail" fill className="object-cover" />
       </div>
-      <h3 className="font-medium font-poppins text-black text-[1.25rem] leading-[28px] mb-[8px]">
+      <h3 className="font-medium font-poppins text-black dark:text-[#ECEDEE] text-[1.25rem] leading-[28px] mb-[8px]">
         {blog.title}
       </h3>
-      <p className="text-[#23262F] text-[0.725rem] leading-[20px] mb-[8px]">
+      <p className="text-[#23262F] dark:text-[#ECED] text-[0.725rem] leading-[20px] mb-[8px]">
         {formattedDate}
       </p>
       {editMode && updateOptimisticBlogs && (

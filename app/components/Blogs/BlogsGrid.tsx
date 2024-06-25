@@ -71,14 +71,14 @@ function BlogsGrid({ blogs }: { blogs: Blog[] }) {
     <section>
       <div className="container">
         <div className="mt-[40px] mb-[80px]">
-          <div className="flex gap-[32px] items-center">
-            <h3 className="text-[#121212] items-center font-bold text-[1.125rem]">
+          <div className="flex gap-[32px] justify-center xs:justify-start items-center">
+            <h3 className="text-[#121212] hidden sm:block dark:text-[#ECEDEE] items-center font-bold text-[1.125rem]">
               {t('blogs')}
             </h3>
-            <div className="flex items-center mt-[1px]">
+            <div className="flex flex-col-reverse justify-center gap-[20px] xs:gap-0 xs:flex-row items-center mt-[1px]">
               <Dropdown>
                 <DropdownTrigger>
-                  <div className="cursor-pointer flex items-center gap-[5px] font-semibold">
+                  <div className="cursor-pointer sm:text-[1rem] text-[0.75rem] flex items-center gap-[5px] font-semibold">
                     {t(getDropdownBtnContent(selectedSortBy))}{" "}
                     <RiArrowDownSLine size={20} />
                   </div>
@@ -92,14 +92,14 @@ function BlogsGrid({ blogs }: { blogs: Blog[] }) {
                 type="search"
                 aria-label="Search Blogs"
                 placeholder={t('placeholder')}
-                className="[&::-webkit-search-cancel-button]:hidden w-[300px] ml-[30px]"
+                className="[&::-webkit-search-cancel-button]:hidden w-full xs:w-[200px] sm:w-[300px] ml-0 xs:ml-[30px]"
                 endContent={<CiSearch />}
                 value={searchQuery}
                 onChange={handleSearchChange}
               />
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-[40px] mt-[40px]">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-[40px] mt-[40px]">
             {currentBlogs.map((blog) => {
               return (
                 <Link key={blog.blog_id} href={`/blogs/${blog.blog_id}`}>
