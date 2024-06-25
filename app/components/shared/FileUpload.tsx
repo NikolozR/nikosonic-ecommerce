@@ -14,9 +14,9 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
   return (
     <label htmlFor="thumbnail_url" className="relative cursor-pointer">
       <div
-        className={`w-full items-center rounded-lg h-[80px] flex flex-col justify-center p-[20px] border-dashed border-[1px] border-gray-300 ${
+        className={`w-full dark:bg-[#241A32] items-center rounded-lg h-[80px] flex flex-col justify-center p-[20px] border-dashed border-[1px] border-gray-300 ${
           selectedFiles && selectedFiles.length !== 0
-            ? "bg-[#F8F8F8]"
+            ? "bg-[#F8F8F8] dark:bg-[#241A32]"
             : "bg-[white]"
         }`}
       >
@@ -27,12 +27,12 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(({
           </span>
         ) : (selectedFiles && selectedFiles.length !== 0) || selectedFile ? (
           multiple ? (
-            <p className="font-bold text-[#240750]">
+            <p className="font-bold text-[#240750] dark:text-white">
               You have selected {selectedFiles && selectedFiles.length}{" "}
               {selectedFiles?.length !== 1 ? "Files" : "File"}
             </p>
           ) : (
-            <p className="font-bold text-[#240750]">Thumbnail Is Selected</p>
+            <p className="font-bold text-[#240750] dark:text-[#ECEDEE]">Thumbnail Is Selected</p>
           )
         ) : (
           <div className="flex w-full items-center gap-[20px]">

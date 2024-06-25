@@ -37,12 +37,12 @@ function CartGridItem({ cartItem, addOptimisticCartItems }: CartItemProps) {
         />
       </div>
       <div className="flex items-center">
-        <span className="text-[#121212] text-[1.125rem] leading-[30px]">
+        <span className="text-[#121212] dark:text-[#ECEDEE] text-[1.125rem] leading-[30px]">
           ${cartItem.price}
         </span>
       </div>
       <div className="flex items-center">
-        <span className="text-[#121212] font-bold text-[1.125rem] leading-[30px]">
+        <span className="text-[#121212] dark:text-[#ECEDEE] font-bold text-[1.125rem] leading-[30px]">
           ${(cartItem.price * cartItem.quantity).toFixed(2)}
         </span>
       </div>

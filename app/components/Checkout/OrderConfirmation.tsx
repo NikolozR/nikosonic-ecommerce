@@ -44,7 +44,7 @@ const OrderConfirmation: React.FC<OrderProps> = ({ order }) => {
                 height={100}
                 className="mb-2"
               />
-              <div className="bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
+              <div className="bg-gray-200 rounded-full w-6 h-6 flex dark:text-black items-center justify-center text-sm font-bold">
                 {item.order_item_quantity}
               </div>
             </div>

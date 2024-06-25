@@ -45,7 +45,7 @@ function OptimisticComponent({ cartItems }: { cartItems: CartItem[] }) {
         </div>
       );
   } else {
-    return <h2>Your Cart Is Empty</h2>
+    return <h2 className="text-center">Your Cart Is Empty</h2>
   }
 }
 

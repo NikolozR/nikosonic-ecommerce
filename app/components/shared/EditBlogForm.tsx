@@ -126,6 +126,7 @@ function EditBlogForm({ blog }: { blog: Blog }) {
               required
               placeHolder="Blog Title..."
               defaultValue={optimisticBlog.title}
+              inputClassName="dark:text-[#ECEDEE]"
               label="Blog Title"
               labelClassName="text-[#6C7275] text-[0.75rem] font-bold "
             ></Input>
@@ -135,7 +136,7 @@ function EditBlogForm({ blog }: { blog: Blog }) {
             >
               BLOG
               <textarea
-                className="border-[1px] flex-1 leading-[24px] text-gray-800 resize-none h-[350px] placeholder:font-normal font-bold border-solid text-[1rem] p-[10px] border-[#CBCBCB] outline-none rounded-xl"
+                className="border-[1px] flex-1 leading-[24px] text-gray-800 dark:text-[#ECEDEE] resize-none h-[350px] placeholder:font-normal font-bold border-solid text-[1rem] p-[10px] border-[#CBCBCB] outline-none rounded-xl"
                 name="content"
                 id="content"
                 defaultValue={optimisticBlog.content}

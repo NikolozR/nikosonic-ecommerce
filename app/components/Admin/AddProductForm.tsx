@@ -117,7 +117,7 @@ function AddProductForm() {
             >
               DESCRIPTION
               <textarea
-                className="border-[1px] text-gray-800 resize-none h-full placeholder:font-normal font-bold border-solid text-[1rem] p-[10px] border-[#CBCBCB] outline-none rounded-xl"
+                className="border-[1px] text-gray-800 dark:text-white resize-none h-full placeholder:font-normal font-bold border-solid text-[1rem] p-[10px] border-[#CBCBCB] outline-none rounded-xl"
                 name="description"
                 id="description"
                 required
@@ -125,10 +125,10 @@ function AddProductForm() {
             </label>
           </div>
           <div className="flex flex-col flex-1 gap-[30px]">
-            <Input label="Product Name" name="name" type="text" required />
-            <Input label="Brand" name="brand" type="text" required />
-            <Input label="Price" name="price" type="number" required />
-            <Input label="Color" name="color" type="text" required />
+            <Input label="Product Name" inputClassName="dark:text-white" name="name" type="text" required />
+            <Input label="Brand" inputClassName="dark:text-white" name="brand" type="text" required />
+            <Input label="Price" inputClassName="dark:text-white" name="price" type="number" required />
+            <Input label="Color" inputClassName="dark:text-white" name="color" type="text" required />
             <select
               name="category"
               id="category"

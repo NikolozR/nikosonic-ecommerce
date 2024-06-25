@@ -11,7 +11,7 @@ function loading() {
           </h1>
         </Skeleton>
         <div className="flex gap-[80px]">
-          <Card className="bg-[#F3F5F7] rounded-[8px] h-fit w-fit flex flex-col px-[16px] py-[40px]">
+          <Card className="bg-[#F3F5F7] dark:bg-slate-500 rounded-[8px] h-fit w-fit flex flex-col px-[16px] py-[40px]">
             <div>
               <Skeleton className="rounded-[100%] w-fit h-fit mx-auto">
                 <div className="h-[100px] w-[100px] rounded-[50%] bg-default-300"></div>
