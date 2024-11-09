@@ -32,7 +32,7 @@ function LocaleSwitcher() {
       <DropdownMenu aria-label="Language Selector" className="w-fit">
         {locales.map((item) => (
           <DropdownItem className="w-fit" key={item.locale}>
-            <Link key={item.locale} locale={item.locale} href={pathname} className="flex items-center gap-[5px] text-black">
+            <Link key={item.locale} locale={item.locale} href={pathname} className="flex items-center gap-[5px] text-black dark:text-white">
               {item.icon} {item.name}
             </Link>
           </DropdownItem>

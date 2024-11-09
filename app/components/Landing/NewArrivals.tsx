@@ -13,7 +13,7 @@ async function NewArrivals() {
         <h2 className="font-poppins text-[#121212] dark:text-white font-medium py-[40px] text-[1.5rem] sm:text-[2.5rem]">
           {translate("head")}
         </h2>
-        <div className="w-full overflow-x-auto">
+        <div className="w-full overflow-x-auto custom-scrollbar">
           <div className="grid grid-cols-4 min-w-[1350px] gap-[50px] pb-[10px]">
               {products?.map((product) => (
             <div key={product.product_id} className="min-w-[300px] max-w-full">
