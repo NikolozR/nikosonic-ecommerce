@@ -21,11 +21,26 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
+const heroVariants = {
+  hidden: { x: '-100vw', opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeInOut"
+    }
+  }
+}
+
 function Hero() {
   const heroT = useTranslations("LandingHero");
   return (
-    <section className="font-poppins">
-      <div
+    <section className="font-poppins overflow-hidden">
+      <motion.div
+        variants={heroVariants}
+        initial="hidden"
+        animate="visible"
         style={{
           backgroundImage: `url(${LandingPlaceholder.src})`,
           backgroundRepeat: "no-repeat",
@@ -70,8 +85,11 @@ function Hero() {
             </motion.div>
           </div>
         </div>
-      </div>
-      <div
+      </motion.div>
+      <motion.div
+        variants={heroVariants}
+        initial="hidden"
+        animate="visible"
         style={{
           backgroundImage: `url(${DarkLandingPlaceholder.src})`,
           backgroundRepeat: "no-repeat",
@@ -116,7 +134,7 @@ function Hero() {
             </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
