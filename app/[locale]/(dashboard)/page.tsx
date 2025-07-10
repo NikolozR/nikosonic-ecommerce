@@ -15,8 +15,12 @@ import MostViewed from "../../components/Landing/MostViewed";
 import DreQuote from "../../components/Landing/DreQuote";
 import BusinessFeatures from "../../components/Landing/BusinessFeatures";
 import NewsFeed from "../../components/Landing/NewsFeed";
+import { getMostVieweds, getNewest, getUser } from "../../api/api";
 
 async function Landing() {
+  const newProducts: Product[] = await getNewest(4);
+  const mostViewedProducts: Product[] = await getMostVieweds(8);
+  const user = await getUser();
   return (
     <>
       <Hero />
@@ -100,9 +104,9 @@ async function Landing() {
             </div>
           </div>
         </div>
-        <NewArrivals />
+        <NewArrivals products={newProducts} user={user} />
         <ShopCollection />
-        <MostViewed />
+        <MostViewed products={mostViewedProducts} user={user} />
         <DreQuote />
         <BusinessFeatures />
         <NewsFeed />

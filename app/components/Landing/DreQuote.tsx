@@ -1,13 +1,21 @@
+'use client'
 import Image from "next/image";
 import DreQuotePlaceholder from "../../../public/quotePlaceholder.jpg";
 import Button from "../shared/Button";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
-async function DreQuote() {
-  const t = await getTranslations("DrDre");
+function DreQuote() {
+  const t = useTranslations("DrDre");
   return (
-    <section className="flex flex-col md:flex-row">
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true, amount: 0.2 }}
+      className="flex flex-col md:flex-row"
+    >
       <div className="relative w-full h-[500px] md:h-auto md:w-[50%]">
         <Image
           src={DreQuotePlaceholder}
@@ -32,7 +40,7 @@ async function DreQuote() {
           </Button>
         </Link>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

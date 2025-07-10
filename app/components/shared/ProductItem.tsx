@@ -10,6 +10,7 @@ import { deleteProduct } from "../../api/api";
 import { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Spinner } from "@nextui-org/react";
 import { useCartContext } from "../providers/CartProvider";
+import { motion } from "framer-motion";
 
 function ProductItem({
   product,
@@ -69,7 +70,8 @@ function ProductItem({
   };
 
   return (
-    <div
+    <motion.div
+      whileHover={{ scale: 1.03 }}
       className="w-full dark:bg-[#241b33] cursor-pointer group bg-white pb-[20px] rounded-[15px] relative"
       style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
     >
@@ -139,7 +141,7 @@ function ProductItem({
           </>
         </ModalContent>
       </Modal>
-    </div>
+    </motion.div>
   );
 }
 

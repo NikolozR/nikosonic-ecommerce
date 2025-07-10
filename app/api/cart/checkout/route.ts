@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 const BASE_URL = process.env.BASE_URL;
-const stripe = require("stripe")(
-  "sk_test_51PRI28BISmzgHGwqJX2qKh7rkN0FJLOHHvd6pZ8wRgNw8omgLbtblEUNUPTsBf7zOPNkfnF3qoy8LLrWMVFayqsk00dWG4MhBX"
-);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const getActiveProducts = async () => {
   const checkProducts = await stripe.products.list({

@@ -1,28 +1,38 @@
+'use client'
 import Link from "next/link";
-import { getMostVieweds, getUser } from "../../api/api";
 import Button from "../shared/Button";
 import ProductItem from "../shared/ProductItem";
-import { getTranslations } from "next-intl/server";
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
-async function MostViewed() {
-  const products: Product[] = await getMostVieweds(4);
-  const user = await getUser();
-  const translate = await getTranslations("MostViewed");
+function MostViewed({
+  products,
+  user,
+}: {
+  products: Product[];
+  user: User;
+}) {
+  const translate = useTranslations("MostViewed");
   return (
-    <section className="bg-[#F3F5F7] pb-[40px] dark:bg-[#201424]">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-[#F3F5F7] pb-[40px] dark:bg-[#201424]"
+    >
       <div className="container">
         <h2 className="font-poppins text-[#121212] font-medium py-[40px] dark:text-[#ECEDEE] text-[1.5rem] sm:text-[2.5rem]">
           {translate("head")}
         </h2>
-        <div className="w-full overflow-x-auto custom-scrollbar">
-          <div className="grid grid-cols-4 min-w-[1350px] gap-[50px] pb-[10px]">
+        <div className="w-full">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-[50px]">
             {products?.map((product) => (
-              <div
+              <ProductItem
                 key={product.product_id}
-                className="min-w-[300px] max-w-full"
-              >
-                <ProductItem product={product} isNew user={user}></ProductItem>
-              </div>
+                product={product}
+                isHot
+                user={user}
+              ></ProductItem>
             ))}
           </div>
         </div>
@@ -37,7 +47,7 @@ async function MostViewed() {
           </Button>
         </Link>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

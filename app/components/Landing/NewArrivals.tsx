@@ -1,29 +1,39 @@
+'use client'
 import Link from "next/link";
-import { getNewest, getUser } from "../../api/api";
 import Button from "../shared/Button";
 import ProductItem from "../shared/ProductItem";
-import { getTranslations } from "next-intl/server";
-async function NewArrivals() {
-  const products: Product[] = await getNewest(4);
-  const user = await getUser();
-  const translate = await getTranslations("NewArrivals");
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+
+function NewArrivals({
+  products,
+  user,
+}: {
+  products: Product[];
+  user: User;
+}) {
+  const translate = useTranslations("NewArrivals");
   return (
-    <section className="bg-[#F3F5F7] dark:bg-[#201424] pb-[40px]">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-[#F3F5F7] dark:bg-[#201424] pb-[40px]"
+    >
       <div className="container">
         <h2 className="font-poppins text-[#121212] dark:text-white font-medium py-[40px] text-[1.5rem] sm:text-[2.5rem]">
           {translate("head")}
         </h2>
-        <div className="w-full overflow-x-auto custom-scrollbar">
-          <div className="grid grid-cols-4 min-w-[1350px] gap-[50px] pb-[10px]">
-              {products?.map((product) => (
-            <div key={product.product_id} className="min-w-[300px] max-w-full">
-                <ProductItem
-                  product={product}
-                  isNew
-                  user={user}
-                ></ProductItem>
-            </div>
-              ))}
+        <div className="w-full">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-[50px]">
+            {products?.map((product) => (
+              <ProductItem
+                key={product.product_id}
+                product={product}
+                isNew
+                user={user}
+              ></ProductItem>
+            ))}
           </div>
         </div>
         <Link href={"/products"} className="w-fit block mx-auto">
@@ -37,7 +47,7 @@ async function NewArrivals() {
           </Button>
         </Link>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
