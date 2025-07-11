@@ -3,11 +3,9 @@
 
 Nikosonic is a feature-rich, full-stack e-commerce platform built with a modern, server-centric approach using Next.js. This project demonstrates a complete backend implementation using Next.js API Routes, handling everything from complex database queries and user authentication to file uploads and payment processing. It is a testament to what can be achieved by a developer with a strong command of the entire web stack.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNika-Rusishvili%2Fnikosonic-ecommerce)
-
 ## Live Demo
 
-[Link to your live demo]
+https://nikosonic-ecommerce.vercel.app/
 
 ## Key Features
 
@@ -72,7 +70,7 @@ Follow these instructions to get the project up and running on your local machin
 
 2.  **Install dependencies:**
     ```bash
-    pnpm install
+    npm install
     ```
 
 3.  **Set up environment variables:**
@@ -106,13 +104,12 @@ Follow these instructions to get the project up and running on your local machin
 
 4.  **Run the development server:**
     ```bash
-    pnpm dev
+    npm run dev
     ```
 
     Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
 ## Contact
 
-Nika Rusishvili - [Your Email] - [Your LinkedIn Profile]
+Nika Rusishvili - nika.rusishvili.95@gmail.com - https://www.linkedin.com/in/nika-rusishvili-69a641228/
 
-Project Link: [https://github.com/Nika-Rusishvili/nikosonic-ecommerce](https://github.com/Nika-Rusishvili/nikosonic-ecommerce)
