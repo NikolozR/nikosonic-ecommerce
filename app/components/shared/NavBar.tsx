@@ -30,7 +30,7 @@ const linkVariants = {
   },
 };
 
-function NavBar({ user, theme }: { user: Claims | undefined, theme: string }) {
+function NavBar({ user }: { user: Claims | undefined }) {
   const headerT = useTranslations("Header");
   return (
     <motion.nav
@@ -116,11 +116,11 @@ function NavBar({ user, theme }: { user: Claims | undefined, theme: string }) {
           <div>
             <div className="flex gap-[15px] items-center">
               {!user ? (
-                <ProfileDropDown isAuthorized={false} theme={theme} />
+                <ProfileDropDown isAuthorized={false} />
               ) : (
                 <div className="flex gap-[15px] items-center">
                   <CartIcon />
-                  <ProfileDropDown isAuthorized={true} theme={theme} />
+                  <ProfileDropDown isAuthorized={true} />
                 </div>
               )}
               <LocaleSwitcher />

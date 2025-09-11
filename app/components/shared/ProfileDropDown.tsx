@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, MouseEventHandler } from "react";
 import { CgProfile } from "react-icons/cg";
 import ThemeSwitcher from "./ThemeSwitcher";
 
-function ProfileDropDown({ isAuthorized, theme }: { isAuthorized: boolean, theme: string }) {
+function ProfileDropDown({ isAuthorized }: { isAuthorized: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +42,7 @@ function ProfileDropDown({ isAuthorized, theme }: { isAuthorized: boolean, theme
           <div className="py-1">
             <div className="px-4 py-2 hover:bg-gray-100 flex justify-between items-center">
               <span className="text-sm text-gray-700">Theme</span>
-              <ThemeSwitcher theme={theme}></ThemeSwitcher>
+              <ThemeSwitcher></ThemeSwitcher>
             </div>
             {isAuthorized ? (
               <>

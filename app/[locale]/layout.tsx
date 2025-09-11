@@ -1,11 +1,12 @@
 import "./globals.css";
-import { Inter, Poppins, Space_Grotesk } from "next/font/google";
+import { Inter, Poppins, Space_Grotesk, Outfit } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { locales } from "../../navigation";
 import { getMessages, unstable_setRequestLocale } from "next-intl/server";
 import { NextUIProvider } from "@nextui-org/react";
 import { NextIntlClientProvider } from "next-intl";
 import { cookies } from "next/headers";
+import { ThemeProvider } from "../components/providers/ThemeProvider";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -13,11 +14,17 @@ const grotesk = Space_Grotesk({
 });
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-poppins",
+});
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-outfit",
 });
 const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata = {
@@ -37,15 +44,40 @@ export default async function RootLayout({
   const theme: string = cookies().get("theme")?.value ?? "";
   return (
     <html lang={locale} className={theme} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = document.cookie
+                    .split('; ')
+                    .find(row => row.startsWith('theme='))
+                    ?.split('=')[1];
+                  
+                  if (!theme) {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  }
+                  
+                  document.documentElement.classList.remove('light', 'dark');
+                  document.documentElement.classList.add(theme);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <UserProvider>
         <body
           className={
-            inter.className + " " + grotesk.variable + " " + poppins.variable + ' dark:bg-[#241b33]'
+            inter.className + " " + grotesk.variable + " " + poppins.variable + " " + outfit.variable + ' dark:bg-[#241b33]'
           }
         >
-          <NextIntlClientProvider messages={messages}>
-              <NextUIProvider>{children}</NextUIProvider>
-          </NextIntlClientProvider>
+          <ThemeProvider initialTheme={theme}>
+            <NextIntlClientProvider messages={messages}>
+                <NextUIProvider>{children}</NextUIProvider>
+            </NextIntlClientProvider>
+          </ThemeProvider>
         </body>
       </UserProvider>
     </html>

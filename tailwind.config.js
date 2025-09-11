@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import {nextui} from "@nextui-org/react";
 module.exports = {
-  darkMode: ['variant', [
-    '@media (prefers-color-scheme: dark) { &:not(.light *) }',
-    '&:is(.dark *)',
-  ]],
+  darkMode: ['class'],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -22,9 +19,11 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        grotesk: ['var(--font-grotesk)'],
-        poppins: ['var(--font-poppins)'],
-
+        sans: ['var(--font-inter)', 'var(--font-outfit)', 'system-ui', 'sans-serif'],
+        grotesk: ['var(--font-grotesk)', 'system-ui', 'sans-serif'],
+        poppins: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+        outfit: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+        inter: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       gridTemplateColumns: {
         cartTemplate: '40% 20% 20% 20%',

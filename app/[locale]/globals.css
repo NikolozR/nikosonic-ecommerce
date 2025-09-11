@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Enhanced typography */
+@layer base {
+  html {
+    font-family: var(--font-inter), var(--font-outfit), system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), var(--font-outfit), system-ui, sans-serif;
+  }
+  
+  /* Ensure buttons and navigation use nice fonts */
+  button, nav, .navbar {
+    font-family: var(--font-grotesk), var(--font-inter), system-ui, sans-serif;
+  }
+}
+
 html,
 body,
 div,
