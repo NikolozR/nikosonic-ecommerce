@@ -7,16 +7,20 @@ import OptimisticComponent from "../../../../components/ProductsDetails/Optimist
 import { QueryResultRow, sql } from "@vercel/postgres";
 
 export async function generateStaticParams() {
-  const result = await sql`
-      SELECT product_id FROM products;
-    `;
-  const idsRes: { product_id: number }[] = result.rows.map((d: QueryResultRow) => d as {product_id: number});
+  try {
+    const result = await sql`
+        SELECT product_id FROM products;
+      `;
+    const idsRes: { product_id: number }[] = result.rows.map((d: QueryResultRow) => d as {product_id: number});
 
-  const ids: string[] = idsRes?.map((el) => el.product_id + '');
+    const ids: string[] = idsRes?.map((el) => el.product_id + '');
 
-  return ids?.map((id) => ({
-    productId: id,
-  })) ?? [];
+    return ids?.map((id) => ({
+      productId: id,
+    })) ?? [];
+  } catch {
+    return [];
+  }
 }
 
 async function ProductDetailsPage({
